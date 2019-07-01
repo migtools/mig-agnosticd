@@ -1,0 +1,22 @@
+cloudformation_retries: 0
+env_type: ocp4-workshop
+software_to_deploy: none
+
+ocp4_installer_version: "4.1.0"
+osrelease: 4.1.0
+repo_version: '4.1'
+bastion_instance_type: t2.medium
+install_ocp4: true
+
+install_opentlc_integration: false
+install_idm: false
+install_ipa_client: false
+
+# We are intentionally setting the below to empty to reduce setup time 
+# and skip deploying workloads we are not interested in.
+# TODO:  In future we will likely place the roles we want to install for OCP Migration here.
+default_workloads: ""
+infra_workloads: ""
+student_workloads: ""
+
+
