@@ -1,4 +1,3 @@
-source ../env
 OUR_DIR=`pwd`
 
 pushd .

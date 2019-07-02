@@ -15,8 +15,8 @@ install_ipa_client: false
 # We are intentionally setting the below to empty to reduce setup time 
 # and skip deploying workloads we are not interested in.
 # TODO:  In future we will likely place the roles we want to install for OCP Migration here.
-default_workloads: ""
-infra_workloads: ""
-student_workloads: ""
+default_workloads: []
+infra_workloads: []
+student_workloads: []
 
 

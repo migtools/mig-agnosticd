@@ -1,0 +1,7 @@
+env_type: "ocp-workshop"
+repo_version: 3.11
+osrelease: 3.11.104
+software_to_deploy: "openshift" 
+course_name: "ocp-workshop" 
+platform: "aws" 
+
