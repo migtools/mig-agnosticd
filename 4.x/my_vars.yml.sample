@@ -6,7 +6,12 @@ email: "jmatthew@redhat.com"
 # files created for this cluster, ssh_conf, kubeconfig, etc.
 #
 guid: jwm0701ocp4b
-output_dir: "/tmp/agnostic_{{ guid }}"
+
+# Avoid using /tmp if files are automatically purged after some time
+# For example on MacOS, /tmp is purged after a week or so
+# If you lose the files for output_dir of agnosticd it can make it hard
+# to ssh into the provisioned hosts or clean up
+output_dir: "/home/REPLACE_USERNAME/.agnosticd/{{ guid }}"
 
 subdomain_base_suffix: .mg.dog8code.com
 HostedZoneId: Z2GE8CSGW2ZA8W
