@@ -1,0 +1,67 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+  - name: "Reading v4 variables"
+    include_vars: "../4.x/my_vars.yml"
+
+  - name: "Setting facts"
+    set_fact:
+      guid_v4: "{{ guid }}"
+      subdomain_v4: "{{ subdomain_base_suffix }}"
+
+  - name: "Reading v3 variables"
+    include_vars: "../3.x/my_vars.yml" 
+
+  - name: "Setting facts"
+    set_fact:
+      guid_v3: "{{ guid }}"
+      subdomain_v3: "{{ subdomain_base_suffix }}"
+      output_dir_v3: "{{ output_dir }}"
+  
+  - name: "Registering host"
+    add_host:
+      hostname: "master.{{ guid_v3 }}{{ subdomain_v3 }}"
+      groups: "remote"       
+
+- hosts: remote
+  vars_files:
+    - "../3.x/my_vars.yml"
+  vars:
+    ansible_ssh_private_key_file: "{{ output_dir }}/{{ guid }}key"
+    ansible_user: ec2-user
+  tasks:
+  - name: "Including v4 variables"
+    include_vars: "../4.x/my_vars.yml"
+    delegate_to: localhost
+
+  - name: "Adding new CORS rules"
+    lineinfile:
+      insertafter: "corsAllowedOrigins:"
+      line: "- (?i)//migration-mig\\.apps\\.{{ guid }}\\{{ subdomain_base_suffix }}"
+      path: /etc/origin/master/master-config.yaml
+    become: yes
+
+  - name: "Checking if atomic-openshift services exist [1]"
+    shell: "systemctl status atomic-openshift-master-api"
+    register: status
+    become: yes
+    ignore_errors: yes
+
+  - name: "Applying new configuration [atomic-openshift services]"
+    service:
+      name: "{{ item }}"
+      state: restarted
+    loop:
+      - atomic-openshift-master-api
+      - atomic-openshift-master-controllers
+    become: yes
+    when: status.rc == 0
+
+  - name: "Applying new configuration [master-restart]" 
+    shell: "/usr/local/bin/master-restart {{ item }}"
+    loop:
+      - api
+      - controller
+    when: status.rc != 0
+    become: yes
