@@ -26,6 +26,11 @@ The scripts here will deploy an OpenShift 3 cluster with a Bastion host, all ssh
         You can bypass the certificate check, but any data you send to the server could be intercepted by others.
         Use insecure connections? (y/n): yes
 
+        # or alternative to create a new kubeconfig file to reference later
+        export KUBECONFIG=~/.agnosticd/jmatthewsagn1/kubeconfig
+        $ oc login https://master.jmatthewsagn1.mg.dog8code.com -u opentlc-mgr -p r3dh4t1! --config ${KUBECONFIG}
+        
+
 
 ## Example:  log into console
 1. Look for info of the console in stdout
