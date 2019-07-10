@@ -3,19 +3,19 @@
 # This script deploys a workload on specified OCP cluster
 # It assumes that the cluster is launched with mig-agnosticd
 
-USAGE="$(basename "$0") [-h] [-w WORKLOAD] [-e OCP_VERSION(3, 4)] [-a ACTION]
+USAGE="$(basename "$0") [-h] [-w WORKLOAD] [-e OCP_VERSION (3 or 4)] [-a ACTION]
 
 Options :
   -h    Show this help
   -w    Name of the workload to deploy
   -v    OCP Version (3 or 4)
-  -a    Action ('create' or 'delete')
+  -a    Action ('create' or 'remove')
 
 Note : 
   Make sure your cluster was launched using mig-agnosticd
 
 Example Usage :
-  $(basename "$0") -w migration -v 3 -a delete
+  $(basename "$0") -w migration -v 3 -a remove
   $(basename "$0") -w mssql -v 4 -a create
 "
 
@@ -58,7 +58,7 @@ if [ ${AGNOSTICD_HOME} == "" ]; then
   exit 1
 fi
 
-if [ ${ACTION} != "create" ] && [ ${ACTION} != "delete" ]; then
+if [ ${ACTION} != "create" ] && [ ${ACTION} != "remove" ]; then
   echo -e "Invalid action...\n"
   echo "$USAGE"
   exit 1
