@@ -1,4 +1,0 @@
----
-mig_operator_deploy_controller: true
-mig_operator_deploy_ui: true
-mig_deploy_velero: true
