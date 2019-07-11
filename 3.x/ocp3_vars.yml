@@ -4,4 +4,4 @@ osrelease: 3.11.104
 software_to_deploy: "openshift" 
 course_name: "ocp-workshop" 
 platform: "aws" 
-
+install_k8s_modules: true
