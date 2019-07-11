@@ -3,32 +3,45 @@
   hosts: localhost
   connection: local
   tasks: 
-  - name: "Including variables..."
-    include_vars: "../{{ ocp_version | mandatory }}.x/my_vars.yml"
+  - name: "Including cluster variables..."
+    include_vars: "{{ item }}"
+    loop:
+      - "../{{ ocp_version | mandatory }}.x/my_vars.yml"
+      - "../{{ ocp_version }}.x/ocp{{ ocp_version }}_vars.yml"
   
-  - name: "Setting remote facts..."
-    set_fact:
-      guid: "{{ guid }}"
-      subdomain_base_suffix: "{{ subdomain_base_suffix }}"
-      output_dir: "{{ output_dir }}"
-  
-  - name: "Adding a new host"
-    add_host:
-      hostname: "bastion.{{ guid }}{{ subdomain_base_suffix }}"
-      groups: "remote"
-       
   - name: "Including secrets and workload variables..."
     include_vars: "{{ item }}"
     loop:
       - "../secret.yml"
       - "./workload_vars/{{ workload }}.yml"
 
+  - name: "Creating new kube config on bastion"
+    block:
+    - name: "Ensuring kube config on bastion"
+      stat:
+        path: "/home/ec2-user/.kube/config"
+      register: kubeconfig
+
+    - copy: 
+        src: "{{ output_dir }}/{{ env_type }}_{{ guid }}_kubeconfig"
+        dest: "/home/ec2-user/.kube/config"
+      when: kubeconfig.stat.exists == False
+      register: copy_status
+      ignore_errors: yes
+    
+    - shell: "oc login -u {{ admin_user  | default('opentlc-mgr') }} -p {{ admin_password | default('r3dh4t1!') }} https://master.{{ guid }}{{ subdomain_base_suffix }} --config /home/ec2-user/.kube/config --insecure-skip-tls-verify=true"
+      when: copy_status.dest is not defined and kubeconfig.stat.exists == False
+    vars:
+      ansible_ssh_private_key_file: "{{ output_dir }}/{{ guid }}key"
+      ansible_user: ec2-user
+    delegate_to: "bastion.{{ guid }}{{ subdomain_base_suffix }}"
+
   - shell: "ansible-playbook -i bastion.{{ guid }}{{ subdomain_base_suffix }}, {{ agnosticd_home | mandatory }}/ansible/configs/ocp-workloads/ocp-workload.yml -e ansible_ssh_private_key_file={{ output_dir }}/{{ guid }}key -e ansible_user=ec2-user -e ocp_workload=ocp-workload-{{ workload | mandatory }} -e ACTION={{ action }} -e @../secret.yml -e @./workload_vars/{{ workload | mandatory }}.yml -e playbook_dir={{ agnosticd_home }}"
     register: output
     ignore_errors: yes
 
   - debug: 
-      msg: "{{ output.stdout }}"
+      msg: "{{ output.stdout.split('\n') }}"
 
   - fail:
       msg: "Workload deployment failed"
