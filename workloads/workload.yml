@@ -36,7 +36,7 @@
       ansible_user: ec2-user
     delegate_to: "bastion.{{ guid }}{{ subdomain_base_suffix }}"
 
-  - shell: "ansible-playbook -i bastion.{{ guid }}{{ subdomain_base_suffix }}, {{ agnosticd_home | mandatory }}/ansible/configs/ocp-workloads/ocp-workload.yml -e ansible_ssh_private_key_file={{ output_dir }}/{{ guid }}key -e ansible_user=ec2-user -e ocp_workload=ocp-workload-{{ workload | mandatory }} -e ACTION={{ action }} -e @../secret.yml -e @./workload_vars/{{ workload | mandatory }}.yml -e playbook_dir={{ agnosticd_home }}"
+  - shell: "ansible-playbook -i bastion.{{ guid }}{{ subdomain_base_suffix }}, {{ agnosticd_home | mandatory }}/ansible/configs/ocp-workloads/ocp-workload.yml -e ansible_ssh_private_key_file={{ output_dir }}/{{ guid }}key -e ansible_user=ec2-user -e ocp_workload=ocp-workload-{{ workload | mandatory }} -e ACTION={{ action }} -e @../secret.yml -e @./workload_vars/{{ workload | mandatory }}.yml -e playbook_dir={{ agnosticd_home }} -e ocp_version={{ ocp_version }}"
     register: output
     ignore_errors: yes
 
