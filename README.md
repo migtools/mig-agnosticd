@@ -86,3 +86,15 @@ At this point in time, the operators are _not_ integrated with OLM.  The intent 
         cp my_vars.sample.yml my_vars.yml
         vim my_vars.yml # Update based on comments in file
         cd ..
+
+## Post Initial Setup
+
+Once you complete initial setup, you should have `./secret.yml`, `./3.x/my_vars.yml` and `./4.x/my_vars.yml` files created. 
+
+The next step is to install the cluster.
+
+To install Openshift 3.x cluster, follow instructions in `./3.x/README.md`. 
+
+To install Openshift 4.x cluster, follow instructions in `./4.x/README.md`.
+
+
