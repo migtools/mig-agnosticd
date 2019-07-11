@@ -1,6 +1,6 @@
 ## Deploying AgnosticD workloads
 
-This is a collection of scripts that help you deploy workloads on AgnosticD Openshift clusters. It includes sample configuration files for migration workloads.
+This is a collection of scripts that help you deploy workloads on AgnosticD Openshift clusters. It includes sample configuration files for migration related workloads.
 
 ### Deploying a workload
 
@@ -21,8 +21,6 @@ We have two migration workloads -
 * migration : Mig Operator workload to deploy UI, Controller and Velero
 * mssql : A sample MsSQL server with a Node.js app 
 
-The workloads require a few variables defined. Please put those variables under `workload_vars/<workload_name>.yml` file. Sample workload configuration variables are included in the directory.
-
 To remove the workload, run following script
 
 ```
@@ -34,5 +32,9 @@ For more information about the script, run
 ```
 ./deploy_workload.sh -h
 ```
+
+### About Workload Configuration
+
+By default, all the workloads are launched with their default configurations. The configuration file of a workload can be found at `workload_vars/<workload_name>.yml`. You may change the values of variables in this file if you do not want the default behaviour.
 
 
