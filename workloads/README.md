@@ -27,6 +27,12 @@ To remove the workload, run following script
 ./deploy_workload.sh -a remove -w <workload_name> -v <ocp_version> 
 ```
 
+For example, to deploy migration workload on Openshift 3 cluster, run
+
+```
+./deploy_workload.sh -a create -w migration -v 3
+```
+
 For more information about the script, run 
 
 ```
@@ -35,6 +41,8 @@ For more information about the script, run
 
 ### About Workload Configuration
 
-By default, all the workloads are launched with their default configurations. The configuration file of a workload can be found at `workload_vars/<workload_name>.yml`. You may change the values of variables in this file if you do not want the default behaviour.
+By default, all the workloads are launched with their default configurations. For migration scenarios, there is no need to change any configuration. 
+
+However, the configuration file of a workload can be found at `workload_vars/<workload_name>.yml`. You may change the values of variables in this file if you do not want the default behaviour.
 
 
