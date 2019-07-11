@@ -1,0 +1,5 @@
+---
+mssql_pv_provider: nfs
+mssql_nfs_pv_server: "YOUR_NFS_SERVER"
+mssql_nfs_pv_name: mssql-nfs-pv
+mssql_nfs_pv_path: "YOUR_NFS_PATH"
