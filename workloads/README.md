@@ -2,6 +2,14 @@
 
 This is a collection of scripts that help you deploy workloads on AgnosticD Openshift clusters. It includes sample configuration files for migration related workloads.
 
+### NOTE
+
+All workloads should be available in AgnosticD repository. However, the migration related workloads are yet not part of the upstream repo. Please checkout following repo to deploy migration workloads.
+
+```bash
+git clone https://github.com/pranavgaikwad/agnosticd
+```
+
 ### Deploying a workload
 
 To deploy a workload, you can use the `deploy_workload.sh` script.
@@ -10,7 +18,7 @@ To deploy a workload, you can use the `deploy_workload.sh` script.
 
 To create a new workload, run following script 
 
-```
+```bash
 ./deploy_workload.sh -a create -w <workload_name> -v <ocp_version>
 ```
 
@@ -23,19 +31,19 @@ We have two migration workloads -
 
 To remove the workload, run following script
 
-```
+```bash
 ./deploy_workload.sh -a remove -w <workload_name> -v <ocp_version> 
 ```
 
 For example, to deploy migration workload on Openshift 3 cluster, run
 
-```
+```bash
 ./deploy_workload.sh -a create -w migration -v 3
 ```
 
 For more information about the script, run 
 
-```
+```bash
 ./deploy_workload.sh -h
 ```
 
