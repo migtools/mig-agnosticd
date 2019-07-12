@@ -54,7 +54,7 @@ At this point in time, the operators are _not_ integrated with OLM.  The intent 
 1. AWS Access, you will need AWS access according to the needs of OCP 3.x and 4.x deployments.
 
     - Admin Access is currently required for OCP 4.x
-    - Access to a HostedZone in Route53 is required, meaning you need a domain name managed by Route53 which can serve as the subdomain for your clusters
+    - Access to a HostedZone in AWS Route53 is required, meaning you need a domain name managed by Route53 which can serve as the subdomain for your clusters
 1. Checkout of https://github.com/redhat-cop/agnosticd 
 1. Environment Variable set of 'AGNOSTICD_HOME' pointing to your agnosticd checkout
 1. Creation of a 'secret.yml' in the base directory of this repo, see https://github.com/fusor/mig-agnosticd/blob/master/secret.yml.sample
@@ -64,37 +64,44 @@ At this point in time, the operators are _not_ integrated with OLM.  The intent 
     - `cp secret.yml.sample secret.yml`
     - `vim secret.yml` # and update the variables as comments instruct
 
-# Initial Setup Steps
-        git clone https://github.com/redhat-cop/agnosticd.git
-        cd agnosticd
-        export AGNOSTICD_HOME=`pwd`  # Consider putting in ~/.bashrc to make easier in future
-        cd .. 
+# Pre-provisioning Steps
+```
+# Clone 'agnosticd' repo, which 'mig-agnosticd' (this repo) will call into for provisioning 
+git clone https://github.com/redhat-cop/agnosticd.git
+cd agnosticd
+export AGNOSTICD_HOME=`pwd`  # Consider exporting 'AGNOSTICD_HOME' in ~/.bashrc to the full repo path for future use.
+cd .. 
 
-        git clone https://github.com/fusor/mig-agnosticd.git
-        cd mig-agnosticd
-        cp secret.yml.sample secret.yml
-        vim secret.yml # Update based on comments in file
+# Clone 'mig-agnosticd' repo (this repo)
+git clone https://github.com/fusor/mig-agnosticd.git
+cd mig-agnosticd
+cp secret.yml.sample secret.yml
+vim secret.yml # Update based on comments in file
 
-        # Now setup for 3.x
-        cd 3.x
-        cp my_vars.sample.yml my_vars.yml
-        vim my_vars.yml # Update based on comments in file
-        cd ..
+# Fill out required vars for provisioning OpenShift 3.x 
+cd 3.x
+cp my_vars.sample.yml my_vars.yml
+vim my_vars.yml # Update based on comments in file
+cd ..
 
-        # Now setup for 4.x
-        cd 4.x
-        cp my_vars.sample.yml my_vars.yml
-        vim my_vars.yml # Update based on comments in file
-        cd ..
+# Fill out required vars for provisioning OpenShift 4.x
+cd 4.x
+cp my_vars.sample.yml my_vars.yml
+vim my_vars.yml # Update based on comments in file
+cd ..
+```
 
-## Post Initial Setup
+## Running AgnosticD to provision OpenShift 3 + 4 Clusters
 
-Once you complete initial setup, you should have `./secret.yml`, `./3.x/my_vars.yml` and `./4.x/my_vars.yml` files created. 
+Once you complete initial setup, you should have:
+ - `./secret.yml`
+ - `./3.x/my_vars.yml`
+ - `./4.x/my_vars.yml` 
 
 The next step is to install the cluster.
 
-To install Openshift 3.x cluster, follow instructions in [./3.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/3.x/README.md). 
+To provision an OpenShift 3.x cluster, follow instructions in [./3.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/3.x/README.md). 
 
-To install Openshift 4.x cluster, follow instructions in [./4.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/4.x/README.md).
+To provision an OpenShift 4.x cluster, follow instructions in [./4.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/4.x/README.md).
 
 
