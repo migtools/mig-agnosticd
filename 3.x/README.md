@@ -4,7 +4,7 @@ The scripts here will deploy an OpenShift 3 cluster with a Bastion host, all ssh
 # Usage
 ## Create Cluster
 1. Ensure that you have a `../secret.yml` in the parent directory
-1. Ensure that you have `cp my_vars.sample.yml my_vars.yml` and you have edited 'my_vars.yml'
+1. Ensure that you have `cp my_vars.yml.sample my_vars.yml` and you have edited 'my_vars.yml'
 1. Ensure that `AGNOSTICD_HOME` environment variable is set
 1. Run: `create_ocp3_workshop.sh`
 1. Wait ... ~70 - 90 minutes
