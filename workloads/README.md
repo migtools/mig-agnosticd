@@ -16,6 +16,13 @@ git clone https://github.com/pranavgaikwad/agnosticd
 
 ### Deploying a workload
 
+#### Usage: `./deploy_workload.sh `
+|Flag|Purpose|Accepted Values|
+|---|---|---|
+|`-a`|Workload Action|[`create`, `delete`]|
+|`-w`|Workload Name|[`migration`, `mssql`, ...]|
+|`-v`|AgnosticD OpenShift Version|[`3`, `4`]|
+
 To create a new workload:
 
 ```bash
@@ -37,13 +44,6 @@ To print help:
 ```bash
 ./deploy_workload.sh -h
 ```
-
-#### Usage: `./deploy_workload.sh `
-|Flag|Purpose|Accepted Values|
-|---|---|---|
-|`-a`|Workload Action|[`create`, `delete`]|
-|`-w`|Workload Name|[`migration`, `mssql`, ...]|
-|`-v`|AgnosticD OpenShift Version|[`3`, `4`]|
 
 #### Deploying migration workloads
 
