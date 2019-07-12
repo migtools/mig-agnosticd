@@ -93,15 +93,13 @@ cd ..
 
 ## Running AgnosticD to provision OpenShift 3 + 4 Clusters
 
-Once you complete initial setup, you should have:
+Before provisioning, ensure you have populated all necessary vars in:
  - `./secret.yml`
  - `./3.x/my_vars.yml`
  - `./4.x/my_vars.yml` 
 
-The next step is to install the cluster.
-
-To provision an OpenShift 3.x cluster, follow instructions in [./3.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/3.x/README.md). 
-
-To provision an OpenShift 4.x cluster, follow instructions in [./4.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/4.x/README.md).
+**To provision an OpenShift Cluster with AgnosticD:**
+ - 3.x cluster, see [./3.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/3.x/README.md). 
+ - 4.x cluster, see [./4.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/4.x/README.md).
 
 
