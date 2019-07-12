@@ -38,6 +38,13 @@ To print help:
 ./deploy_workload.sh -h
 ```
 
+#### Usage: `./deploy_workload.sh `
+|Flag|Purpose|Accepted Values|
+|---|---|---|
+|`-a`|Workload Action|[`create`, `delete`]|
+|`-w`|Workload Name|[`migration`, `mssql`, ...]|
+|`-v`|AgnosticD OpenShift Version|[`3`, `4`]|
+
 #### Deploying migration workloads
 
 We have two migration workloads -
