@@ -24,7 +24,7 @@ To create a new workload:
 
 `workload_name` is the name of the workload to deploy. 
 
-`ocp_version` is the version of the AgnosticD Openshift cluster to deploy the workload on (`3` or `4`).
+`ocp_version` is the version of the AgnosticD OpenShift cluster to deploy the workload on (`3` or `4`).
 
 To remove the workload:
 
