@@ -93,8 +93,8 @@ Once you complete initial setup, you should have `./secret.yml`, `./3.x/my_vars.
 
 The next step is to install the cluster.
 
-To install Openshift 3.x cluster, follow instructions in `./3.x/README.md`. 
+To install Openshift 3.x cluster, follow instructions in `[./3.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/3.x/README.md)`. 
 
-To install Openshift 4.x cluster, follow instructions in `./4.x/README.md`.
+To install Openshift 4.x cluster, follow instructions in `[./4.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/4.x/README.md)`.
 
 
