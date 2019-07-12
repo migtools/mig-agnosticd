@@ -1,0 +1,4 @@
+---
+mig_operator_deploy_controller: "{{ true if ocp_version=='4' else false }}"
+mig_operator_deploy_ui: "{{ true if ocp_version=='4' else false }}"
+mig_deploy_velero: true
