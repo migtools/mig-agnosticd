@@ -8,7 +8,7 @@ These AgnosticD workloads assist in automated deployment of:
 
 ### NOTE
 
-All workloads deployed by mig-agnosticd must be present in the main AgnosticD directory on your machine. However, the workloads we'll use in this README are yet not part of the redhat-cop/agnosticd repo (see PR 489). To use these workloads before PR 489 merges, clone the following repo and set `AGNOSTICD_HOME` to the clone path:
+All workloads deployed by mig-agnosticd must be present in the main AgnosticD directory on your machine. However, the workloads we'll use in this README are yet not part of the redhat-cop/agnosticd repo (see [PR 489](https://github.com/redhat-cop/agnosticd/pull/489)). To use these workloads before [PR 489](https://github.com/redhat-cop/agnosticd/pull/489) merges, clone the following repo and set `AGNOSTICD_HOME` to the clone path:
 
 ```bash
 git clone https://github.com/pranavgaikwad/agnosticd
