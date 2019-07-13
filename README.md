@@ -80,13 +80,13 @@ vim secret.yml # Update based on comments in file
 
 # Fill out required vars for provisioning OpenShift 3.x 
 cd 3.x
-cp my_vars.sample.yml my_vars.yml
+cp my_vars.yml.sample my_vars.yml
 vim my_vars.yml # Update based on comments in file
 cd ..
 
 # Fill out required vars for provisioning OpenShift 4.x
 cd 4.x
-cp my_vars.sample.yml my_vars.yml
+cp my_vars.yml.sample my_vars.yml
 vim my_vars.yml # Update based on comments in file
 cd ..
 ```
