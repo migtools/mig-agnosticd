@@ -19,4 +19,10 @@ default_workloads: []
 infra_workloads: []
 student_workloads: []
 
-
+clientvm_instance_type: "t2.medium"
+clientvm_instance_count: 1
+master_instance_type: "m5.large"
+master_instance_count: 1
+worker_instance_type: "m5.large"
+worker_instance_count: 2
+_infra_node_instance_type: "m5.large"
