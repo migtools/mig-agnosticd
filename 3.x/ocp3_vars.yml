@@ -5,3 +5,4 @@ software_to_deploy: "openshift"
 course_name: "ocp-workshop" 
 platform: "aws" 
 install_k8s_modules: true
+install_lets_encrypt_certificates: true
