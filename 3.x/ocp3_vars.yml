@@ -5,3 +5,8 @@ software_to_deploy: "openshift"
 course_name: "ocp-workshop" 
 platform: "aws" 
 install_k8s_modules: true
+bastion_instance_type: "t2.large"
+master_instance_type: "m5.large"
+infranode_instance_type: "m5.large"
+node_instance_type: "m5.large"
+support_instance_type: "m5.large"
