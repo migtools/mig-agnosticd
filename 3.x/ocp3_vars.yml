@@ -5,4 +5,7 @@ software_to_deploy: "openshift"
 course_name: "ocp-workshop" 
 platform: "aws" 
 install_k8s_modules: true
-install_lets_encrypt_certificates: true
+# You can set the following variable to 'true' to enable 
+# Let's Encrypt certificates for your cluster. However,
+# due to weekly limits, it is discouraged to do so. 
+# install_lets_encrypt_certificates: true
