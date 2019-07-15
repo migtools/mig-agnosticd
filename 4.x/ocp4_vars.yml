@@ -19,4 +19,9 @@ default_workloads: []
 infra_workloads: []
 student_workloads: []
 
+# You can enable following workload to allow your cluster
+# to use "Let's Encrypt" certificates instead of self-signed
+# certificates. However, due to weekly rate limits, it is 
+# discouraged to do so.
+# default_workloads: [ocp4-workload-enable-lets-encrypt-certificates]
 
