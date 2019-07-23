@@ -13,7 +13,7 @@ The scripts here will deploy an OpenShift 3 cluster with a Bastion host, all ssh
 1. Ensure that you have a `../secret.yml` in the parent directory
 1. Ensure that you have `cp my_vars.sample.yml my_vars.yml` and you have edited 'my_vars.yml'
 1. Ensure that `AGNOSTICD_HOME` environment variable is set
-1. Run: `delete_ocp3_workshop.sh`
+1. Run: `delere_ocp3_workshop.sh`
 1. Wait ... ~5 minutes
     * If something goes wrong and you need to do a manual deletion, you can clean up the AWS resources by finding the relevant CloudFormation template and deleting it via the AWS Management Console looking at the CloudFormation service in the correct region.
 
