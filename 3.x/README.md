@@ -58,7 +58,7 @@ The scripts here will deploy an OpenShift 3 cluster with a Bastion host, all ssh
 # Troubleshooting
 
 ## Playbook hangs on a shell command 
-The overall installation should take ~ 50 minutes to complete 
+The overall installation should take ~ 50 minutes to complete.
 If your playbook hangs for unusually longer, find out which task it is hung on. Login to the remote host and pull ansible logs from /root/ansible.log
 It will most likely be the case that the task is already completed on remote host but your local playbook is waiting for completion. In that case, you can add a tag to the task on which the playbook hung and run the playbook again by skipping those tasks using  `--skip-tags <YOUR_TAG>`. (only applicable when the task is completed without errors)
 More info in https://github.com/redhat-cop/agnosticd/issues/464
