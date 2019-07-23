@@ -13,7 +13,7 @@ The scripts here will deploy an OpenShift 4 cluster with a Bastion host.  Provis
 1. Ensure that you have a `../secret.yml` in the parent directory
 1. Ensure that you have `cp my_vars.sample.yml my_vars.yml` and you have edited 'my_vars.yml'
 1. Ensure that `AGNOSTICD_HOME` environment variable is set
-1. Run: `delere_ocp4_workshop.sh`
+1. Run: `delete_ocp4_workshop.sh`
 1. Wait ... ~5-10 minutes
     * If something goes wrong, manual cleanup is difficult.  The rough steps are later in this document.
 
