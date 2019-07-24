@@ -26,4 +26,9 @@ aws_region: us-west-2
 cloud_tags: # list of custom tags to add to your aws resources
 - owner: "{{ email }}"
 
+# if you want to install OCS with your 
+# OCP 3 environment, then set this var
+# to true.
+install_glusterfs: false
+
 node_instance_count: 2
