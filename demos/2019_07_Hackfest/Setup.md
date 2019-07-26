@@ -37,7 +37,7 @@ Use insecure connections? (y/n): y
 
 1. Install migration workload
     * `$ cd ../workloads/`
-    * `$ ./deploy_workload.sh -a create migration -v 3`
+    * `$ ./deploy_workload.sh -a create -w migration -v 3`
 
 1. Verify that the `migration-operator` deployment is running in `mig` namespace and healthy
 ```bash
@@ -53,7 +53,7 @@ velero-7559946c5c-mh5sp               1/1     Running   0          2m
 ```
 
 1. Install MSSQL sample application workload
-    * `$ ./deploy_workload.sh -a create mssql -v 3`
+    * `$ ./deploy_workload.sh -a create -w mssql -v 3`
     
 1. Verify that the MSSQL deployment was successful
 ```bash
@@ -84,7 +84,7 @@ $ export KUBECONFIG=~/.agnosticd/dymurray-ocp4-cluster/ocp4-workshop_dymurray-oc
 
 1. Install migration workload
     * `$ cd ../workloads/`
-    * `$ ./deploy_workload.sh -a create migration -v 4`
+    * `$ ./deploy_workload.sh -a create -w migration -v 4`
 
 1. Verify that you see the below pods now running in `mig` namespace, we are looking for pods of `controller-manager`, `velero`, and `migration-ui`
 ```bash
@@ -121,35 +121,39 @@ $ ansible-playbook cors.yaml
 ```
 
 ## Prepare to use mig-ui from OCP 4.1 Cluster in your Browser
-1. Visit the ui, look at the route on the OCP 4.1 Cluster
+1. To visit the ui, look at the route on the OCP 4.1 Cluster
 ```bash
 $ oc get routes migration -n mig -o jsonpath='{.spec.host}'
 migration-mig.apps.cluster-dymurray-ocp4.dymurray-ocp4.mg.example.com
 ```
 
 1. For this example we'd visit the below from our browser:
-    * https://migration-mig.apps.cluster-dymurray-ocp4.dymurray-ocp4.mg.example.com
+  * https://migration-mig.apps.cluster-dymurray-ocp4.dymurray-ocp4.mg.example.com
 
-1. Accept certifications, before you can login you will need to accept the certificates with your browser
-    * Visit the link displayed by the webui for `.well-known/oauth-authorization-server`
-        * For this example, the link would be: https://api.cluster-dymurray-ocp4.dymurray-ocp4.mg.example.com:6443/.well-known/oauth-authorization-server
-    * Refresh the page
-    * Get redirected to Login
+### Accept certificates on source and destination clusters
+
+1. Before you can login you will need to accept the certificates with your
+   browser on both the source and destination cluster. To do this:
+  * Visit the link displayed by the webui for `.well-known/oauth-authorization-server`
+    * OCP 4.1: https://api.cluster-dymurray-ocp4.dymurray-ocp4.mg.example.com:6443/.well-known/oauth-authorization-server
+    * OCP 3.11 https://master.dymurray-ocp3.mg.dog8code.com/.well-known/oauth-authorization-server
+  * Refresh the page
+  * Get redirected to login page
 1. Login with your credentials for the cluster.
-    * You can find your credentials from the output directory of agnosticd
-    * For example:
+  * You can find your credentials from the output directory of agnosticd
+  * For example:
 ```
 $ cat ~/.agnosticd/dymurray-ocp4/ocp4-workshop_dymurray-ocp4_kubeadmin-password 
 de8uJb-UdwTd-P6REei-JJL3X
 ```
-    * I would login as:
-        * Username:    `kubeadmin`
-        * Password:    `de8uJb-UdwTd-P6REei-JJL3X`
+  * I would login as:
+    * Username:    `kubeadmin`
+    * Password:    `de8uJb-UdwTd-P6REei-JJL3X`
 1. We also need to accept the certificates from the OCP 3.11 cluster
-    * Visit the webui for OCP 3.11 console, for example: https://master.dymurray-ocp3.mg.example.com
-    * Login with the credentials from agnosticd:
-        * Username: `opentlc-mgr`
-        * Password: `r3dh4t1!`
+  * Visit the webui for OCP 3.11 console, for example: https://master.dymurray-ocp3.mg.example.com
+  * Login with the credentials from agnosticd:
+    * Username: `opentlc-mgr`
+    * Password: `r3dh4t1!`
 
 
 # Conclusion
