@@ -9,7 +9,7 @@ install_k8s_modules: true
 bastion_instance_type: "t2.large"
 master_instance_type: "m5.large"
 infranode_instance_type: "m5.large"
-node_instance_type: "m5.large"
+node_instance_type: "m5.xlarge"
 support_instance_type: "m4.large"
 
 support_instance_public_dns: true
