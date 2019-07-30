@@ -53,7 +53,7 @@ fi
 shift $((OPTIND -1))
 
 
-if [ ${AGNOSTICD_HOME} == "" ]; then
+if [ -z ${AGNOSTICD_HOME} ]; then
   echo "Please set AGNOSTICD_HOME env variable..."
   exit 1
 fi

@@ -17,26 +17,41 @@
 
   - name: "Creating new kube config on bastion"
     block:
-    - name: "Ensuring kube config on bastion"
-      stat:
-        path: "/home/ec2-user/.kube/config"
-      register: kubeconfig
+    - shell: "oc status" 
+      register: oc_status
+      ignore_errors: yes
 
     - copy: 
         src: "{{ output_dir }}/{{ env_type }}_{{ guid }}_kubeconfig"
         dest: "/home/ec2-user/.kube/config"
-      when: kubeconfig.stat.exists == False
-      register: copy_status
-      ignore_errors: yes
+      when: ocp_version == '4' and oc_status.rc != 0
     
     - shell: "oc login -u {{ admin_user  | default('opentlc-mgr') }} -p {{ admin_password | default('r3dh4t1!') }} https://master.{{ guid }}{{ subdomain_base_suffix }} --config /home/ec2-user/.kube/config --insecure-skip-tls-verify=true"
-      when: copy_status.dest is not defined and kubeconfig.stat.exists == False
+      when: ocp_version == '3' and oc_status.rc != 0
     vars:
       ansible_ssh_private_key_file: "{{ output_dir }}/{{ guid }}key"
       ansible_user: ec2-user
     delegate_to: "bastion.{{ guid }}{{ subdomain_base_suffix }}"
 
-  - shell: "ansible-playbook -i bastion.{{ guid }}{{ subdomain_base_suffix }}, {{ agnosticd_home | mandatory }}/ansible/configs/ocp-workloads/ocp-workload.yml -e ansible_ssh_private_key_file={{ output_dir }}/{{ guid }}key -e ansible_user=ec2-user -e ocp_workload=ocp-workload-{{ workload | mandatory }} -e ACTION={{ action }} -e @../secret.yml -e @./workload_vars/{{ workload | mandatory }}.yml -e playbook_dir={{ agnosticd_home }} -e ocp_version={{ ocp_version }}"
+  - name: "Ensuring workload exists in AgnosticD"
+    block:
+    - stat:
+        path: "{{ agnosticd_home }}/ansible/roles/ocp-workload-{{ workload }}"
+      register: workload_exists
+    - set_fact:
+        workload_name: "ocp-workload-{{ workload }}"
+      when: workload_exists.stat.exists
+    - set_fact:
+        workload_name: "ocp4-workload-{{ workload }}"
+      when: not workload_exists.stat.exists
+    - stat:
+        path: "{{ agnosticd_home }}/ansible/roles/{{ workload_name }}"
+      register: workload_exists
+    - fail:
+        msg: "Workload does not exist..."
+      when: not workload_exists.stat.exists     
+
+  - shell: "ansible-playbook -i bastion.{{ guid }}{{ subdomain_base_suffix }}, {{ agnosticd_home | mandatory }}/ansible/configs/ocp-workloads/ocp-workload.yml -e ansible_ssh_private_key_file={{ output_dir }}/{{ guid }}key -e ansible_user=ec2-user -e ocp_workload={{ workload_name }} -e ACTION={{ action }} -e @../secret.yml -e @./workload_vars/{{ workload | mandatory }}.yml -e playbook_dir={{ agnosticd_home }} -e ocp_version={{ ocp_version }} -e@../secret.yml -e aws_region={{ aws_region }}"
     register: output
     ignore_errors: yes
 
