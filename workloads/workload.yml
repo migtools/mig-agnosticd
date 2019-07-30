@@ -17,13 +17,17 @@
 
   - name: "Creating new kube config on bastion"
     block:
+    - shell: "oc status" 
+      register: oc_status
+      ignore_errors: yes
+
     - copy: 
         src: "{{ output_dir }}/{{ env_type }}_{{ guid }}_kubeconfig"
         dest: "/home/ec2-user/.kube/config"
-      when: ocp_version == '4'
+      when: ocp_version == '4' and oc_status.rc != 0
     
     - shell: "oc login -u {{ admin_user  | default('opentlc-mgr') }} -p {{ admin_password | default('r3dh4t1!') }} https://master.{{ guid }}{{ subdomain_base_suffix }} --config /home/ec2-user/.kube/config --insecure-skip-tls-verify=true"
-      when: ocp_version == '3'
+      when: ocp_version == '3' and oc_status.rc != 0
     vars:
       ansible_ssh_private_key_file: "{{ output_dir }}/{{ guid }}key"
       ansible_user: ec2-user
