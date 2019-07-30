@@ -16,7 +16,7 @@ This script uses the same `my_vars.yml` file you used when launching a new clust
 Run the script
 
 ```
-ansible-playbook cors.yml
+ansible-playbook cors.yaml
 ```
 
 There is no need to set any variables, the script reads `my_vars.yml` files and puts the right settings.
