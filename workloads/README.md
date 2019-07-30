@@ -6,12 +6,10 @@ These AgnosticD workloads assist in automated deployment of:
  - The OpenShift 3->4 Application Migration Tool 
  - Various sample apps for use when testing App Migration capabilities from OpenShift 3->4  
 
-### NOTE
-
-All workloads deployed by mig-agnosticd must be present in the main AgnosticD directory on your machine. However, the workloads we'll use in this README are yet not part of the redhat-cop/agnosticd repo (see [PR 489](https://github.com/redhat-cop/agnosticd/pull/489)). To use these workloads before [PR 489](https://github.com/redhat-cop/agnosticd/pull/489) merges, clone the following repo and set `AGNOSTICD_HOME` to the clone path:
+The workloads are available in AgnosticD repo. Make sure you have cloned the repo and set AGNOSTICD_HOME environment variable to the location of the repo.
 
 ```bash
-git clone https://github.com/pranavgaikwad/agnosticd
+git clone https://github.com/redhat-cop/agnosticd
 ```
 
 ### Deploying a workload
