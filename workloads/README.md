@@ -50,8 +50,8 @@ To print help:
 We have two migration workloads -
 
 * migration : Mig Operator workload to deploy UI, Controller and Velero
-* mssql : A sample MsSQL server with a Node.js app
-
+* mssql : MsSQL server with a sample frontend app
+* ceph : Ceph cluster based on [Rook](rook.io) operator for OpenShift 4.x (Not supported on OpenShift 3.x clusters)
 
 ```bash
 # Deploy Migration components to OpenShift 3 (velero)
@@ -62,6 +62,9 @@ We have two migration workloads -
 
 # Deploy mssql sample app to OpenShift 3
 ./deploy_workload.sh -a create -w mssql -v 3
+
+# Deploy ceph cluster to OpenShift 4
+./deploy_workload.sh -a create -w ceph -v 4
 ```
 
 ### About Workload Configuration
