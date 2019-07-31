@@ -14,6 +14,7 @@ support_instance_type: "m4.large"
 
 support_instance_public_dns: true
 
+nfs_exports_config: "*(insecure,rw,no_root_squash,no_wdelay,sync)"
 nfs_server_address: "support1.{{ guid }}{{ subdomain_base_suffix }}"
 
 # You can set the following variable to 'true' to enable 
