@@ -52,7 +52,12 @@ $ oc get pods -n mig | grep velero
 velero-7559946c5c-mh5sp               1/1     Running   0          2m
 ```
 
-1. Install MSSQL sample application workload
+1. Install sample application workload
+  * Mediawiki
+    * `$ git clone https://github.com/fusor/mediawiki`
+    * `$ cd mediawiki`
+    * `$ ansible playbook setup.yml`
+  * MSSQL
     * `$ ./deploy_workload.sh -a create -w mssql -v 3`
     
 1. Verify that the MSSQL deployment was successful
@@ -105,7 +110,7 @@ $ oc get routes migration -n mig -o jsonpath='{.spec.host}'
 migration-mig.apps.cluster-dymurray-ocp4.dymurray-ocp4.mg.example.com
 ```
 
-### Create MSSQL Security Context Constraint
+### (If migrating MSSQL) Create MSSQL Security Context Constraint
 
 1. Run the following to recreate MSSQL's `scc` on the destination cluster:
 ```bash

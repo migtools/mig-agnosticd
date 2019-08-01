@@ -53,6 +53,14 @@ defined, we can create a migration plan. Click `Add Plan`:
 
 ![6](./screenshots/6.png?raw=true "6")
 
+## (Optional) View the application you wish to migrate
+
+* Mediawiki
+![mw3](./screenshots/mw3.png?raw=true "mw3")
+
+* MSSQL
+![mssql3](./screenshots/mssql3.png?raw=true "mssql3")
+
 ## Create a migration plan
 
 Now that we have a replication repository specified and both the source and
@@ -68,8 +76,8 @@ Select the source cluster name:
 
 ![9](./screenshots/9.png?raw=true "9")
 
-Select the namespace(s) you wish to migrate over. For this example let's select
-the `mssql-persistent` namespace:
+Select the namespace(s) you wish to migrate over. This will be either
+`mssql-persistent` or `mediawiki`:
 
 ![10](./screenshots/10.png?raw=true "10")
 
@@ -113,17 +121,22 @@ Let's first open the OCP 4.1 web console:
 
 ![console](./screenshots/dest.png?raw=true "console")
 
-Click on the `mssql-persistent` namespace:
+Click on the `mssql-persistent` or `mediawiki` namespace:
 
 ![ns](./screenshots/dest-project.png?raw=true "ns")
 
-Click on the `mssql-app-deployment` deployment object to retrieve the route:
+Click on the `mssql-app-deployment` or `mediawiki` deployment object to
+retrieve the route:
 
 ![route](./screenshots/dest-route.png?raw=true "route")
 
 Open the route and verify the application is functional:
 
+* MSSQL
 ![app](./screenshots/dest-app.png?raw=true "app")
+
+* Mediawiki
+![mw4](./screenshots/mw4.png?raw=true "mw4")
 
 ## Bonus: Check out copied PV
 
