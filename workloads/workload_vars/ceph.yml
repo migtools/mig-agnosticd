@@ -1,2 +1,4 @@
 ---
-test: no
+ceph_image: ceph/ceph: v14.2.2-20190722
+ceph_rook_operator_image: rook/ceph:v1.0.0-306.g81dde4b
+ceph_rook_toolbox_image: rook/ceph:master
