@@ -56,10 +56,10 @@ defined, we can create a migration plan. Click `Add Plan`:
 ## (Optional) View the application you wish to migrate
 
 * Mediawiki
-![6](./screenshots/mw3.png?raw=true "mw3")
+![mw3](./screenshots/mw3.png?raw=true "mw3")
 
 * MSSQL
-![6](./screenshots/mssql3.png?raw=true "mssql3")
+![mssql3](./screenshots/mssql3.png?raw=true "mssql3")
 
 ## Create a migration plan
 
@@ -132,7 +132,11 @@ retrieve the route:
 
 Open the route and verify the application is functional:
 
+* MSSQL
 ![app](./screenshots/dest-app.png?raw=true "app")
+
+* Mediawiki
+![mw4](./screenshots/mw4.png?raw=true "mw4")
 
 ## Bonus: Check out copied PV
 
