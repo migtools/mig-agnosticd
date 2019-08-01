@@ -53,6 +53,14 @@ defined, we can create a migration plan. Click `Add Plan`:
 
 ![6](./screenshots/6.png?raw=true "6")
 
+## (Optional) View the application you wish to migrate
+
+* Mediawiki
+![6](./screenshots/mw3.png?raw=true "mw3")
+
+* MSSQL
+![6](./screenshots/mssql3.png?raw=true "mssql3")
+
 ## Create a migration plan
 
 Now that we have a replication repository specified and both the source and
