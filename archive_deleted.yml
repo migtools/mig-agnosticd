@@ -1,0 +1,31 @@
+---
+- name: "Archive files for {{ guid }}"
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  become: no
+  tasks:
+    - name: Check for existing archive directory
+      stat:
+        path: "{{ archive_dir }}"
+      register: archive_dir_details
+    - name: Create archive directory
+      file:
+        path:  "{{ archive_dir }}"
+        state: directory
+      when: not archive_dir_details.stat.exists
+    - name: "Process {{ guid }} archive"
+      block:
+      - name: "Generate archive name for {{ guid }}"
+        set_fact:
+          guid_archive: "{{ guid }}.{{ lookup('pipe','date +%s') }}-{{ 9999 | random }}"
+        run_once: yes
+      - name: "Archive {{ guid }} to {{ guid_archive }}"
+        archive:
+          path: "{{ output_dir }}"
+          dest: "{{ archive_dir }}/{{ guid_archive }}.tgz"
+          format: gz
+          remove: true
+      rescue:
+      - debug:
+          msg: "Something went awry with {{ guid }} archival"
