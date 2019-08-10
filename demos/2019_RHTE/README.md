@@ -15,5 +15,6 @@ This guide will provide you with hands-on exposure to the new OpenShift Migratio
 [Lab 3 - CAM Overview](./3.md)<br>
 [Lab 4 - Migrate MSSQL Application](./4.md)<br>
 [Lab 5 - Migrate Robot Shop Application](./5.md)<br>
-[Lab 6 - Migration via API (optional)](./6.md)<br>
-[Lab 7 - Wrap Up](./7.md)<br>
+[Lab 6 - Debugging Failed Migrations](./6.md)<br>
+[Lab 7 - Migration via API (optional)](./7.md)<br>
+[Lab 8 - Wrap Up](./8.md)<br>
