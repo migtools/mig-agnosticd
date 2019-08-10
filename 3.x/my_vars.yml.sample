@@ -13,6 +13,10 @@ guid: jwm0701ocp3a
 # to ssh into the provisioned hosts or clean up
 output_dir: "/home/REPLACE_USERNAME/.agnosticd/{{ guid }}"
 
+# Archive content to this location and clean output_dir to prevent re-use
+# of a deleted OCP cluster's files
+archive_dir: "{{ output_dir | dirname }}/archive"
+
 subdomain_base_suffix: .mg.dog8code.com
 HostedZoneId: Z2GE8CSGW2ZA8W
 
