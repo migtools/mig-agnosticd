@@ -1,5 +1,5 @@
 <a id="markdown-accessing-lab-environment" name="accessing-lab-environment"></a>
-# Accessing to the Lab Environment
+# Accessing the Lab Environment
 
 ## Getting your dedicated lab environments using Guid Grabber
 
