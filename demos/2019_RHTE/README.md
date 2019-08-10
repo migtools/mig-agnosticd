@@ -1,27 +1,13 @@
-# App Migration Tool Tutorial
+# RHTE2019: OpenShift Cluster Application Migration (CAM) Lab
 
-This tutorial will show you how to use the App Migration Tool to migrate
-application workloads from an OCP 3.x cluster to OCP 4.x.
+This document will provide you with hands-on exposure to the new OpenShift Migration Tooling through a series of labs migrating application workloads (stateful and stateless) between OpenShift Clusters.
 
-The overall steps tutorial will walk you through are:
+### Goals
 
-* [Setup](Setup.md)
-  1. Provision OCP 3.11 multi-node environment in AWS via
-     [mig-agnosticd](https://github.com/fusor/mig-agnosticd/3.x/) to be used as
-     the source cluster
-  1. Provision OCP 4.1 multi-node environment in AWS via
-     [mig-agnosticd](https://github.com/fusor/mig-agnosticd/4.x/) to be used as
-     the destination cluster
-  1. Deploy [migration
-     workloads](https://github.com/fusor/mig-agnosticd/tree/master/workloads)
-     onto both clusters
-  1. Deploy [application
-     workloads](https://github.com/fusor/mig-agnosticd/tree/master/workloads)
-     onto source cluster to be migrated
+* Migrate several application workloads (both stateful and stateless) from an OpenShift 3.11 cluster to an OpenShift 4.2 cluster using the Cluster Application Migration Tool (CAM)
+* Utilize the Control Plane Migration Assistance Tool (CPMA) to generate a detailed report identifying areas of custom configuration that need to be considered as part of application migration planning.
 
-* [Migrate with the Web UI](Migrate.md)
-  1. Add the OCP 3.11 cluster as a migration source
-  1. Add an AWS S3 bucket replication repository
-  1. Create a migration plan to migrate an application workload to OCP 4.1
-  1. Migrate the application workload
-  1. Verify the application is functional on OCP 4.1
+### Labs
+
+[Lab 0 - Introduction](./intro.md)<br>
+[Lab 1 - Prerequisites](./1.md)<br>
