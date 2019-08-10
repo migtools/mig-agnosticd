@@ -47,7 +47,7 @@ From the drop down list:
 
 ## Lab Environment Overview
 
-![Lab Environment Overview](assets/lab-env-overview.png)
+![Lab Environment Overview](screenshots/lab-env-overview.png)
 
 Next Lab: [Lab 1 - Introduction and Prerequisites](./1.md)<br>
 [Home](../README.md)
