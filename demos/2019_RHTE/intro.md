@@ -23,7 +23,7 @@ From the drop down list:
 
 e.g:
 
-![Request Env GuidGrabber](assets/request-env-gg.png)
+![Request Env GuidGrabber](screenshots/request-env-gg.png)
 
 The resulting *Lab Information page* will display your lab's GUID and other useful information about your lab environment.
 Take note of your assigned GUID.
