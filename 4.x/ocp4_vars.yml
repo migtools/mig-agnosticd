@@ -32,3 +32,8 @@ master_instance_count: 3
 worker_instance_type: "m5.xlarge"
 worker_instance_count: 3
 _infra_node_instance_type: "m5.large"
+
+# Archive content to this location and clean output_dir to prevent re-use
+# of a deleted OCP cluster's files
+archive_dir: "{{ output_dir | dirname }}/archive"
+
