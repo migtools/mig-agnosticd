@@ -1,0 +1,4 @@
+---
+TARGET_HOST: "bastion.{{ guid }}{{ subdomain_base_suffix }}"
+_minio_access_key: "minio"
+_minio_secret_key: "minio123"
