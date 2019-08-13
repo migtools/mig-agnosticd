@@ -1,11 +1,10 @@
 ---
-- hosts: localhost
-  connection: local
+- hosts: masters
   vars:
-    guid_v3: "{{ lookup('env', 'GUID_3') }}"
+    ansible_user: ec2-user
+    ansible_ssh_private_key_file: "/home/{{ lookup('env', 'USER') }}/.ssh/openshift_key"
     guid_v4: "{{ lookup('env', 'GUID_4') }}"
     subdomain: "{{ lookup('env', 'DOMAIN') |d('events.opentlc.com') }}"
-    username: "{{ lookup('env', 'USER') |d('lab_user') }}"
   tasks:
   - block:
       - name: "Adding new CORS rules"
@@ -20,7 +19,7 @@
         register: status
         become: yes
         ignore_errors: yes
-      
+
       - name: "Applying new configuration [atomic-openshift services]"
         service:
           name: "{{ item }}"
@@ -30,15 +29,11 @@
           - atomic-openshift-master-controllers
         become: yes
         when: status.rc == 0
-      
-      - name: "Applying new configuration [master-restart]" 
+
+      - name: "Applying new configuration [master-restart]"
         shell: "/usr/local/bin/master-restart {{ item }}"
         loop:
           - api
           - controller
         when: status.rc != 0
         become: yes
-    delegate_to: "master1.{{ guid_v3 }}.{{ subdomain }}"
-    vars:
-      ansible_user: "ec2-user"
-      ansible_ssh_private_key_file: "/home/{{ username }}/.ssh/openshift_key"
