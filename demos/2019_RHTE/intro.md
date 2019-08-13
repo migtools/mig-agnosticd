@@ -49,5 +49,12 @@ From the drop down list:
 
 ![Lab Environment Overview](screenshots/lab-env-overview.png)
 
+### SSH Hosts
+
+| Hostname | User | Password | Description |
+| ---- | ---- | ---- | ---- |
+|`bastion.<guid>.domain` |lab_user | r3dh4t1!| bastion host for 3.11 environment |
+|`TBD` |TBD | TBD | client vm for 4.2 environment |
+
 Next Lab: [Lab 1 - Introduction and Prerequisites](./1.md)<br>
 [Home](../README.md)
