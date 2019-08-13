@@ -10,7 +10,7 @@ This guide will provide you with hands-on exposure to the new OpenShift Migratio
 ### Labs
 
 [Lab 0 - Introduction](./intro.md)<br>
-[Lab 1 - Prerequisites](./1.md)<br>
+[Lab 1 - Prerequisites and Setup](./1.md)<br>
 [Lab 2 - CPMA Overview](./2.md)<br>
 [Lab 3 - CAM Overview](./3.md)<br>
 [Lab 4 - Migrate MSSQL Application](./4.md)<br>
