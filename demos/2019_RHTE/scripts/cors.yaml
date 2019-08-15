@@ -1,4 +1,14 @@
 ---
+- hosts: localhost
+  connection: local
+  tasks:
+  - name: "Fixing permissions of the key file"
+    file:
+      path: "/home/{{ lookup('env', 'USER') }}/.ssh/openshift_key"
+      owner: "{{ lookup('env', 'USER') }}"
+      mode: "0600"
+    become: yes
+
 - hosts: masters
   vars:
     ansible_user: ec2-user
