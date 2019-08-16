@@ -37,6 +37,7 @@
     delegate_to: "bastion.{{ guid }}{{ subdomain_base_suffix }}"   
 
 - hosts: remote
+  remote_user: "{{ remote_user|d('ec2-user') }}"
   tasks:
   - name: "Including cluster variables..."
     include_vars: "{{ item }}"
