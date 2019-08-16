@@ -20,7 +20,7 @@
       - name: "Adding new CORS rules"
         lineinfile:
           insertafter: "corsAllowedOrigins:"
-          line: "- (?i)//migration-mig\\.apps\\.{{ guid_v4 }}\\.{{ subdomain }}"
+          line: "- (?i)//migration-mig\\.apps\\.cluster-{{ guid_v4 }}\\.{{ guid_v4 }}\\.{{ subdomain }}"
           path: /etc/origin/master/master-config.yaml
         become: yes
 
