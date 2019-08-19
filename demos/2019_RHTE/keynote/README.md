@@ -22,6 +22,20 @@ You need following packages installed on your host machine from where you'll lau
 
 # Installation
 
+## Clone AgnosticD
+
+Clone AgnosticD repository to your preferred location :
+
+```bash
+git clone https://github.com/redhat-cop/agnosticd ~/
+```
+
+Set the environment variable `AGNOSTICD_HOME` to the location of the AgnosticD repo :
+
+```bash
+export AGNOSTICD_HOME=~/agnosticd/
+```
+
 ## Prepare your secret file
 
 ### Secret Variables
