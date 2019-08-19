@@ -8,7 +8,7 @@ info() {
 }
 
 if [[ -z "${AGNOSTICD_HOME}" ]]; then
-    error "Please ensure that 'AGNOSTICD_HOME' is set before running."
+    echo "Please ensure that 'AGNOSTICD_HOME' is set before running."
     exit
 fi
 
