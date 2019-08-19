@@ -7,7 +7,7 @@ if [[ -z "${AGNOSTICD_HOME}" ]]; then
     exit
 fi
 
-pushd .
+pushd ${OUR_DIR}
 cd ${AGNOSTICD_HOME}
 
 echo "Deleting OCP3 environment..."

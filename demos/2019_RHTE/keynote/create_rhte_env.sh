@@ -6,7 +6,7 @@ if [[ -z "${AGNOSTICD_HOME}" ]]; then
 fi
 
 OUR_DIR=`pwd`
-pushd .
+pushd ${OUR_DIR}
 cd ${AGNOSTICD_HOME}
 
 echo "Creating OCP3 env..."

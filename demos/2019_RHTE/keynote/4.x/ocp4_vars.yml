@@ -10,7 +10,9 @@ install_ocp4: true
 install_opentlc_integration: false
 install_idm: false
 install_ipa_client: false
-default_workloads: ["ocp-workload-migration"]
+default_workloads: ["ocp-workload-migration","ocp4-workload-minio"]
+_minio_access_key: minio
+_minio_secret_key: minio123
 infra_workloads: []
 student_workloads: []
 mig_operator_repo_branch: rhte2019
