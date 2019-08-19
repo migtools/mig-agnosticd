@@ -6,7 +6,8 @@ This is a guide to deploy OCP3 and OCP4 clusters on AWS for RHTE Keynote scenes.
 
 We'd need :  
 - access to an AWS account which has permissions to create AWS resources required by both the clusters.
-- secret token to deploy OpenShift 4 cluster. It can be created here : 
+- secret token to deploy OpenShift 4 cluster.
+- domain for your clusters with HostedZone created in Route 53
 - a private content repository.
 
 ## Requirements
