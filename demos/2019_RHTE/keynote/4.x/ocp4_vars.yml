@@ -1,0 +1,23 @@
+cloudformation_retries: 0
+env_type: ocp4-workshop
+software_to_deploy: none
+
+ocp4_installer_version: "4.1.0"
+osrelease: 4.1.0
+repo_version: '4.1'
+bastion_instance_type: t2.medium
+install_ocp4: true
+install_opentlc_integration: false
+install_idm: false
+install_ipa_client: false
+default_workloads: ["ocp-workload-migration"]
+infra_workloads: []
+student_workloads: []
+mig_operator_repo_branch: rhte2019
+clientvm_instance_type: "t2.medium"
+clientvm_instance_count: 1
+master_instance_type: "m4.xlarge"
+master_instance_count: 3
+worker_instance_type: "m4.xlarge"
+worker_instance_count: 3
+_infra_node_instance_type: "m4.large"
