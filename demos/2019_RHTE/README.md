@@ -9,12 +9,12 @@ This guide will provide you with hands-on exposure to the new OpenShift Migratio
 
 ### Labs
 
-[Lab 0 - Introduction](./intro.md)<br>
-[Lab 1 - Prerequisites and Setup](./1.md)<br>
-[Lab 2 - CPMA Overview](./2.md)<br>
-[Lab 3 - CAM Overview](./3.md)<br>
-[Lab 4 - Migrate MSSQL Application](./4.md)<br>
-[Lab 5 - Migrate Robot Shop Application](./5.md)<br>
-[Lab 6 - Debugging Failed Migrations](./6.md)<br>
-[Lab 7 - Migration via API (optional)](./7.md)<br>
-[Lab 8 - Wrap Up](./8.md)<br>
+[Lab 1 - Introduction](./1.md)<br>
+[Lab 2 - Prerequisites and Setup](./2.md)<br>
+[Lab 3 - CPMA Overview](./3.md)<br>
+[Lab 4 - CAM Overview](./4.md)<br>
+[Lab 5 - Migrate MSSQL Application](./5.md)<br>
+[Lab 6 - Migrate Robot Shop Application](./6.md)<br>
+[Lab 7 - Debugging Failed Migrations](./7.md)<br>
+[Lab 8 - Migration via API (optional)](./8.md)<br>
+[Lab 9 - Wrap Up](./9.md)<br>
