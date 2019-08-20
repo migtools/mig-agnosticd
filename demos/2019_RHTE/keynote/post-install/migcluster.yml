@@ -54,8 +54,13 @@
  
     - name: "Generating migcluster definition"
       template:
-        src: "./include/migcluster.yaml.j2"
-        dest: "{{ temp_dir.path }}/migcluster.yaml"
+        src: "./include/{{ item.src }}"
+        dest: "{{ temp_dir.path }}/{{ item.dest }}"
+      loop:
+      - src: migcluster.yaml.j2
+        dest: migcluster.yaml
+      - src: mssql-scc.yaml.j2
+        dest: mssql-scc.yaml
       vars:
         - mig_sa_token: "{{ hostvars['localhost']['sa_token'] }}"
         - guid_v3: "{{ hostvars['localhost']['guid_v3'] }}"
@@ -65,3 +70,5 @@
       shell: "oc apply -f {{ item }} -n mig"
       loop:
         - "{{ temp_dir.path }}/migcluster.yaml"
+        - "{{ temp_dir.path }}/mssql-scc.yaml"
+

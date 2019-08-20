@@ -19,9 +19,11 @@ cd ${AGNOSTICD_HOME}
 
 echo "Deleting OCP3 environment..."
 ansible-playbook ${AGNOSTICD_HOME}/ansible/configs/ocp-workshop/destroy_env.yml -e @${OUR_DIR}/3.x/my_vars.yml -e @${OUR_DIR}/3.x/ocp3_vars.yml -e @${OUR_DIR}/secret.yml &> ${OUR_DIR}/ocp3.delete.log &
+pid_v3=$!
 info "Run 'tail -f ${OUR_DIR}/ocp3.delete.log' for deletion logs"
 
 echo "Deleting OCP4 environment..."
 ansible-playbook ${AGNOSTICD_HOME}/ansible/configs/ocp4-workshop/destroy_env.yml -e @${OUR_DIR}/4.x/my_vars.yml -e @${OUR_DIR}/4.x/ocp3_vars.yml -e @${OUR_DIR}/secret.yml &> ${OUR_DIR}/ocp4.delete.log &
+pid_v4=$!
 info "Run 'tail -f ${OUR_DIR}/ocp4.delete.log' for deletion logs"
 popd

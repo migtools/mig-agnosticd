@@ -38,7 +38,7 @@ info "Run 'tail -f ${OUR_DIR}/ocp4.log' for deployment logs"
 popd &> /dev/null
 
 
-echo "Waiting for OCP3 to complete..."
+echo "Waiting for OCP3 deployment to complete..."
 if ! wait $pid_v3; then
 	error "OCP3 deployment failed..."
         exit 1
@@ -46,7 +46,7 @@ fi
 
 success "OCP3 deployment succeded..."
 
-echo "Waiting for OCP4 to complete..."
+echo "Waiting for OCP4 deployment to complete..."
 if ! wait $pid_v4; then
 	error "OCP4 deployment failed..."
 	exit 1
@@ -60,5 +60,8 @@ ansible-playbook post-install/minio.yml
 
 echo "Creating mig clusters on destination..."
 ansible-playbook post-install/migcluster.yml
+
+echo "Adding CORS settings on source cluster..."
+ansible-playbook post-install/cors.yml
 
 success "Success..."
