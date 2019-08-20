@@ -7,7 +7,7 @@
 
 - name: "Registering host..."
   add_host:
-    groups: remote
+    groups: "{{ remote_group|d('remote') }}"
     hostname: "bastion.{{ guid }}{{ subdomain_base_suffix }}"
 
 - name: "Getting ssh key"

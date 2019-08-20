@@ -1,28 +1,21 @@
 # creates minio bucket on destination cluster
 - hosts: localhost 
   connection: local
+  vars:
+    - ocp_version: "4"
   tasks:
     - include_tasks: "./include/common.yml"
 
 - hosts: remote
   vars_files:
-    - "../{{ ocp_version }}.x/my_vars.yml"
-    - "../{{ ocp_version }}.x/ocp{{ ocp_version }}_vars.yml"
+    - "../4.x/my_vars.yml"
+    - "../4.x/ocp4_vars.yml"
   vars:
     - ansible_ssh_private_key_file: "~/.ssh/{{ key_name }}.pem"
     - ansible_user: "{{ remote_user|d('ec2-user') }}"
     - minio_bucket: "mig-bucket"
   tasks:
-    - block:
-        - name: "Checking if oc is logged in"
-          shell: "oc status"
-          register: oc_status
-          ignore_errors: yes
-        - name: "Copying local kubeconfig to bastion"
-          copy:
-            src: "{{ output_dir }}/{{ env_type }}_{{ guid }}_kubeconfig"
-            dest: "/home/{{ ansible_user }}/.kube/config"
-          when: oc_status.rc != 0
+    - include_tasks: "./include/connection.yml"
 
     - name: "Reading minio route"
       shell: "oc get route minio -n gpte-minio -o go-template='{{ '{{' }} .spec.host {{ '}}' }}{{ '{{' }} println {{ '}}' }}'"
@@ -39,3 +32,18 @@
       environment:
         AWS_SECRET_ACCESS_KEY: "{{ _minio_secret_key }}"
         AWS_ACCESS_KEY_ID: "{{ _minio_access_key }}"
+
+    - name: "Creating temp dir"
+      tempfile:
+        state: directory
+      register: temp_dir
+
+    - name: "Generating migstorage definition"
+      template:
+        src: "./include/migstorage.yml.j2"
+        dest: "{{ temp_dir.path }}/migstorage.yml"
+      vars:
+        - region: "{{ aws_region }}"
+
+    - name: "Creating migstorage"
+      shell: "oc apply -f {{ temp_dir.path }}/migstorage.yml"

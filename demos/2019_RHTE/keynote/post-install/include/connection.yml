@@ -1,0 +1,15 @@
+# set of tasks to ensure oc is logged in on bastion node
+- block:
+    - name: "Checking if oc is logged in"
+      shell: "oc status"
+      register: oc_status
+      ignore_errors: yes
+    - name: "Copying local kubeconfig to bastion"
+      copy:
+        src: "{{ output_dir }}/{{ env_type }}_{{ guid }}_kubeconfig"
+        dest: "/home/{{ ansible_user }}/.kube/config"
+      when: oc_status.rc != 0 and ocp_version == '4'
+    - name: "Trying to login to cluster" 
+      shell: "oc login -u {{ admin_user  | default('opentlc-mgr') }} -p {{ admin_password | default('r3dh4t1!') }} https://master.{{ guid }}{{ subdomain_base_suffix }} --config /home/ec2-user/.kube/config --insecure-skip-tls-verify=true"
+      when: oc_status.rc != 0 and ocp_version == '3'
+
