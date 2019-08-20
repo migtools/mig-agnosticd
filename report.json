@@ -1,0 +1,6885 @@
+{
+ "cluster": {
+  "nodes": [
+   {
+    "name": "infranode1.cb0d.internal",
+    "masterNode": false,
+    "resources": {
+     "cpu": "2",
+     "memoryConsumed": "100Mi",
+     "memoryCapacity": "7706184Ki",
+     "runningPods": "24",
+     "podCapacity": "250"
+    }
+   },
+   {
+    "name": "master1.cb0d.internal",
+    "masterNode": true,
+    "resources": {
+     "cpu": "2",
+     "memoryConsumed": "100Mi",
+     "memoryCapacity": "7706184Ki",
+     "runningPods": "14",
+     "podCapacity": "250"
+    }
+   },
+   {
+    "name": "node1.cb0d.internal",
+    "masterNode": false,
+    "resources": {
+     "cpu": "4",
+     "memoryConsumed": "100Mi",
+     "memoryCapacity": "15791380Ki",
+     "runningPods": "33",
+     "podCapacity": "250"
+    }
+   }
+  ],
+  "quotas": null,
+  "namespaces": [
+   {
+    "name": "default",
+    "latestChange": "2019-08-20T17:04:03Z",
+    "resources": {
+     "containerCount": 4,
+     "cpuTotal": "3",
+     "memoryTotal": "640Mi"
+    },
+    "pods": [
+     {
+      "name": "docker-registry-1-j45q4"
+     },
+     {
+      "name": "logging-eventrouter-1-58dwz"
+     },
+     {
+      "name": "registry-console-1-wxxjw"
+     },
+     {
+      "name": "router-2-vdrk5"
+     }
+    ],
+    "routes": [
+     {
+      "name": "docker-registry",
+      "host": "docker-registry-default.apps.cb0d.events.opentlc.com",
+      "tls": {
+       "termination": "passthrough"
+      },
+      "to": {
+       "kind": "Service",
+       "name": "docker-registry",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     },
+     {
+      "name": "registry-console",
+      "host": "registry-console-default.apps.cb0d.events.opentlc.com",
+      "tls": {
+       "termination": "passthrough"
+      },
+      "to": {
+       "kind": "Service",
+       "name": "registry-console",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ],
+    "securityContextConstraints": [
+     "hostnetwork"
+    ]
+   },
+   {
+    "name": "kube-public",
+    "latestChange": null,
+    "resources": {
+     "containerCount": 0,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    }
+   },
+   {
+    "name": "kube-service-catalog",
+    "latestChange": "2019-08-20T16:58:08Z",
+    "resources": {
+     "containerCount": 2,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    },
+    "pods": [
+     {
+      "name": "apiserver-fbzsn"
+     },
+     {
+      "name": "controller-manager-t4zv9"
+     }
+    ],
+    "routes": [
+     {
+      "name": "apiserver",
+      "host": "apiserver-kube-service-catalog.apps.cb0d.events.opentlc.com",
+      "tls": {
+       "termination": "passthrough"
+      },
+      "to": {
+       "kind": "Service",
+       "name": "apiserver",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ],
+    "daemonSets": [
+     {
+      "name": "apiserver",
+      "latestChange": "2019-08-20T16:58:00Z"
+     },
+     {
+      "name": "controller-manager",
+      "latestChange": "2019-08-20T16:58:08Z"
+     }
+    ],
+    "securityContextConstraints": [
+     "hostmount-anyuid"
+    ]
+   },
+   {
+    "name": "kube-system",
+    "latestChange": "2019-08-20T16:45:26Z",
+    "resources": {
+     "containerCount": 3,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    },
+    "pods": [
+     {
+      "name": "master-api-master1.cb0d.internal"
+     },
+     {
+      "name": "master-controllers-master1.cb0d.internal"
+     },
+     {
+      "name": "master-etcd-master1.cb0d.internal"
+     }
+    ]
+   },
+   {
+    "name": "management-infra",
+    "latestChange": null,
+    "resources": {
+     "containerCount": 0,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    },
+    "securityContextConstraints": [
+     "privileged"
+    ]
+   },
+   {
+    "name": "mig",
+    "latestChange": "2019-08-20T17:08:27Z",
+    "resources": {
+     "containerCount": 4,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    },
+    "pods": [
+     {
+      "name": "migration-operator-f865bb9d4-r2xv9"
+     },
+     {
+      "name": "restic-cw85x"
+     },
+     {
+      "name": "velero-86df57fb5d-mgncd"
+     }
+    ],
+    "daemonSets": [
+     {
+      "name": "restic",
+      "latestChange": "2019-08-20T17:08:27Z"
+     }
+    ],
+    "deployments": [
+     {
+      "name": "migration-operator",
+      "latestChange": "2019-08-20T17:07:27Z"
+     },
+     {
+      "name": "velero",
+      "latestChange": "2019-08-20T17:08:27Z"
+     }
+    ],
+    "securityContextConstraints": [
+     "velero-privileged"
+    ]
+   },
+   {
+    "name": "mssql-persistent",
+    "latestChange": "2019-08-20T17:10:14Z",
+    "resources": {
+     "containerCount": 2,
+     "cpuTotal": "2",
+     "memoryTotal": "3Gi"
+    },
+    "pods": [
+     {
+      "name": "mssql-app-deployment-6ffb46c5d6-n5fvv"
+     },
+     {
+      "name": "mssql-deployment-1-xq4p4"
+     }
+    ],
+    "routes": [
+     {
+      "name": "mssql-app-route",
+      "host": "mssql-app-route-mssql-persistent.apps.cb0d.events.opentlc.com",
+      "path": "/",
+      "to": {
+       "kind": "Service",
+       "name": "mssql-app-service",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ],
+    "deployments": [
+     {
+      "name": "mssql-app-deployment",
+      "latestChange": "2019-08-20T17:10:14Z"
+     }
+    ],
+    "securityContextConstraints": [
+     "mssql-persistent-scc"
+    ]
+   },
+   {
+    "name": "ocp-workshop",
+    "latestChange": "2019-08-20T17:05:52Z",
+    "resources": {
+     "containerCount": 1,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    },
+    "pods": [
+     {
+      "name": "nexus-1-deploy"
+     }
+    ],
+    "routes": [
+     {
+      "name": "nexus",
+      "host": "nexus-ocp-workshop.apps.cb0d.events.opentlc.com",
+      "to": {
+       "kind": "Service",
+       "name": "nexus",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ]
+   },
+   {
+    "name": "openshift",
+    "latestChange": null,
+    "resources": {
+     "containerCount": 0,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    }
+   },
+   {
+    "name": "openshift-ansible-service-broker",
+    "latestChange": "2019-08-20T17:00:17Z",
+    "resources": {
+     "containerCount": 1,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    },
+    "pods": [
+     {
+      "name": "asb-1-8pw5j"
+     }
+    ],
+    "routes": [
+     {
+      "name": "asb-1338",
+      "host": "asb-1338-openshift-ansible-service-broker.apps.cb0d.events.opentlc.com",
+      "tls": {
+       "termination": "reencrypt"
+      },
+      "to": {
+       "kind": "Service",
+       "name": "asb",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ]
+   },
+   {
+    "name": "openshift-console",
+    "latestChange": "2019-08-20T16:51:18Z",
+    "resources": {
+     "containerCount": 1,
+     "cpuTotal": "1",
+     "memoryTotal": "100Mi"
+    },
+    "pods": [
+     {
+      "name": "console-7c64b97c46-8gxtv"
+     }
+    ],
+    "routes": [
+     {
+      "name": "console",
+      "host": "console.apps.cb0d.events.opentlc.com",
+      "tls": {
+       "termination": "reencrypt",
+       "insecureEdgeTerminationPolicy": "Redirect"
+      },
+      "to": {
+       "kind": "Service",
+       "name": "console",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ],
+    "deployments": [
+     {
+      "name": "console",
+      "latestChange": "2019-08-20T16:51:18Z"
+     }
+    ]
+   },
+   {
+    "name": "openshift-infra",
+    "latestChange": "2019-08-20T16:53:30Z",
+    "resources": {
+     "containerCount": 4,
+     "cpuTotal": "0",
+     "memoryTotal": "3437500000"
+    },
+    "pods": [
+     {
+      "name": "hawkular-cassandra-1-tg9cg"
+     },
+     {
+      "name": "hawkular-metrics-pjsb5"
+     },
+     {
+      "name": "hawkular-metrics-schema-56rx6"
+     },
+     {
+      "name": "heapster-5mkjd"
+     }
+    ],
+    "routes": [
+     {
+      "name": "hawkular-metrics",
+      "host": "hawkular-metrics.apps.cb0d.events.opentlc.com",
+      "tls": {
+       "termination": "reencrypt",
+       "destinationCACertificate": "-----BEGIN CERTIFICATE-----\nMIIC5jCCAc6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAkMSIwIAYDVQQDDBltZXRy\naWNzLXNpZ25lckAxNTY2MzE5OTAzMB4XDTE5MDgyMDE2NTE0M1oXDTI0MDgxODE2\nNTE0NFowJDEiMCAGA1UEAwwZbWV0cmljcy1zaWduZXJAMTU2NjMxOTkwMzCCASIw\nDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMnpzyZfXvgcsC9Maf31k4oRPVgf\n7yHtuoJUQN727oDzH1Ya3L/r4WJOb76gvG/rq+OqyX9h+SST9dXPR0DE7V7i8Y20\nTmf1NeMPCMbMcuFn7XotZp+C4fkHTsi2ZPucUa3PpQ0FLPzw9UrfpbrnYHbmLM+1\nmoKGnn8tVNbrPCZ1COGsIo4yq/ulZWdCgUtj4mHxRUzSBUyYwOKf/o7zNKpYpkBK\n7ySRCKlLDz3unnSqL01E1Sfny2NcWh6l/H2JBrEz5/wkyCPVmFG3O5azSXk5Z24c\n3PriMPD6ltL7Mi8WhXnoaTsp7TxJCIkMYY06fNGYdwjvaZc2Jzul0ugtG0ECAwEA\nAaMjMCEwDgYDVR0PAQH/BAQDAgKkMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcN\nAQELBQADggEBAK9Bb4j32jBKNU4ggNTLvN0qY+VoCR0NQQLKO+w9ZMRJbIg2Ep1t\nENaCREUarQDvu2d41wnVjTFySktnfUqz9JJ/WDKyZQA15mrDU+1MRELD6asEHyst\nai/OsqRtke8i428LL5ccoTDk6IOPtZJ/YzPJ1SOIoyJjOp3bnlJoTg/189xebBiT\nuXgJU7bc8lqW0IzQsjorETi3QFpBC4QTFJTaGO3e518jpO9z9uE2Llk9kBeeBS5B\nZ1MIwLEYADDpsvdW5GK/IuEBgsypjx27eB7XkUlg9gFhLPLBnsgrHW1tkYXHgsJn\nM3ctUxK6i+NwwAz2NGfkxYrIB1rxN9Me764=\n-----END CERTIFICATE-----\n"
+      },
+      "to": {
+       "kind": "Service",
+       "name": "hawkular-metrics",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ],
+    "securityContextConstraints": [
+     "hostmount-anyuid",
+     "privileged"
+    ]
+   },
+   {
+    "name": "openshift-logging",
+    "latestChange": "2019-08-20T16:57:20Z",
+    "resources": {
+     "containerCount": 6,
+     "cpuTotal": "5",
+     "memoryTotal": "3260Mi"
+    },
+    "pods": [
+     {
+      "name": "logging-es-data-master-xrtx3ta4-1-deploy"
+     },
+     {
+      "name": "logging-fluentd-hdbzh"
+     },
+     {
+      "name": "logging-fluentd-tpzhm"
+     },
+     {
+      "name": "logging-fluentd-wtzzw"
+     },
+     {
+      "name": "logging-kibana-1-5pt7p"
+     }
+    ],
+    "routes": [
+     {
+      "name": "logging-kibana",
+      "host": "kibana.apps.cb0d.events.opentlc.com",
+      "tls": {
+       "termination": "reencrypt",
+       "caCertificate": "-----BEGIN CERTIFICATE-----\nMIIC2jCCAcKgAwIBAgIBATANBgkqhkiG9w0BAQsFADAeMRwwGgYDVQQDExNsb2dn\naW5nLXNpZ25lci10ZXN0MB4XDTE5MDgyMDE2NTQ0MloXDTI0MDgxODE2NTQ0M1ow\nHjEcMBoGA1UEAxMTbG9nZ2luZy1zaWduZXItdGVzdDCCASIwDQYJKoZIhvcNAQEB\nBQADggEPADCCAQoCggEBAOpN10NNVPO8wiyWD+skm43gLIkVHud37s0xl9tqQBct\nMZaXKftFS7c7rihiVF60fn8uy0a5P8IjmHIc4JMdeMnRtO47LiosXYmltJ4gZ1Ih\nG1/49TSD4U8U9AmP7LyFHowteKYeQqvjKdehkdpf2yr7AZCN5ogJRaRVkxppdx2Z\nO6ctOJzoj51Bid8nBca4zec1JYeJQMJ0I40DIClgRLCYx8Vw+WPDiCjZX5fyziqW\nPHtf8loG2kcJHG45d5ouzHUmd5RxjiGwjA5NhNtu+iaQEdd/8jlFzpl8820+vPAf\nbZaksw7tPpchOEhOTKgVfQlEdPZhsVHAc2A+yRnHeN0CAwEAAaMjMCEwDgYDVR0P\nAQH/BAQDAgKkMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAAYH\nuUFVXALf5NXw0IfKlPnD9ytfDVCXbBo/W74klsIthda8QzO/m7dQSgG5MfIF4TjT\npWcW69ib9Dcqu8ozzJNY8f/iVkApT7Um4mkHrlLizMCF/FHJVim4jmQPkHFVRaOA\nw7fFN0eRZk998ny58dQqUyrikbU22pbgR0BoHLD1qMU/wO3sgXqgX4vl7/y/uCSZ\nbXKv3Ueiz9ESfY/LmQlHZgQ9CBryO+urQuJYFZQS7V5PZ0ohk4Z8M3p22KQdBMCq\nc1atA/HzQF296W7jaijp3NcWJ4s4ZH4jeU5Eg5syEhzVlu5VBi3H5COcMr4RcZFY\nTVg6t4w0lXHtmlz0z+I=\n-----END CERTIFICATE-----\n",
+       "destinationCACertificate": "-----BEGIN CERTIFICATE-----\nMIIC2jCCAcKgAwIBAgIBATANBgkqhkiG9w0BAQsFADAeMRwwGgYDVQQDExNsb2dn\naW5nLXNpZ25lci10ZXN0MB4XDTE5MDgyMDE2NTQ0MloXDTI0MDgxODE2NTQ0M1ow\nHjEcMBoGA1UEAxMTbG9nZ2luZy1zaWduZXItdGVzdDCCASIwDQYJKoZIhvcNAQEB\nBQADggEPADCCAQoCggEBAOpN10NNVPO8wiyWD+skm43gLIkVHud37s0xl9tqQBct\nMZaXKftFS7c7rihiVF60fn8uy0a5P8IjmHIc4JMdeMnRtO47LiosXYmltJ4gZ1Ih\nG1/49TSD4U8U9AmP7LyFHowteKYeQqvjKdehkdpf2yr7AZCN5ogJRaRVkxppdx2Z\nO6ctOJzoj51Bid8nBca4zec1JYeJQMJ0I40DIClgRLCYx8Vw+WPDiCjZX5fyziqW\nPHtf8loG2kcJHG45d5ouzHUmd5RxjiGwjA5NhNtu+iaQEdd/8jlFzpl8820+vPAf\nbZaksw7tPpchOEhOTKgVfQlEdPZhsVHAc2A+yRnHeN0CAwEAAaMjMCEwDgYDVR0P\nAQH/BAQDAgKkMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAAYH\nuUFVXALf5NXw0IfKlPnD9ytfDVCXbBo/W74klsIthda8QzO/m7dQSgG5MfIF4TjT\npWcW69ib9Dcqu8ozzJNY8f/iVkApT7Um4mkHrlLizMCF/FHJVim4jmQPkHFVRaOA\nw7fFN0eRZk998ny58dQqUyrikbU22pbgR0BoHLD1qMU/wO3sgXqgX4vl7/y/uCSZ\nbXKv3Ueiz9ESfY/LmQlHZgQ9CBryO+urQuJYFZQS7V5PZ0ohk4Z8M3p22KQdBMCq\nc1atA/HzQF296W7jaijp3NcWJ4s4ZH4jeU5Eg5syEhzVlu5VBi3H5COcMr4RcZFY\nTVg6t4w0lXHtmlz0z+I=\n-----END CERTIFICATE-----\n",
+       "insecureEdgeTerminationPolicy": "Redirect"
+      },
+      "to": {
+       "kind": "Service",
+       "name": "logging-kibana",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ],
+    "daemonSets": [
+     {
+      "name": "logging-fluentd",
+      "latestChange": "2019-08-20T16:56:48Z"
+     }
+    ],
+    "securityContextConstraints": [
+     "privileged"
+    ]
+   },
+   {
+    "name": "openshift-metrics-server",
+    "latestChange": "2019-08-20T16:54:13Z",
+    "resources": {
+     "containerCount": 1,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    },
+    "pods": [
+     {
+      "name": "metrics-server-864c5bb658-mhwjc"
+     }
+    ],
+    "deployments": [
+     {
+      "name": "metrics-server",
+      "latestChange": "2019-08-20T16:54:13Z"
+     }
+    ]
+   },
+   {
+    "name": "openshift-monitoring",
+    "latestChange": "2019-08-20T16:52:48Z",
+    "resources": {
+     "containerCount": 30,
+     "cpuTotal": "14",
+     "memoryTotal": "1000Mi"
+    },
+    "pods": [
+     {
+      "name": "alertmanager-main-0"
+     },
+     {
+      "name": "alertmanager-main-1"
+     },
+     {
+      "name": "alertmanager-main-2"
+     },
+     {
+      "name": "cluster-monitoring-operator-884945bfc-4chbg"
+     },
+     {
+      "name": "grafana-58f8f889f7-9pt9q"
+     },
+     {
+      "name": "kube-state-metrics-79687d94d9-4dpc4"
+     },
+     {
+      "name": "node-exporter-2fzw6"
+     },
+     {
+      "name": "node-exporter-dwzdc"
+     },
+     {
+      "name": "node-exporter-mgm5p"
+     },
+     {
+      "name": "prometheus-k8s-0"
+     },
+     {
+      "name": "prometheus-k8s-1"
+     },
+     {
+      "name": "prometheus-operator-64c84cdb45-znjk8"
+     }
+    ],
+    "routes": [
+     {
+      "name": "alertmanager-main",
+      "host": "alertmanager-main-openshift-monitoring.apps.cb0d.events.opentlc.com",
+      "tls": {
+       "termination": "reencrypt"
+      },
+      "to": {
+       "kind": "Service",
+       "name": "alertmanager-main",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     },
+     {
+      "name": "grafana",
+      "host": "grafana-openshift-monitoring.apps.cb0d.events.opentlc.com",
+      "tls": {
+       "termination": "reencrypt"
+      },
+      "to": {
+       "kind": "Service",
+       "name": "grafana",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     },
+     {
+      "name": "prometheus-k8s",
+      "host": "prometheus-k8s-openshift-monitoring.apps.cb0d.events.opentlc.com",
+      "tls": {
+       "termination": "reencrypt"
+      },
+      "to": {
+       "kind": "Service",
+       "name": "prometheus-k8s",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ],
+    "daemonSets": [
+     {
+      "name": "node-exporter",
+      "latestChange": "2019-08-20T16:52:35Z"
+     }
+    ],
+    "deployments": [
+     {
+      "name": "cluster-monitoring-operator",
+      "latestChange": "2019-08-20T16:50:15Z"
+     },
+     {
+      "name": "grafana",
+      "latestChange": "2019-08-20T16:51:02Z"
+     },
+     {
+      "name": "kube-state-metrics",
+      "latestChange": "2019-08-20T16:52:48Z"
+     },
+     {
+      "name": "prometheus-operator",
+      "latestChange": "2019-08-20T16:50:29Z"
+     }
+    ],
+    "securityContextConstraints": [
+     "node-exporter"
+    ]
+   },
+   {
+    "name": "openshift-node",
+    "latestChange": "2019-08-20T16:48:34Z",
+    "resources": {
+     "containerCount": 3,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    },
+    "pods": [
+     {
+      "name": "sync-jgxf8"
+     },
+     {
+      "name": "sync-kvdzx"
+     },
+     {
+      "name": "sync-rkqdr"
+     }
+    ],
+    "daemonSets": [
+     {
+      "name": "sync",
+      "latestChange": "2019-08-20T16:46:59Z"
+     }
+    ],
+    "securityContextConstraints": [
+     "privileged"
+    ]
+   },
+   {
+    "name": "openshift-sdn",
+    "latestChange": "2019-08-20T16:48:34Z",
+    "resources": {
+     "containerCount": 6,
+     "cpuTotal": "6",
+     "memoryTotal": "1500Mi"
+    },
+    "pods": [
+     {
+      "name": "ovs-7bhzs"
+     },
+     {
+      "name": "ovs-jph4s"
+     },
+     {
+      "name": "ovs-scnph"
+     },
+     {
+      "name": "sdn-fqksg"
+     },
+     {
+      "name": "sdn-g5c2d"
+     },
+     {
+      "name": "sdn-hkvfk"
+     }
+    ],
+    "daemonSets": [
+     {
+      "name": "ovs",
+      "latestChange": "2019-08-20T16:47:22Z"
+     },
+     {
+      "name": "sdn",
+      "latestChange": "2019-08-20T16:47:22Z"
+     }
+    ],
+    "securityContextConstraints": [
+     "privileged"
+    ]
+   },
+   {
+    "name": "openshift-template-service-broker",
+    "latestChange": "2019-08-20T17:00:26Z",
+    "resources": {
+     "containerCount": 1,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    },
+    "pods": [
+     {
+      "name": "apiserver-tbprw"
+     }
+    ],
+    "daemonSets": [
+     {
+      "name": "apiserver",
+      "latestChange": "2019-08-20T17:00:25Z"
+     }
+    ]
+   },
+   {
+    "name": "openshift-web-console",
+    "latestChange": "2019-08-20T16:50:58Z",
+    "resources": {
+     "containerCount": 1,
+     "cpuTotal": "1",
+     "memoryTotal": "100Mi"
+    },
+    "pods": [
+     {
+      "name": "webconsole-5dbb4dd979-hkfkk"
+     }
+    ],
+    "deployments": [
+     {
+      "name": "webconsole",
+      "latestChange": "2019-08-20T16:50:57Z"
+     }
+    ]
+   },
+   {
+    "name": "operator-lifecycle-manager",
+    "latestChange": "2019-08-20T17:01:48Z",
+    "resources": {
+     "containerCount": 2,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    },
+    "pods": [
+     {
+      "name": "catalog-operator-64c45bbddb-5z2xn"
+     },
+     {
+      "name": "olm-operator-657cb4bff9-gqpks"
+     }
+    ],
+    "deployments": [
+     {
+      "name": "catalog-operator",
+      "latestChange": "2019-08-20T17:01:48Z"
+     },
+     {
+      "name": "olm-operator",
+      "latestChange": "2019-08-20T17:01:47Z"
+     }
+    ]
+   },
+   {
+    "name": "parks-app",
+    "latestChange": "2019-08-20T17:16:05Z",
+    "resources": {
+     "containerCount": 3,
+     "cpuTotal": "0",
+     "memoryTotal": "0"
+    },
+    "pods": [
+     {
+      "name": "mongodb-1-lnfbr"
+     },
+     {
+      "name": "restify-1-build"
+     },
+     {
+      "name": "restify-1-xd66w"
+     }
+    ],
+    "routes": [
+     {
+      "name": "restify",
+      "host": "restify-parks-app.apps.cb0d.events.opentlc.com",
+      "to": {
+       "kind": "Service",
+       "name": "restify",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ]
+   },
+   {
+    "name": "robot-shop",
+    "latestChange": "2019-08-20T17:10:58Z",
+    "resources": {
+     "containerCount": 12,
+     "cpuTotal": "11",
+     "memoryTotal": "1256Mi"
+    },
+    "pods": [
+     {
+      "name": "cart-7bbb97b9db-m7l6f"
+     },
+     {
+      "name": "catalogue-756b4d457c-5dffk"
+     },
+     {
+      "name": "dispatch-6d96444675-mj4x5"
+     },
+     {
+      "name": "mongodb-6b47bd444f-qgl47"
+     },
+     {
+      "name": "mysql-1-deploy"
+     },
+     {
+      "name": "payment-77d99485bf-8s7dk"
+     },
+     {
+      "name": "rabbitmq-774c9c8d64-gqx6r"
+     },
+     {
+      "name": "ratings-5f6c685d4b-j7lrc"
+     },
+     {
+      "name": "redis-b4cb56cbb-nb44z"
+     },
+     {
+      "name": "shipping-74576cfcc4-hx9tl"
+     },
+     {
+      "name": "user-6c54b69897-zfcfm"
+     },
+     {
+      "name": "web-746f455d76-h77xk"
+     }
+    ],
+    "routes": [
+     {
+      "name": "front-end",
+      "host": "front-end-robot-shop.apps.cb0d.events.opentlc.com",
+      "path": "/",
+      "to": {
+       "kind": "Service",
+       "name": "web",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ],
+    "deployments": [
+     {
+      "name": "cart",
+      "latestChange": "2019-08-20T17:10:56Z"
+     },
+     {
+      "name": "catalogue",
+      "latestChange": "2019-08-20T17:10:56Z"
+     },
+     {
+      "name": "dispatch",
+      "latestChange": "2019-08-20T17:10:56Z"
+     },
+     {
+      "name": "mongodb",
+      "latestChange": "2019-08-20T17:10:56Z"
+     },
+     {
+      "name": "payment",
+      "latestChange": "2019-08-20T17:10:57Z"
+     },
+     {
+      "name": "rabbitmq",
+      "latestChange": "2019-08-20T17:10:57Z"
+     },
+     {
+      "name": "ratings",
+      "latestChange": "2019-08-20T17:10:57Z"
+     },
+     {
+      "name": "redis",
+      "latestChange": "2019-08-20T17:10:58Z"
+     },
+     {
+      "name": "shipping",
+      "latestChange": "2019-08-20T17:10:58Z"
+     },
+     {
+      "name": "user",
+      "latestChange": "2019-08-20T17:10:58Z"
+     },
+     {
+      "name": "web",
+      "latestChange": "2019-08-20T17:10:58Z"
+     }
+    ]
+   },
+   {
+    "name": "sock-shop",
+    "latestChange": "2019-08-20T17:10:46Z",
+    "resources": {
+     "containerCount": 15,
+     "cpuTotal": "8",
+     "memoryTotal": "3112Mi"
+    },
+    "pods": [
+     {
+      "name": "carts-77555f7648-pm7dc"
+     },
+     {
+      "name": "carts-db-74db84c448-xn5fh"
+     },
+     {
+      "name": "catalogue-b5fc87544-vs8jf"
+     },
+     {
+      "name": "catalogue-db-1-54lrt"
+     },
+     {
+      "name": "front-end-5c49687b5c-9k57n"
+     },
+     {
+      "name": "orders-56b86d7dd7-hgpbg"
+     },
+     {
+      "name": "orders-db-7645cb4d78-gwdl7"
+     },
+     {
+      "name": "payment-685fdbcf67-pmhcm"
+     },
+     {
+      "name": "queue-master-58bcb789cd-bzscp"
+     },
+     {
+      "name": "rabbitmq-798d7b5976-jdxn9"
+     },
+     {
+      "name": "session-db-7cc8ddc4cc-5wq82"
+     },
+     {
+      "name": "shipping-5ccdd4b459-pq264"
+     },
+     {
+      "name": "user-5648777687-f4mkl"
+     },
+     {
+      "name": "user-db-b655656b7-phnrv"
+     }
+    ],
+    "routes": [
+     {
+      "name": "front-end",
+      "host": "front-end-sock-shop.apps.cb0d.events.opentlc.com",
+      "path": "/",
+      "to": {
+       "kind": "Service",
+       "name": "front-end",
+       "weight": 100
+      },
+      "wildcardPolicy": "None"
+     }
+    ],
+    "deployments": [
+     {
+      "name": "carts",
+      "latestChange": "2019-08-20T17:10:42Z"
+     },
+     {
+      "name": "carts-db",
+      "latestChange": "2019-08-20T17:10:42Z"
+     },
+     {
+      "name": "catalogue",
+      "latestChange": "2019-08-20T17:10:43Z"
+     },
+     {
+      "name": "front-end",
+      "latestChange": "2019-08-20T17:10:43Z"
+     },
+     {
+      "name": "orders",
+      "latestChange": "2019-08-20T17:10:43Z"
+     },
+     {
+      "name": "orders-db",
+      "latestChange": "2019-08-20T17:10:43Z"
+     },
+     {
+      "name": "payment",
+      "latestChange": "2019-08-20T17:10:43Z"
+     },
+     {
+      "name": "queue-master",
+      "latestChange": "2019-08-20T17:10:43Z"
+     },
+     {
+      "name": "rabbitmq",
+      "latestChange": "2019-08-20T17:10:43Z"
+     },
+     {
+      "name": "session-db",
+      "latestChange": "2019-08-20T17:10:44Z"
+     },
+     {
+      "name": "shipping",
+      "latestChange": "2019-08-20T17:10:44Z"
+     },
+     {
+      "name": "user",
+      "latestChange": "2019-08-20T17:10:44Z"
+     },
+     {
+      "name": "user-db",
+      "latestChange": "2019-08-20T17:10:44Z"
+     }
+    ],
+    "securityContextConstraints": [
+     "sock-shop"
+    ]
+   }
+  ],
+  "pvs": [
+   {
+    "name": "logging-volume",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.internal",
+      "path": "/srv/nfs/logging"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "metrics-volume",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.internal",
+      "path": "/srv/nfs/metrics"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol1",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol1"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol10",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol10"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol100",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol100"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol101",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol101"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol102",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol102"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol103",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol103"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol104",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol104"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol105",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol105"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol106",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol106"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol107",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol107"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol108",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol108"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol109",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol109"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol11",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol11"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol110",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol110"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol111",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol111"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol112",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol112"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol113",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol113"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol114",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol114"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol115",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol115"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol116",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol116"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol117",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol117"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol118",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol118"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol119",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol119"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol12",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol12"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol120",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol120"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol121",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol121"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol122",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol122"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol123",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol123"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol124",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol124"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol125",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol125"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol126",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol126"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol127",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol127"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol128",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol128"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol129",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol129"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol13",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol13"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol130",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol130"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol131",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol131"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol132",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol132"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol133",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol133"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol134",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol134"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol135",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol135"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol136",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol136"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol137",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol137"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol138",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol138"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol139",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol139"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol14",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol14"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol140",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol140"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol141",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol141"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol142",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol142"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol143",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol143"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol144",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol144"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol145",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol145"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol146",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol146"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol147",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol147"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol148",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol148"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol149",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol149"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol15",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol15"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol150",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol150"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol151",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol151"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol152",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol152"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol153",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol153"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol154",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol154"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol155",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol155"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol156",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol156"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol157",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol157"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol158",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol158"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol159",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol159"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol16",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol16"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol160",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol160"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol161",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol161"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol162",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol162"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol163",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol163"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol164",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol164"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol165",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol165"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol166",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol166"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol167",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol167"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol168",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol168"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol169",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol169"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol17",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol17"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol170",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol170"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol171",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol171"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol172",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol172"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol173",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol173"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol174",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol174"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol175",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol175"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol176",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol176"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol177",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol177"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol178",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol178"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol179",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol179"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol18",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol18"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol180",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol180"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol181",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol181"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol182",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol182"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol183",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol183"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol184",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol184"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol185",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol185"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol186",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol186"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol187",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol187"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol188",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol188"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol189",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol189"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol19",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol19"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol190",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol190"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol191",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol191"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol192",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol192"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol193",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol193"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol194",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol194"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol195",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol195"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol196",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol196"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol197",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol197"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol198",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol198"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol199",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol199"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol2",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol2"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol20",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol20"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol21",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol21"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol22",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol22"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol23",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol23"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol24",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol24"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol25",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol25"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol26",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol26"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol27",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol27"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol28",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol28"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol29",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol29"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol3",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol3"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol30",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol30"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol31",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol31"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol32",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol32"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol33",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol33"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol34",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol34"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol35",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol35"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol36",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol36"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol37",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol37"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol38",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol38"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol39",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol39"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol4",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol4"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol40",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol40"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol41",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol41"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol42",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol42"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol43",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol43"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol44",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol44"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol45",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol45"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol46",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol46"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol47",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol47"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol48",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol48"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol49",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol49"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol5",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol5"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol50",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol50"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol51",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol51"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol52",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol52"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol53",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol53"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol54",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol54"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol55",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol55"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol56",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol56"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol57",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol57"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol58",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol58"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol59",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol59"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol6",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol6"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol60",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol60"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol61",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol61"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol62",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol62"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol63",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol63"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol64",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol64"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol65",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol65"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol66",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol66"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol67",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol67"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol68",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol68"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol69",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol69"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol7",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol7"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol70",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol70"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol71",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol71"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol72",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol72"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol73",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol73"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol74",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol74"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol75",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol75"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol76",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol76"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol77",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol77"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol78",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol78"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol79",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol79"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol8",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol8"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol80",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol80"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol81",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol81"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol82",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol82"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol83",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol83"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol84",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol84"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol85",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol85"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol86",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol86"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol87",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol87"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol88",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol88"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol89",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol89"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol9",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol9"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol90",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol90"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol91",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol91"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol92",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol92"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol93",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol93"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol94",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol94"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol95",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol95"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Bound"
+   },
+   {
+    "name": "vol96",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol96"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol97",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol97"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol98",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol98"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   },
+   {
+    "name": "vol99",
+    "driver": {
+     "nfs": {
+      "server": "support1.cb0d.events.opentlc.com",
+      "path": "/srv/nfs/user-vols/vol99"
+     }
+    },
+    "capacity": {
+     "storage": "10Gi"
+    },
+    "phase": "Available"
+   }
+  ],
+  "rbacreport": {
+   "users": [
+    {
+     "name": "admin",
+     "identities": [
+      "htpasswd_auth:admin"
+     ],
+     "groups": null
+    }
+   ],
+   "group": [],
+   "roles": [
+    {
+     "namespace": "default",
+     "roles": [
+      {
+       "name": "prometheus-k8s"
+      }
+     ]
+    },
+    {
+     "namespace": "kube-public",
+     "roles": [
+      {
+       "name": "system:controller:bootstrap-signer"
+      }
+     ]
+    },
+    {
+     "namespace": "kube-service-catalog",
+     "roles": [
+      {
+       "name": "cluster-info-configmap"
+      },
+      {
+       "name": "configmap-accessor"
+      }
+     ]
+    },
+    {
+     "namespace": "kube-system",
+     "roles": [
+      {
+       "name": "extension-apiserver-authentication-reader"
+      },
+      {
+       "name": "prometheus-k8s"
+      },
+      {
+       "name": "system::leader-locking-kube-controller-manager"
+      },
+      {
+       "name": "system::leader-locking-kube-scheduler"
+      },
+      {
+       "name": "system:controller:bootstrap-signer"
+      },
+      {
+       "name": "system:controller:cloud-provider"
+      },
+      {
+       "name": "system:controller:token-cleaner"
+      }
+     ]
+    },
+    {
+     "namespace": "management-infra",
+     "roles": []
+    },
+    {
+     "namespace": "mig",
+     "roles": [
+      {
+       "name": "migration-operator"
+      }
+     ]
+    },
+    {
+     "namespace": "mssql-persistent",
+     "roles": []
+    },
+    {
+     "namespace": "ocp-workshop",
+     "roles": []
+    },
+    {
+     "namespace": "openshift",
+     "roles": [
+      {
+       "name": "shared-resource-viewer"
+      }
+     ]
+    },
+    {
+     "namespace": "openshift-ansible-service-broker",
+     "roles": []
+    },
+    {
+     "namespace": "openshift-console",
+     "roles": []
+    },
+    {
+     "namespace": "openshift-infra",
+     "roles": []
+    },
+    {
+     "namespace": "openshift-logging",
+     "roles": [
+      {
+       "name": "prometheus-metrics-viewer"
+      }
+     ]
+    },
+    {
+     "namespace": "openshift-metrics-server",
+     "roles": []
+    },
+    {
+     "namespace": "openshift-monitoring",
+     "roles": [
+      {
+       "name": "prometheus-k8s"
+      },
+      {
+       "name": "prometheus-k8s-config"
+      }
+     ]
+    },
+    {
+     "namespace": "openshift-node",
+     "roles": [
+      {
+       "name": "system:node-config-reader"
+      }
+     ]
+    },
+    {
+     "namespace": "openshift-sdn",
+     "roles": []
+    },
+    {
+     "namespace": "openshift-template-service-broker",
+     "roles": [
+      {
+       "name": "templateservicebroker-auth-reader"
+      }
+     ]
+    },
+    {
+     "namespace": "openshift-web-console",
+     "roles": []
+    },
+    {
+     "namespace": "operator-lifecycle-manager",
+     "roles": []
+    },
+    {
+     "namespace": "parks-app",
+     "roles": []
+    },
+    {
+     "namespace": "robot-shop",
+     "roles": []
+    },
+    {
+     "namespace": "sock-shop",
+     "roles": []
+    }
+   ],
+   "clusterRoles": [
+    {
+     "name": "admin"
+    },
+    {
+     "name": "aggregate-olm-edit"
+    },
+    {
+     "name": "aggregate-olm-view"
+    },
+    {
+     "name": "alertmanager-main"
+    },
+    {
+     "name": "asb-access"
+    },
+    {
+     "name": "asb-auth"
+    },
+    {
+     "name": "asb-user-access"
+    },
+    {
+     "name": "basic-user"
+    },
+    {
+     "name": "cluster-admin"
+    },
+    {
+     "name": "cluster-debugger"
+    },
+    {
+     "name": "cluster-monitoring-operator"
+    },
+    {
+     "name": "cluster-monitoring-view"
+    },
+    {
+     "name": "cluster-reader"
+    },
+    {
+     "name": "cluster-status"
+    },
+    {
+     "name": "edit"
+    },
+    {
+     "name": "event-reader"
+    },
+    {
+     "name": "grafana"
+    },
+    {
+     "name": "hawkular-metrics"
+    },
+    {
+     "name": "hawkular-metrics-admin"
+    },
+    {
+     "name": "kube-state-metrics"
+    },
+    {
+     "name": "management-infra-admin"
+    },
+    {
+     "name": "namespace-viewer"
+    },
+    {
+     "name": "node-exporter"
+    },
+    {
+     "name": "prometheus-k8s"
+    },
+    {
+     "name": "prometheus-operator"
+    },
+    {
+     "name": "registry-admin"
+    },
+    {
+     "name": "registry-editor"
+    },
+    {
+     "name": "registry-viewer"
+    },
+    {
+     "name": "rolebinding-reader"
+    },
+    {
+     "name": "sar-creator"
+    },
+    {
+     "name": "self-access-reviewer"
+    },
+    {
+     "name": "self-provisioner"
+    },
+    {
+     "name": "service-catalog-controller"
+    },
+    {
+     "name": "servicecatalog-serviceclass-viewer"
+    },
+    {
+     "name": "servicecatalog.k8s.io:service-catalog-readiness"
+    },
+    {
+     "name": "storage-admin"
+    },
+    {
+     "name": "sudoer"
+    },
+    {
+     "name": "system:aggregate-to-admin"
+    },
+    {
+     "name": "system:aggregate-to-edit"
+    },
+    {
+     "name": "system:aggregate-to-view"
+    },
+    {
+     "name": "system:auth-delegator"
+    },
+    {
+     "name": "system:aws-cloud-provider"
+    },
+    {
+     "name": "system:basic-user"
+    },
+    {
+     "name": "system:build-controller"
+    },
+    {
+     "name": "system:build-strategy-custom"
+    },
+    {
+     "name": "system:build-strategy-docker"
+    },
+    {
+     "name": "system:build-strategy-jenkinspipeline"
+    },
+    {
+     "name": "system:build-strategy-source"
+    },
+    {
+     "name": "system:certificate-signing-controller"
+    },
+    {
+     "name": "system:certificates.k8s.io:certificatesigningrequests:nodeclient"
+    },
+    {
+     "name": "system:certificates.k8s.io:certificatesigningrequests:selfnodeclient"
+    },
+    {
+     "name": "system:controller:attachdetach-controller"
+    },
+    {
+     "name": "system:controller:certificate-controller"
+    },
+    {
+     "name": "system:controller:clusterrole-aggregation-controller"
+    },
+    {
+     "name": "system:controller:cronjob-controller"
+    },
+    {
+     "name": "system:controller:daemon-set-controller"
+    },
+    {
+     "name": "system:controller:deployment-controller"
+    },
+    {
+     "name": "system:controller:disruption-controller"
+    },
+    {
+     "name": "system:controller:endpoint-controller"
+    },
+    {
+     "name": "system:controller:expand-controller"
+    },
+    {
+     "name": "system:controller:generic-garbage-collector"
+    },
+    {
+     "name": "system:controller:horizontal-pod-autoscaler"
+    },
+    {
+     "name": "system:controller:job-controller"
+    },
+    {
+     "name": "system:controller:namespace-controller"
+    },
+    {
+     "name": "system:controller:node-controller"
+    },
+    {
+     "name": "system:controller:operator-lifecycle-manager"
+    },
+    {
+     "name": "system:controller:persistent-volume-binder"
+    },
+    {
+     "name": "system:controller:pod-garbage-collector"
+    },
+    {
+     "name": "system:controller:pv-protection-controller"
+    },
+    {
+     "name": "system:controller:pvc-protection-controller"
+    },
+    {
+     "name": "system:controller:replicaset-controller"
+    },
+    {
+     "name": "system:controller:replication-controller"
+    },
+    {
+     "name": "system:controller:resourcequota-controller"
+    },
+    {
+     "name": "system:controller:route-controller"
+    },
+    {
+     "name": "system:controller:service-account-controller"
+    },
+    {
+     "name": "system:controller:service-controller"
+    },
+    {
+     "name": "system:controller:statefulset-controller"
+    },
+    {
+     "name": "system:controller:ttl-controller"
+    },
+    {
+     "name": "system:csi-external-attacher"
+    },
+    {
+     "name": "system:csi-external-provisioner"
+    },
+    {
+     "name": "system:daemonset-controller"
+    },
+    {
+     "name": "system:deployer"
+    },
+    {
+     "name": "system:deployment-controller"
+    },
+    {
+     "name": "system:deploymentconfig-controller"
+    },
+    {
+     "name": "system:discovery"
+    },
+    {
+     "name": "system:disruption-controller"
+    },
+    {
+     "name": "system:endpoint-controller"
+    },
+    {
+     "name": "system:garbage-collector-controller"
+    },
+    {
+     "name": "system:gc-controller"
+    },
+    {
+     "name": "system:heapster"
+    },
+    {
+     "name": "system:hpa-controller"
+    },
+    {
+     "name": "system:image-auditor"
+    },
+    {
+     "name": "system:image-builder"
+    },
+    {
+     "name": "system:image-pruner"
+    },
+    {
+     "name": "system:image-puller"
+    },
+    {
+     "name": "system:image-pusher"
+    },
+    {
+     "name": "system:image-signer"
+    },
+    {
+     "name": "system:job-controller"
+    },
+    {
+     "name": "system:kube-aggregator"
+    },
+    {
+     "name": "system:kube-controller-manager"
+    },
+    {
+     "name": "system:kube-dns"
+    },
+    {
+     "name": "system:kube-scheduler"
+    },
+    {
+     "name": "system:kubelet-api-admin"
+    },
+    {
+     "name": "system:master"
+    },
+    {
+     "name": "system:metrics-server"
+    },
+    {
+     "name": "system:namespace-controller"
+    },
+    {
+     "name": "system:node"
+    },
+    {
+     "name": "system:node-admin"
+    },
+    {
+     "name": "system:node-bootstrapper"
+    },
+    {
+     "name": "system:node-problem-detector"
+    },
+    {
+     "name": "system:node-proxier"
+    },
+    {
+     "name": "system:node-reader"
+    },
+    {
+     "name": "system:oauth-token-deleter"
+    },
+    {
+     "name": "system:openshift:aggregate-to-admin"
+    },
+    {
+     "name": "system:openshift:aggregate-to-cluster-reader"
+    },
+    {
+     "name": "system:openshift:aggregate-to-edit"
+    },
+    {
+     "name": "system:openshift:aggregate-to-view"
+    },
+    {
+     "name": "system:openshift:controller:build-config-change-controller"
+    },
+    {
+     "name": "system:openshift:controller:build-controller"
+    },
+    {
+     "name": "system:openshift:controller:cluster-quota-reconciliation-controller"
+    },
+    {
+     "name": "system:openshift:controller:default-rolebindings-controller"
+    },
+    {
+     "name": "system:openshift:controller:deployer-controller"
+    },
+    {
+     "name": "system:openshift:controller:deploymentconfig-controller"
+    },
+    {
+     "name": "system:openshift:controller:horizontal-pod-autoscaler"
+    },
+    {
+     "name": "system:openshift:controller:image-import-controller"
+    },
+    {
+     "name": "system:openshift:controller:image-trigger-controller"
+    },
+    {
+     "name": "system:openshift:controller:ingress-to-route-controller"
+    },
+    {
+     "name": "system:openshift:controller:namespace-security-allocation-controller"
+    },
+    {
+     "name": "system:openshift:controller:origin-namespace-controller"
+    },
+    {
+     "name": "system:openshift:controller:pv-recycler-controller"
+    },
+    {
+     "name": "system:openshift:controller:resourcequota-controller"
+    },
+    {
+     "name": "system:openshift:controller:sdn-controller"
+    },
+    {
+     "name": "system:openshift:controller:service-ingress-ip-controller"
+    },
+    {
+     "name": "system:openshift:controller:service-serving-cert-controller"
+    },
+    {
+     "name": "system:openshift:controller:serviceaccount-controller"
+    },
+    {
+     "name": "system:openshift:controller:serviceaccount-pull-secrets-controller"
+    },
+    {
+     "name": "system:openshift:controller:template-instance-controller"
+    },
+    {
+     "name": "system:openshift:controller:template-instance-finalizer-controller"
+    },
+    {
+     "name": "system:openshift:controller:template-service-broker"
+    },
+    {
+     "name": "system:openshift:controller:unidling-controller"
+    },
+    {
+     "name": "system:openshift:discovery"
+    },
+    {
+     "name": "system:openshift:templateservicebroker-client"
+    },
+    {
+     "name": "system:persistent-volume-provisioner"
+    },
+    {
+     "name": "system:registry"
+    },
+    {
+     "name": "system:replicaset-controller"
+    },
+    {
+     "name": "system:replication-controller"
+    },
+    {
+     "name": "system:router"
+    },
+    {
+     "name": "system:scope-impersonation"
+    },
+    {
+     "name": "system:sdn-manager"
+    },
+    {
+     "name": "system:sdn-reader"
+    },
+    {
+     "name": "system:service-catalog:aggregate-to-admin"
+    },
+    {
+     "name": "system:service-catalog:aggregate-to-edit"
+    },
+    {
+     "name": "system:service-catalog:aggregate-to-view"
+    },
+    {
+     "name": "system:statefulset-controller"
+    },
+    {
+     "name": "system:volume-scheduler"
+    },
+    {
+     "name": "system:webhook"
+    },
+    {
+     "name": "view"
+    }
+   ],
+   "clusterRoleBindings": [
+    {
+     "name": "admin",
+     "userNames": [
+      "system:serviceaccount:kube-service-catalog:default"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-service-catalog",
+       "name": "default"
+      }
+     ],
+     "roleRef": {
+      "name": "admin"
+     }
+    },
+    {
+     "name": "admin-0",
+     "userNames": [
+      "system:serviceaccount:openshift-ansible-service-broker:asb"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-ansible-service-broker",
+       "name": "asb"
+      }
+     ],
+     "roleRef": {
+      "name": "admin"
+     }
+    },
+    {
+     "name": "alertmanager-main",
+     "userNames": [
+      "system:serviceaccount:openshift-monitoring:alertmanager-main"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-monitoring",
+       "name": "alertmanager-main"
+      }
+     ],
+     "roleRef": {
+      "name": "alertmanager-main"
+     }
+    },
+    {
+     "name": "asb-access",
+     "userNames": [
+      "system:serviceaccount:openshift-ansible-service-broker:asb-client"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-ansible-service-broker",
+       "name": "asb-client"
+      }
+     ],
+     "roleRef": {
+      "name": "asb-access"
+     }
+    },
+    {
+     "name": "asb-auth",
+     "userNames": [
+      "system:serviceaccount:openshift-ansible-service-broker:asb"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-ansible-service-broker",
+       "name": "asb"
+      }
+     ],
+     "roleRef": {
+      "name": "asb-auth"
+     }
+    },
+    {
+     "name": "auth-delegator-openshift-template-service-broker",
+     "userNames": [
+      "system:serviceaccount:openshift-template-service-broker:apiserver"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-template-service-broker",
+       "name": "apiserver"
+      }
+     ],
+     "roleRef": {
+      "name": "system:auth-delegator"
+     }
+    },
+    {
+     "name": "basic-users",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "basic-user"
+     }
+    },
+    {
+     "name": "cluster-admin",
+     "userNames": null,
+     "groupNames": [
+      "system:masters"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:masters"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-admin"
+     }
+    },
+    {
+     "name": "cluster-admin-0",
+     "userNames": [
+      "admin"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "User",
+       "name": "admin"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-admin"
+     }
+    },
+    {
+     "name": "cluster-admins",
+     "userNames": [
+      "system:admin"
+     ],
+     "groupNames": [
+      "system:cluster-admins"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:cluster-admins"
+      },
+      {
+       "kind": "SystemUser",
+       "name": "system:admin"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-admin"
+     }
+    },
+    {
+     "name": "cluster-monitoring-operator",
+     "userNames": [
+      "system:serviceaccount:openshift-monitoring:cluster-monitoring-operator"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-monitoring",
+       "name": "cluster-monitoring-operator"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-monitoring-operator"
+     }
+    },
+    {
+     "name": "cluster-reader",
+     "userNames": [
+      "system:serviceaccount:management-infra:management-admin"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "management-infra",
+       "name": "management-admin"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-reader"
+     }
+    },
+    {
+     "name": "cluster-reader-0",
+     "userNames": [
+      "system:serviceaccount:default:router"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "default",
+       "name": "router"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-reader"
+     }
+    },
+    {
+     "name": "cluster-reader-1",
+     "userNames": [
+      "system:serviceaccount:openshift-logging:aggregated-logging-fluentd"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-logging",
+       "name": "aggregated-logging-fluentd"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-reader"
+     }
+    },
+    {
+     "name": "cluster-readers",
+     "userNames": null,
+     "groupNames": [
+      "system:cluster-readers"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:cluster-readers"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-reader"
+     }
+    },
+    {
+     "name": "cluster-status-binding",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated",
+      "system:unauthenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      },
+      {
+       "kind": "SystemGroup",
+       "name": "system:unauthenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-status"
+     }
+    },
+    {
+     "name": "event-reader-binding",
+     "userNames": [
+      "system:serviceaccount:default:aggregated-logging-eventrouter"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "default",
+       "name": "aggregated-logging-eventrouter"
+      }
+     ],
+     "roleRef": {
+      "name": "event-reader"
+     }
+    },
+    {
+     "name": "grafana",
+     "userNames": [
+      "system:serviceaccount:openshift-monitoring:grafana"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-monitoring",
+       "name": "grafana"
+      }
+     ],
+     "roleRef": {
+      "name": "grafana"
+     }
+    },
+    {
+     "name": "hawkular-metrics-admin",
+     "userNames": [
+      "system:serviceaccount:management-infra:management-admin"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "management-infra",
+       "name": "management-admin"
+      }
+     ],
+     "roleRef": {
+      "name": "hawkular-metrics-admin"
+     }
+    },
+    {
+     "name": "hawkular-namespace-watcher",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:hawkular"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "hawkular"
+      }
+     ],
+     "roleRef": {
+      "name": "hawkular-metrics"
+     }
+    },
+    {
+     "name": "heapster-cluster-reader",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:heapster"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "heapster"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-reader"
+     }
+    },
+    {
+     "name": "kube-state-metrics",
+     "userNames": [
+      "system:serviceaccount:openshift-monitoring:kube-state-metrics"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-monitoring",
+       "name": "kube-state-metrics"
+      }
+     ],
+     "roleRef": {
+      "name": "kube-state-metrics"
+     }
+    },
+    {
+     "name": "management-infra-admin",
+     "userNames": [
+      "system:serviceaccount:management-infra:management-admin"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "management-infra",
+       "name": "management-admin"
+      }
+     ],
+     "roleRef": {
+      "name": "management-infra-admin"
+     }
+    },
+    {
+     "name": "metrics-server:system:auth-delegator",
+     "userNames": [
+      "system:serviceaccount:openshift-metrics-server:metrics-server"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-metrics-server",
+       "name": "metrics-server"
+      }
+     ],
+     "roleRef": {
+      "name": "system:auth-delegator"
+     }
+    },
+    {
+     "name": "mig-cluster-admin",
+     "userNames": [
+      "system:serviceaccount:mig:mig"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "mig",
+       "name": "mig"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-admin"
+     }
+    },
+    {
+     "name": "migration-operator",
+     "userNames": [
+      "system:serviceaccount:mig:migration-operator"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "mig",
+       "name": "migration-operator"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-admin"
+     }
+    },
+    {
+     "name": "node-exporter",
+     "userNames": [
+      "system:serviceaccount:openshift-monitoring:node-exporter"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-monitoring",
+       "name": "node-exporter"
+      }
+     ],
+     "roleRef": {
+      "name": "node-exporter"
+     }
+    },
+    {
+     "name": "olm-operator-binding-operator-lifecycle-manager",
+     "userNames": [
+      "system:serviceaccount:operator-lifecycle-manager:olm-operator-serviceaccount"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "operator-lifecycle-manager",
+       "name": "olm-operator-serviceaccount"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:operator-lifecycle-manager"
+     }
+    },
+    {
+     "name": "prometheus-k8s",
+     "userNames": [
+      "system:serviceaccount:openshift-monitoring:prometheus-k8s"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-monitoring",
+       "name": "prometheus-k8s"
+      }
+     ],
+     "roleRef": {
+      "name": "prometheus-k8s"
+     }
+    },
+    {
+     "name": "prometheus-operator",
+     "userNames": [
+      "system:serviceaccount:openshift-monitoring:prometheus-operator"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-monitoring",
+       "name": "prometheus-operator"
+      }
+     ],
+     "roleRef": {
+      "name": "prometheus-operator"
+     }
+    },
+    {
+     "name": "rolebinding-reader",
+     "userNames": [
+      "system:serviceaccount:openshift-logging:aggregated-logging-elasticsearch"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-logging",
+       "name": "aggregated-logging-elasticsearch"
+      }
+     ],
+     "roleRef": {
+      "name": "rolebinding-reader"
+     }
+    },
+    {
+     "name": "router-router-role",
+     "userNames": [
+      "system:serviceaccount:default:router"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "default",
+       "name": "router"
+      }
+     ],
+     "roleRef": {
+      "name": "system:router"
+     }
+    },
+    {
+     "name": "sdn-cluster-reader",
+     "userNames": [
+      "system:serviceaccount:openshift-sdn:sdn"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-sdn",
+       "name": "sdn"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-reader"
+     }
+    },
+    {
+     "name": "sdn-node-proxier",
+     "userNames": [
+      "system:serviceaccount:openshift-sdn:sdn"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-sdn",
+       "name": "sdn"
+      }
+     ],
+     "roleRef": {
+      "name": "system:node-proxier"
+     }
+    },
+    {
+     "name": "sdn-reader",
+     "userNames": [
+      "system:serviceaccount:openshift-sdn:sdn"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-sdn",
+       "name": "sdn"
+      }
+     ],
+     "roleRef": {
+      "name": "system:sdn-reader"
+     }
+    },
+    {
+     "name": "self-access-reviewers",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated",
+      "system:unauthenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      },
+      {
+       "kind": "SystemGroup",
+       "name": "system:unauthenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "self-access-reviewer"
+     }
+    },
+    {
+     "name": "self-provisioner",
+     "userNames": [
+      "system:serviceaccount:management-infra:management-admin"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "management-infra",
+       "name": "management-admin"
+      }
+     ],
+     "roleRef": {
+      "name": "self-provisioner"
+     }
+    },
+    {
+     "name": "self-provisioners",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated:oauth"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated:oauth"
+      }
+     ],
+     "roleRef": {
+      "name": "self-provisioner"
+     }
+    },
+    {
+     "name": "service-catalog-controller-binding",
+     "userNames": [
+      "system:serviceaccount:kube-service-catalog:service-catalog-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-service-catalog",
+       "name": "service-catalog-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "service-catalog-controller"
+     }
+    },
+    {
+     "name": "service-catalog-controller-namespace-viewer-binding",
+     "userNames": [
+      "system:serviceaccount:kube-service-catalog:service-catalog-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-service-catalog",
+       "name": "service-catalog-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "namespace-viewer"
+     }
+    },
+    {
+     "name": "service-catalog-namespace-viewer-binding",
+     "userNames": [
+      "system:serviceaccount:kube-service-catalog:service-catalog-apiserver"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-service-catalog",
+       "name": "service-catalog-apiserver"
+      }
+     ],
+     "roleRef": {
+      "name": "namespace-viewer"
+     }
+    },
+    {
+     "name": "service-catalog-sar-creator-binding",
+     "userNames": [
+      "system:serviceaccount:kube-service-catalog:service-catalog-apiserver"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-service-catalog",
+       "name": "service-catalog-apiserver"
+      }
+     ],
+     "roleRef": {
+      "name": "sar-creator"
+     }
+    },
+    {
+     "name": "servicecatalog-serviceclass-viewer-binding",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "servicecatalog-serviceclass-viewer"
+     }
+    },
+    {
+     "name": "servicecatalog.k8s.io:service-catalog-readiness",
+     "userNames": null,
+     "groupNames": [
+      "system:unauthenticated",
+      "system:authenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:unauthenticated"
+      },
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "servicecatalog.k8s.io:service-catalog-readiness"
+     }
+    },
+    {
+     "name": "system:auth-delegator",
+     "userNames": [
+      "system:serviceaccount:openshift-logging:aggregated-logging-elasticsearch"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-logging",
+       "name": "aggregated-logging-elasticsearch"
+      }
+     ],
+     "roleRef": {
+      "name": "system:auth-delegator"
+     }
+    },
+    {
+     "name": "system:auth-delegator-binding",
+     "userNames": [
+      "system:serviceaccount:kube-service-catalog:service-catalog-apiserver"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-service-catalog",
+       "name": "service-catalog-apiserver"
+      }
+     ],
+     "roleRef": {
+      "name": "system:auth-delegator"
+     }
+    },
+    {
+     "name": "system:aws-cloud-provider",
+     "userNames": [
+      "system:serviceaccount:kube-system:aws-cloud-provider"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "aws-cloud-provider"
+      }
+     ],
+     "roleRef": {
+      "name": "system:aws-cloud-provider"
+     }
+    },
+    {
+     "name": "system:basic-user",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated",
+      "system:unauthenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      },
+      {
+       "kind": "SystemGroup",
+       "name": "system:unauthenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "system:basic-user"
+     }
+    },
+    {
+     "name": "system:build-strategy-docker-binding",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "system:build-strategy-docker"
+     }
+    },
+    {
+     "name": "system:build-strategy-jenkinspipeline-binding",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "system:build-strategy-jenkinspipeline"
+     }
+    },
+    {
+     "name": "system:build-strategy-source-binding",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "system:build-strategy-source"
+     }
+    },
+    {
+     "name": "system:controller:attachdetach-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:attachdetach-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "attachdetach-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:attachdetach-controller"
+     }
+    },
+    {
+     "name": "system:controller:certificate-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:certificate-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "certificate-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:certificate-controller"
+     }
+    },
+    {
+     "name": "system:controller:clusterrole-aggregation-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:clusterrole-aggregation-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "clusterrole-aggregation-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:clusterrole-aggregation-controller"
+     }
+    },
+    {
+     "name": "system:controller:cronjob-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:cronjob-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "cronjob-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:cronjob-controller"
+     }
+    },
+    {
+     "name": "system:controller:daemon-set-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:daemon-set-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "daemon-set-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:daemon-set-controller"
+     }
+    },
+    {
+     "name": "system:controller:deployment-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:deployment-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "deployment-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:deployment-controller"
+     }
+    },
+    {
+     "name": "system:controller:disruption-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:disruption-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "disruption-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:disruption-controller"
+     }
+    },
+    {
+     "name": "system:controller:endpoint-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:endpoint-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "endpoint-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:endpoint-controller"
+     }
+    },
+    {
+     "name": "system:controller:expand-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:expand-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "expand-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:expand-controller"
+     }
+    },
+    {
+     "name": "system:controller:generic-garbage-collector",
+     "userNames": [
+      "system:serviceaccount:kube-system:generic-garbage-collector"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "generic-garbage-collector"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:generic-garbage-collector"
+     }
+    },
+    {
+     "name": "system:controller:horizontal-pod-autoscaler",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:horizontal-pod-autoscaler",
+      "system:serviceaccount:kube-system:horizontal-pod-autoscaler"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "horizontal-pod-autoscaler"
+      },
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "horizontal-pod-autoscaler"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:horizontal-pod-autoscaler"
+     }
+    },
+    {
+     "name": "system:controller:job-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:job-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "job-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:job-controller"
+     }
+    },
+    {
+     "name": "system:controller:namespace-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:namespace-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "namespace-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:namespace-controller"
+     }
+    },
+    {
+     "name": "system:controller:node-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:node-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "node-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:node-controller"
+     }
+    },
+    {
+     "name": "system:controller:persistent-volume-binder",
+     "userNames": [
+      "system:serviceaccount:kube-system:persistent-volume-binder"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "persistent-volume-binder"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:persistent-volume-binder"
+     }
+    },
+    {
+     "name": "system:controller:pod-garbage-collector",
+     "userNames": [
+      "system:serviceaccount:kube-system:pod-garbage-collector"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "pod-garbage-collector"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:pod-garbage-collector"
+     }
+    },
+    {
+     "name": "system:controller:pv-protection-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:pv-protection-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "pv-protection-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:pv-protection-controller"
+     }
+    },
+    {
+     "name": "system:controller:pvc-protection-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:pvc-protection-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "pvc-protection-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:pvc-protection-controller"
+     }
+    },
+    {
+     "name": "system:controller:replicaset-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:replicaset-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "replicaset-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:replicaset-controller"
+     }
+    },
+    {
+     "name": "system:controller:replication-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:replication-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "replication-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:replication-controller"
+     }
+    },
+    {
+     "name": "system:controller:resourcequota-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:resourcequota-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "resourcequota-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:resourcequota-controller"
+     }
+    },
+    {
+     "name": "system:controller:route-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:route-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "route-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:route-controller"
+     }
+    },
+    {
+     "name": "system:controller:service-account-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:service-account-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "service-account-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:service-account-controller"
+     }
+    },
+    {
+     "name": "system:controller:service-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:service-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "service-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:service-controller"
+     }
+    },
+    {
+     "name": "system:controller:statefulset-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:statefulset-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "statefulset-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:statefulset-controller"
+     }
+    },
+    {
+     "name": "system:controller:ttl-controller",
+     "userNames": [
+      "system:serviceaccount:kube-system:ttl-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "ttl-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:controller:ttl-controller"
+     }
+    },
+    {
+     "name": "system:deployer",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:default-rolebindings-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "default-rolebindings-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:deployer"
+     }
+    },
+    {
+     "name": "system:discovery",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated",
+      "system:unauthenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      },
+      {
+       "kind": "SystemGroup",
+       "name": "system:unauthenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "system:discovery"
+     }
+    },
+    {
+     "name": "system:discovery-binding",
+     "userNames": null,
+     "groupNames": null,
+     "subjects": [],
+     "roleRef": {
+      "name": "system:discovery"
+     }
+    },
+    {
+     "name": "system:image-auditor",
+     "userNames": [
+      "system:serviceaccount:management-infra:management-admin"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "management-infra",
+       "name": "management-admin"
+      }
+     ],
+     "roleRef": {
+      "name": "system:image-auditor"
+     }
+    },
+    {
+     "name": "system:image-builder",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:default-rolebindings-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "default-rolebindings-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:image-builder"
+     }
+    },
+    {
+     "name": "system:image-puller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:default-rolebindings-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "default-rolebindings-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:image-puller"
+     }
+    },
+    {
+     "name": "system:image-puller-0",
+     "userNames": [
+      "system:serviceaccount:management-infra:inspector-admin"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "management-infra",
+       "name": "inspector-admin"
+      }
+     ],
+     "roleRef": {
+      "name": "system:image-puller"
+     }
+    },
+    {
+     "name": "system:kube-controller-manager",
+     "userNames": [
+      "system:kube-controller-manager"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "SystemUser",
+       "name": "system:kube-controller-manager"
+      }
+     ],
+     "roleRef": {
+      "name": "system:kube-controller-manager"
+     }
+    },
+    {
+     "name": "system:kube-dns",
+     "userNames": [
+      "system:serviceaccount:kube-system:kube-dns"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "kube-system",
+       "name": "kube-dns"
+      }
+     ],
+     "roleRef": {
+      "name": "system:kube-dns"
+     }
+    },
+    {
+     "name": "system:kube-scheduler",
+     "userNames": [
+      "system:kube-scheduler"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "SystemUser",
+       "name": "system:kube-scheduler"
+      }
+     ],
+     "roleRef": {
+      "name": "system:kube-scheduler"
+     }
+    },
+    {
+     "name": "system:masters",
+     "userNames": null,
+     "groupNames": [
+      "system:masters"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:masters"
+      }
+     ],
+     "roleRef": {
+      "name": "system:master"
+     }
+    },
+    {
+     "name": "system:metrics-server",
+     "userNames": [
+      "system:serviceaccount:openshift-metrics-server:metrics-server"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-metrics-server",
+       "name": "metrics-server"
+      }
+     ],
+     "roleRef": {
+      "name": "system:metrics-server"
+     }
+    },
+    {
+     "name": "system:node",
+     "userNames": null,
+     "groupNames": null,
+     "subjects": [],
+     "roleRef": {
+      "name": "system:node"
+     }
+    },
+    {
+     "name": "system:node-admins",
+     "userNames": [
+      "system:master"
+     ],
+     "groupNames": [
+      "system:node-admins"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemUser",
+       "name": "system:master"
+      },
+      {
+       "kind": "SystemGroup",
+       "name": "system:node-admins"
+      }
+     ],
+     "roleRef": {
+      "name": "system:node-admin"
+     }
+    },
+    {
+     "name": "system:node-bootstrapper",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:node-bootstrapper"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "node-bootstrapper"
+      }
+     ],
+     "roleRef": {
+      "name": "system:node-bootstrapper"
+     }
+    },
+    {
+     "name": "system:node-proxier",
+     "userNames": [
+      "system:kube-proxy"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "SystemUser",
+       "name": "system:kube-proxy"
+      }
+     ],
+     "roleRef": {
+      "name": "system:node-proxier"
+     }
+    },
+    {
+     "name": "system:node-proxiers",
+     "userNames": null,
+     "groupNames": [
+      "system:nodes"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:nodes"
+      }
+     ],
+     "roleRef": {
+      "name": "system:node-proxier"
+     }
+    },
+    {
+     "name": "system:nodes",
+     "userNames": null,
+     "groupNames": null,
+     "subjects": [],
+     "roleRef": {
+      "name": "system:node"
+     }
+    },
+    {
+     "name": "system:oauth-token-deleters",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated",
+      "system:unauthenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      },
+      {
+       "kind": "SystemGroup",
+       "name": "system:unauthenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "system:oauth-token-deleter"
+     }
+    },
+    {
+     "name": "system:openshift:controller:build-config-change-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:build-config-change-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "build-config-change-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:build-config-change-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:build-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:build-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "build-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:build-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:cluster-quota-reconciliation-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:cluster-quota-reconciliation-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "cluster-quota-reconciliation-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:cluster-quota-reconciliation-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:default-rolebindings-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:default-rolebindings-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "default-rolebindings-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:default-rolebindings-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:deployer-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:deployer-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "deployer-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:deployer-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:deploymentconfig-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:deploymentconfig-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "deploymentconfig-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:deploymentconfig-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:horizontal-pod-autoscaler",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:horizontal-pod-autoscaler"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "horizontal-pod-autoscaler"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:horizontal-pod-autoscaler"
+     }
+    },
+    {
+     "name": "system:openshift:controller:image-import-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:image-import-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "image-import-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:image-import-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:image-trigger-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:image-trigger-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "image-trigger-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:image-trigger-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:ingress-to-route-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:ingress-to-route-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "ingress-to-route-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:ingress-to-route-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:namespace-security-allocation-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:namespace-security-allocation-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "namespace-security-allocation-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:namespace-security-allocation-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:origin-namespace-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:origin-namespace-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "origin-namespace-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:origin-namespace-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:pv-recycler-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:pv-recycler-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "pv-recycler-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:pv-recycler-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:resourcequota-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:resourcequota-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "resourcequota-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:resourcequota-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:sdn-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:sdn-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "sdn-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:sdn-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:service-ingress-ip-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:service-ingress-ip-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "service-ingress-ip-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:service-ingress-ip-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:service-serving-cert-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:service-serving-cert-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "service-serving-cert-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:service-serving-cert-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:serviceaccount-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:serviceaccount-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "serviceaccount-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:serviceaccount-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:serviceaccount-pull-secrets-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:serviceaccount-pull-secrets-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "serviceaccount-pull-secrets-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:serviceaccount-pull-secrets-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:template-instance-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:template-instance-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "template-instance-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:template-instance-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:template-instance-controller:admin",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:template-instance-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "template-instance-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "admin"
+     }
+    },
+    {
+     "name": "system:openshift:controller:template-instance-finalizer-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:template-instance-finalizer-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "template-instance-finalizer-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:template-instance-finalizer-controller"
+     }
+    },
+    {
+     "name": "system:openshift:controller:template-instance-finalizer-controller:admin",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:template-instance-finalizer-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "template-instance-finalizer-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "admin"
+     }
+    },
+    {
+     "name": "system:openshift:controller:template-service-broker",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:template-service-broker"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "template-service-broker"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:template-service-broker"
+     }
+    },
+    {
+     "name": "system:openshift:controller:unidling-controller",
+     "userNames": [
+      "system:serviceaccount:openshift-infra:unidling-controller"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-infra",
+       "name": "unidling-controller"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:unidling-controller"
+     }
+    },
+    {
+     "name": "system:openshift:discovery",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated",
+      "system:unauthenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      },
+      {
+       "kind": "SystemGroup",
+       "name": "system:unauthenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:discovery"
+     }
+    },
+    {
+     "name": "system:registry",
+     "userNames": [
+      "system:serviceaccount:default:registry"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "default",
+       "name": "registry"
+      }
+     ],
+     "roleRef": {
+      "name": "system:registry"
+     }
+    },
+    {
+     "name": "system:scope-impersonation",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated",
+      "system:unauthenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      },
+      {
+       "kind": "SystemGroup",
+       "name": "system:unauthenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "system:scope-impersonation"
+     }
+    },
+    {
+     "name": "system:sdn-readers",
+     "userNames": null,
+     "groupNames": [
+      "system:nodes"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:nodes"
+      }
+     ],
+     "roleRef": {
+      "name": "system:sdn-reader"
+     }
+    },
+    {
+     "name": "system:volume-scheduler",
+     "userNames": [
+      "system:kube-scheduler"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "SystemUser",
+       "name": "system:kube-scheduler"
+      }
+     ],
+     "roleRef": {
+      "name": "system:volume-scheduler"
+     }
+    },
+    {
+     "name": "system:webhooks",
+     "userNames": null,
+     "groupNames": [
+      "system:authenticated",
+      "system:unauthenticated"
+     ],
+     "subjects": [
+      {
+       "kind": "SystemGroup",
+       "name": "system:authenticated"
+      },
+      {
+       "kind": "SystemGroup",
+       "name": "system:unauthenticated"
+      }
+     ],
+     "roleRef": {
+      "name": "system:webhook"
+     }
+    },
+    {
+     "name": "templateservicebroker-client",
+     "userNames": [
+      "system:serviceaccount:openshift-template-service-broker:templateservicebroker-client"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-template-service-broker",
+       "name": "templateservicebroker-client"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:templateservicebroker-client"
+     }
+    },
+    {
+     "name": "tsb-openshift-template-service-broker",
+     "userNames": [
+      "system:serviceaccount:openshift-template-service-broker:apiserver"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "openshift-template-service-broker",
+       "name": "apiserver"
+      }
+     ],
+     "roleRef": {
+      "name": "system:openshift:controller:template-service-broker"
+     }
+    },
+    {
+     "name": "velero",
+     "userNames": [
+      "system:serviceaccount:mig:velero"
+     ],
+     "groupNames": null,
+     "subjects": [
+      {
+       "kind": "ServiceAccount",
+       "namespace": "mig",
+       "name": "velero"
+      }
+     ],
+     "roleRef": {
+      "name": "cluster-admin"
+     }
+    }
+   ],
+   "securityContextConstraints": [
+    {
+     "name": "anyuid",
+     "users": [],
+     "groups": [
+      "system:cluster-admins",
+      "system:serviceaccounts:ocp-workshop"
+     ]
+    },
+    {
+     "name": "hostaccess",
+     "users": [],
+     "groups": []
+    },
+    {
+     "name": "hostmount-anyuid",
+     "users": [
+      "system:serviceaccount:openshift-infra:pv-recycler-controller",
+      "system:serviceaccount:kube-service-catalog:service-catalog-apiserver"
+     ],
+     "groups": [],
+     "namespaces": [
+      "openshift-infra",
+      "kube-service-catalog"
+     ]
+    },
+    {
+     "name": "hostnetwork",
+     "users": [
+      "system:serviceaccount:default:router",
+      "system:serviceaccount:default:registry"
+     ],
+     "groups": [],
+     "namespaces": [
+      "default"
+     ]
+    },
+    {
+     "name": "mssql-persistent-scc",
+     "users": [
+      "system:admin",
+      "system:serviceaccount:mssql-persistent:mssql-persistent-sa"
+     ],
+     "groups": [],
+     "namespaces": [
+      "mssql-persistent"
+     ]
+    },
+    {
+     "name": "node-exporter",
+     "users": [
+      "system:serviceaccount:openshift-monitoring:node-exporter"
+     ],
+     "groups": [],
+     "namespaces": [
+      "openshift-monitoring"
+     ]
+    },
+    {
+     "name": "nonroot",
+     "users": [],
+     "groups": []
+    },
+    {
+     "name": "privileged",
+     "users": [
+      "system:admin",
+      "system:serviceaccount:openshift-infra:build-controller",
+      "system:serviceaccount:openshift-node:sync",
+      "system:serviceaccount:openshift-sdn:sdn",
+      "system:serviceaccount:management-infra:management-admin",
+      "system:serviceaccount:management-infra:inspector-admin",
+      "system:serviceaccount:openshift-logging:aggregated-logging-fluentd"
+     ],
+     "groups": [
+      "system:cluster-admins",
+      "system:nodes",
+      "system:masters"
+     ],
+     "namespaces": [
+      "openshift-infra",
+      "openshift-node",
+      "openshift-sdn",
+      "management-infra",
+      "openshift-logging"
+     ]
+    },
+    {
+     "name": "restricted",
+     "users": [],
+     "groups": [
+      "system:authenticated"
+     ]
+    },
+    {
+     "name": "sock-shop",
+     "users": [
+      "system:admin",
+      "system:serviceaccount:sock-shop:sock-shop"
+     ],
+     "groups": [],
+     "namespaces": [
+      "sock-shop"
+     ]
+    },
+    {
+     "name": "velero-privileged",
+     "users": [
+      "system:admin",
+      "system:serviceaccount:mig:velero"
+     ],
+     "groups": [],
+     "namespaces": [
+      "mig"
+     ]
+    }
+   ]
+  }
+ },
+ "components": [
+  {
+   "component": "API",
+   "reports": [
+    {
+     "name": "API",
+     "kind": "Port",
+     "supported": false,
+     "confidence": 0,
+     "comment": "The API Port for Openshift 4 is 6443 and is non-configurable. Your OCP 3 cluster is currently configured to use port 443"
+    }
+   ]
+  },
+  {
+   "component": "Docker",
+   "reports": [
+    {
+     "name": "Docker",
+     "kind": "Container Runtime",
+     "supported": false,
+     "confidence": 0,
+     "comment": "The Docker runtime has been replaced with CRI-O"
+    }
+   ]
+  },
+  {
+   "component": "ETCD",
+   "reports": [
+    {
+     "name": "ETCD Client Port",
+     "kind": "Configuration",
+     "supported": false,
+     "confidence": 2,
+     "comment": "The Openshift 4 ETCD Cluster is not configurable and uses port 2379. Your Openshift 3 Cluster is using port 2379"
+    },
+    {
+     "name": "ETCD TLS Cipher Suites",
+     "kind": "Configuration",
+     "supported": false,
+     "confidence": 2,
+     "comment": "No Custom TLS Cipher Suites were found"
+    }
+   ]
+  },
+  {
+   "component": "OAuth",
+   "reports": [
+    {
+     "name": "HTPasswdPasswordIdentityProvider",
+     "kind": "IdentityProviders",
+     "supported": true,
+     "confidence": 2,
+     "comment": "Identity provider htpasswd_auth is supported in OCP4"
+    },
+    {
+     "name": "AccessTokenMaxAgeSeconds",
+     "kind": "TokenConfig",
+     "supported": true,
+     "confidence": 2,
+     "comment": ""
+    },
+    {
+     "name": "AuthorizeTokenMaxAgeSeconds",
+     "kind": "TokenConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Translation of AuthorizeTokenMaxAgeSeconds is not supported, it's value is 5 minutes in OCP4"
+    },
+    {
+     "name": "",
+     "kind": "AssetPublicURL",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Translation of AssetPublicURL is not supported"
+    },
+    {
+     "name": "",
+     "kind": "MasterPublicURL",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Translation of MasterPublicURL is not supported"
+    },
+    {
+     "name": "",
+     "kind": "MasterCA",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Translation of MasterCA is not supported"
+    },
+    {
+     "name": "",
+     "kind": "MasterURL",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Translation of MasterURL is not supported"
+    },
+    {
+     "name": "",
+     "kind": "GrantConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Translation of GrantConfig is not supported"
+    },
+    {
+     "name": "",
+     "kind": "SessionConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Translation of SessionConfig is not supported"
+    }
+   ]
+  },
+  {
+   "component": "SDN",
+   "reports": [
+    {
+     "name": "CIDR",
+     "kind": "ClusterNetwork",
+     "supported": true,
+     "confidence": 1,
+     "comment": "Networks must be configured during installation, it's possible to use 10.1.0.0/16"
+    },
+    {
+     "name": "HostSubnetLength",
+     "kind": "ClusterNetwork",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Networks must be configured during installation,\n hostSubnetLength was replaced with hostPrefix in OCP4, default value was set to 23"
+    },
+    {
+     "name": "172.30.0.0/16",
+     "kind": "ServiceNetwork",
+     "supported": true,
+     "confidence": 1,
+     "comment": "Networks must be configured during installation"
+    },
+    {
+     "name": "",
+     "kind": "ExternalIPNetworkCIDRs",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Configuration of ExternalIPNetworkCIDRs is not supported in OCP4"
+    },
+    {
+     "name": "",
+     "kind": "IngressIPNetworkCIDR",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Translation of this configuration is not supported, refer to ingress operator configuration for more information"
+    }
+   ]
+  },
+  {
+   "component": "Image",
+   "reports": [
+    {
+     "name": "Search",
+     "kind": "Registries",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Search registries can not be configured in OCP 4: registry.access.redhat.com"
+    },
+    {
+     "name": "Search",
+     "kind": "Registries",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Search registries can not be configured in OCP 4: docker.io"
+    },
+    {
+     "name": "Search",
+     "kind": "Registries",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Search registries can not be configured in OCP 4: registry.fedoraproject.org"
+    },
+    {
+     "name": "Search",
+     "kind": "Registries",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Search registries can not be configured in OCP 4: quay.io"
+    },
+    {
+     "name": "Search",
+     "kind": "Registries",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Search registries can not be configured in OCP 4: registry.centos.org"
+    },
+    {
+     "name": "AllowedRegistriesForImport",
+     "kind": "MasterConfig.ImagePolicyConfig",
+     "supported": true,
+     "confidence": 2,
+     "comment": ""
+    },
+    {
+     "name": "AdditionalTrustedCA",
+     "kind": "MasterConfig.ImagePolicyConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Each registry must provide its own self-signed CA"
+    },
+    {
+     "name": "ExternalRegistryHostname",
+     "kind": "MasterConfig.ImagePolicyConfig",
+     "supported": true,
+     "confidence": 2,
+     "comment": ""
+    },
+    {
+     "name": "InternalRegistryHostname",
+     "kind": "MasterConfig.ImagePolicyConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Set by OCP4 image registry operator"
+    },
+    {
+     "name": "DisableScheduledImport",
+     "kind": "MasterConfig.ImagePolicyConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Not supported by OCP4"
+    },
+    {
+     "name": "MaxImagesBulkImportedPerRepository",
+     "kind": "MasterConfig.ImagePolicyConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Not supported by OCP4"
+    },
+    {
+     "name": "MaxScheduledImageImportsPerMinute",
+     "kind": "MasterConfig.ImagePolicyConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Not supported by OCP4"
+    },
+    {
+     "name": "ScheduledImageImportMinimumIntervalSeconds",
+     "kind": "MasterConfig.ImagePolicyConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Not supported by OCP4"
+    }
+   ]
+  },
+  {
+   "component": "Project",
+   "reports": [
+    {
+     "name": "ProjectRequestMessage",
+     "kind": "ProjectConfig",
+     "supported": true,
+     "confidence": 2,
+     "comment": "Networks must be configured during installation"
+    },
+    {
+     "name": "ProjectRequestTemplate",
+     "kind": "ProjectConfig",
+     "supported": true,
+     "confidence": 2,
+     "comment": "Networks must be configured during installation"
+    },
+    {
+     "name": "DefaultNodeSelector",
+     "kind": "ProjectConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Not supported in OCP4: node-role.kubernetes.io/compute=true"
+    },
+    {
+     "name": "SecurityAllocator.mcsAllocatorRange",
+     "kind": "ProjectConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Not supported in OCP4: s0:/2"
+    },
+    {
+     "name": "SecurityAllocator.mcsLabelsPerProject",
+     "kind": "ProjectConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Not supported in OCP4: 5"
+    },
+    {
+     "name": "SecurityAllocator.uidAllocatorRange",
+     "kind": "ProjectConfig",
+     "supported": false,
+     "confidence": 0,
+     "comment": "Not supported in OCP4: 1000000000-1999999999/10000"
+    }
+   ]
+  }
+ ]
+}
