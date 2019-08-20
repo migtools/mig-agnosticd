@@ -28,7 +28,7 @@ cd ${AGNOSTICD_HOME}
 
 echo "Creating OCP3 env..."
 ansible-playbook ${AGNOSTICD_HOME}/ansible/main.yml -e @${OUR_DIR}/3.x/my_vars.yml -e @${OUR_DIR}/3.x/ocp3_vars.yml -e @${OUR_DIR}/secret.yml &> ${OUR_DIR}/ocp3.log &
-#pid_v3=$!
+pid_v3=$!
 info "Run 'tail -f ${OUR_DIR}/ocp3.log' for deployment logs"
 
 echo "Creating OCP4 env..."
