@@ -1,0 +1,41 @@
+# creates minio bucket on destination cluster
+- hosts: localhost 
+  connection: local
+  tasks:
+    - include_tasks: "./include/common.yml"
+
+- hosts: remote
+  vars_files:
+    - "../{{ ocp_version }}.x/my_vars.yml"
+    - "../{{ ocp_version }}.x/ocp{{ ocp_version }}_vars.yml"
+  vars:
+    - ansible_ssh_private_key_file: "~/.ssh/{{ key_name }}.pem"
+    - ansible_user: "{{ remote_user|d('ec2-user') }}"
+    - minio_bucket: "mig-bucket"
+  tasks:
+    - block:
+        - name: "Checking if oc is logged in"
+          shell: "oc status"
+          register: oc_status
+          ignore_errors: yes
+        - name: "Copying local kubeconfig to bastion"
+          copy:
+            src: "{{ output_dir }}/{{ env_type }}_{{ guid }}_kubeconfig"
+            dest: "/home/{{ ansible_user }}/.kube/config"
+          when: oc_status.rc != 0
+
+    - name: "Reading minio route"
+      shell: "oc get route minio -n gpte-minio -o go-template='{{ '{{' }} .spec.host {{ '}}' }}{{ '{{' }} println {{ '}}' }}'"
+      register: minio_route
+
+    - block:
+      - name: "Checking if S3 bucket exists"
+        shell: "aws s3 ls --endpoint http://{{ minio_route.stdout }} | awk '{ print $3 }'"
+        register: s3_buckets
+
+      - name: "Creating S3 bucket" 
+        shell: "aws s3 mb s3://{{ minio_bucket }} --endpoint http://{{ minio_route.stdout }}" 
+        when: minio_bucket not in s3_buckets.stdout_lines
+      environment:
+        AWS_SECRET_ACCESS_KEY: "{{ _minio_secret_key }}"
+        AWS_ACCESS_KEY_ID: "{{ _minio_access_key }}"
