@@ -22,6 +22,8 @@ spec:
   
   backupStorageConfig:
     awsBucketName: {{ minio_bucket }}
+    awsS3ForcePathStyle: true
+    awsS3Url: {{ minio_url }}
     credsSecretRef:
       namespace: mig
       name: migstorage-creds

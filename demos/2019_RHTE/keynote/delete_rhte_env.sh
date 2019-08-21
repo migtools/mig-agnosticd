@@ -21,7 +21,7 @@ option="$1"
 
 echo "Deleting OCP3 environment..."
 ansible-playbook ${AGNOSTICD_HOME}/ansible/configs/ocp-workshop/destroy_env.yml -e @${OUR_DIR}/3.x/my_vars.yml -e @${OUR_DIR}/3.x/ocp3_vars.yml -e @${OUR_DIR}/secret.yml &> ${OUR_DIR}/ocp3.delete.log &
-#pid_v3=$!
+pid_v3=$!
 info "Run 'tail -f ${OUR_DIR}/ocp3.delete.log' for deletion logs"
 
 echo "Deleting OCP4 environment..."
@@ -29,3 +29,22 @@ ansible-playbook ${AGNOSTICD_HOME}/ansible/configs/ocp4-workshop/destroy_env.yml
 pid_v4=$!
 info "Run 'tail -f ${OUR_DIR}/ocp4.delete.log' for deletion logs"
 popd
+
+failed=false
+
+echo "Waiting for deletion to complete..."
+if ! wait $pid_v3; then
+	echo "OCP3 deletion failed. Please try again..."
+	failed=true
+fi
+
+if ! wait $pid_v4; then
+        echo "OCP4 deletion failed. Please try again..."
+        failed=true
+fi
+
+if [ "$failed" = true ]; then
+	exit 1
+fi
+
+echo "Success..."

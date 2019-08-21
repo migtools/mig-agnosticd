@@ -29,6 +29,10 @@
       - name: "Creating S3 bucket" 
         shell: "aws s3 mb s3://{{ minio_bucket }} --endpoint http://{{ minio_route.stdout }}" 
         when: minio_bucket not in s3_buckets.stdout_lines
+        register: new_bucket
+        retries: 5
+        until: new_bucket.rc == 0
+        delay: 2
       environment:
         AWS_SECRET_ACCESS_KEY: "{{ _minio_secret_key }}"
         AWS_ACCESS_KEY_ID: "{{ _minio_access_key }}"
@@ -44,6 +48,7 @@
         dest: "{{ temp_dir.path }}/migstorage.yml"
       vars:
         - region: "{{ aws_region }}"
+        - minio_url: "http://{{ minio_route.stdout }}"
 
     - name: "Creating migstorage"
       shell: "oc apply -f {{ temp_dir.path }}/migstorage.yml"

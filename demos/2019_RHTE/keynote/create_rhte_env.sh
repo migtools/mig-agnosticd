@@ -29,36 +29,38 @@ cd ${AGNOSTICD_HOME}
 echo "Creating OCP3 env..."
 ansible-playbook ${AGNOSTICD_HOME}/ansible/main.yml -e @${OUR_DIR}/3.x/my_vars.yml -e @${OUR_DIR}/3.x/ocp3_vars.yml -e @${OUR_DIR}/secret.yml &> ${OUR_DIR}/ocp3.log &
 pid_v3=$!
-info "Run 'tail -f ${OUR_DIR}/ocp3.log' for deployment logs"
+info "Run 'tail -f ocp3.log' for deployment logs"
 
 echo "Creating OCP4 env..."
 ansible-playbook ${AGNOSTICD_HOME}/ansible/main.yml -e @${OUR_DIR}/4.x/my_vars.yml -e @${OUR_DIR}/4.x/ocp4_vars.yml -e @${OUR_DIR}/secret.yml &> ${OUR_DIR}/ocp4.log &
 pid_v4=$!
-info "Run 'tail -f ${OUR_DIR}/ocp4.log' for deployment logs"
+info "Run 'tail -f ocp4.log' for deployment logs"
 popd &> /dev/null
 
+failed=false
 
-echo "Waiting for OCP3 deployment to complete..."
+echo "Waiting for OCP deployments to complete..."
 if ! wait $pid_v3; then
-	error "OCP3 deployment failed..."
+	error "OCP3 deployment failed. See deployment logs in 'ocp3.log'..."
         info "Attempting rollback..."
         ansible-playbook ${AGNOSTICD_HOME}/ansible/configs/ocp-workshop/destroy_env.yml -e @${OUR_DIR}/3.x/my_vars.yml -e @${OUR_DIR}/3.x/ocp3_vars.yml -e @${OUR_DIR}/secret.yml &> ocp3.delete.log
         info "Rollback complete..."
-        exit 1
+        failed=true
 fi
 
-success "OCP3 deployment succeded..."
-
-echo "Waiting for OCP4 deployment to complete..."
 if ! wait $pid_v4; then
-	error "OCP4 deployment failed..."
+	error "OCP4 deployment failed. See deployment logs in 'ocp4.log'..."
         info "Attempting rollback..."
         ansible-playbook ${AGNOSTICD_HOME}/ansible/configs/ocp4-workshop/destroy_env.yml -e @${OUR_DIR}/4.x/my_vars.yml -e @${OUR_DIR}/4.x/ocp4_vars.yml -e @${OUR_DIR}/secret.yml &> ocp4.delete.log
         info "Rollback complete..."
+	failed=true
+fi
+
+if [ "$failed" = true ]; then
 	exit 1
 fi
 
-success "OCP4 deployment succeded..."
+success "Cluster deployments succeded..."
 
 echo "Creating Minio mig storage on destination..."
 ansible-playbook post-install/minio.yml
