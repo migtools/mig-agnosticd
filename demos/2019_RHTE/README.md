@@ -1,27 +1,20 @@
-# App Migration Tool Tutorial
+# RHTE 2019: OpenShift Cluster Application Migration Lab
 
-This tutorial will show you how to use the App Migration Tool to migrate
-application workloads from an OCP 3.x cluster to OCP 4.x.
+This guide will provide you with hands-on exposure to the new OpenShift Migration Tooling through a series of labs migrating application workloads (both stateful and stateless) between OpenShift Clusters.
 
-The overall steps tutorial will walk you through are:
+### Goals
 
-* [Setup](Setup.md)
-  1. Provision OCP 3.11 multi-node environment in AWS via
-     [mig-agnosticd](https://github.com/fusor/mig-agnosticd/3.x/) to be used as
-     the source cluster
-  1. Provision OCP 4.1 multi-node environment in AWS via
-     [mig-agnosticd](https://github.com/fusor/mig-agnosticd/4.x/) to be used as
-     the destination cluster
-  1. Deploy [migration
-     workloads](https://github.com/fusor/mig-agnosticd/tree/master/workloads)
-     onto both clusters
-  1. Deploy [application
-     workloads](https://github.com/fusor/mig-agnosticd/tree/master/workloads)
-     onto source cluster to be migrated
+* Migrate several application workloads (both stateful and stateless) from an OpenShift 3.11 cluster to an OpenShift 4.1 cluster using the Cluster Application Migration Tool (CAM)
+* Utilize the Control Plane Migration Assistance Tool (CPMA) to generate a detailed report identifying areas of custom configuration that need to be considered as part of application migration planning.
 
-* [Migrate with the Web UI](Migrate.md)
-  1. Add the OCP 3.11 cluster as a migration source
-  1. Add an AWS S3 bucket replication repository
-  1. Create a migration plan to migrate an application workload to OCP 4.1
-  1. Migrate the application workload
-  1. Verify the application is functional on OCP 4.1
+### Labs
+
+[Lab 1 - Introduction](./1.md)<br>
+[Lab 2 - Prerequisites and Setup](./2.md)<br>
+[Lab 3 - CPMA Overview](./3.md)<br>
+[Lab 4 - CAM Overview](./4.md)<br>
+[Lab 5 - Migrate MSSQL Application](./5.md)<br>
+[Lab 6 - Migrate Robot Shop Application](./6.md)<br>
+[Lab 7 - Debugging Failed Migrations](./7.md)<br>
+[Lab 8 - Migration via API (optional)](./8.md)<br>
+[Lab 9 - Wrap Up](./9.md)<br>
