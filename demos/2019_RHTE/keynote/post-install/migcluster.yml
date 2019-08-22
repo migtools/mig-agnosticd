@@ -1,0 +1,74 @@
+# creates migcluster on destination
+- hosts: localhost
+  connection: local
+  vars:
+    - ocp_version: "3"
+  tasks:
+    - include_tasks: "./include/common.yml"
+
+- hosts: remote
+  vars_files:
+    - "../3.x/my_vars.yml"
+    - "../3.x/ocp3_vars.yml"
+  vars:
+    - ansible_ssh_private_key_file: "~/.ssh/{{ key_name }}.pem"
+    - ansible_user: "{{ remote_user|d('ec2-user') }}"
+    - ocp_version: "3"
+  tasks:
+    - include_tasks: "./include/connection.yml"
+
+    - name: "Reading Mig SA token"
+      shell: "oc sa get-token -n mig mig"
+      register: mig_token
+  
+    - name: "Registering vars"
+      set_fact:
+        sa_token: "{{ mig_token.stdout }}"
+        guid_v3: "{{ guid }}"
+        subdomain_v3: "{{ subdomain_base_suffix }}"
+      delegate_to: localhost
+      delegate_facts: true
+      run_once: true
+
+- hosts: localhost
+  connection: local
+  vars:
+    - ocp_version: "4"
+    - remote_group: ocp4
+  tasks:
+    - include_tasks: "./include/common.yml"
+
+- hosts: ocp4
+  vars:
+    - migcluster_name: "ocp3-cluster"
+    - ocp_version: "4"
+  tasks:
+    - include_tasks: "./include/connection.yml"
+    
+    - tempfile:
+        state: directory
+      register: temp_dir
+    
+    - debug:
+        msg: "{{ hostvars['localhost'] }}"
+ 
+    - name: "Generating migcluster definition"
+      template:
+        src: "./include/{{ item.src }}"
+        dest: "{{ temp_dir.path }}/{{ item.dest }}"
+      loop:
+      - src: migcluster.yaml.j2
+        dest: migcluster.yaml
+      - src: mssql-scc.yaml.j2
+        dest: mssql-scc.yaml
+      vars:
+        - mig_sa_token: "{{ hostvars['localhost']['sa_token'] }}"
+        - guid_v3: "{{ hostvars['localhost']['guid_v3'] }}"
+        - subdomain_v3: "{{ hostvars['localhost']['subdomain_v3'] }}"
+
+    - name: "Attempting to create migcluster"
+      shell: "oc apply -f {{ item }} -n mig"
+      loop:
+        - "{{ temp_dir.path }}/migcluster.yaml"
+        - "{{ temp_dir.path }}/mssql-scc.yaml"
+
