@@ -1,0 +1,27 @@
+## Must Change
+email: "<YOUR_EMAIL_ADDRESS>"
+
+# The 'guid' will be used to construct a unique URL for your cluster
+# it will also be used to generate the output directory for all of the
+# files created for this cluster, ssh_conf, kubeconfig, etc.
+guid: "<UNIQUE_GUID>"
+
+# output_dir stores deployment logs and other important information related to the deployment
+# Avoid using /tmp if files are automatically purged after some time
+# For example on MacOS, /tmp is purged after a week or so
+# If you lose the files for output_dir of agnosticd it can make it hard
+# to ssh into the provisioned hosts or clean up
+output_dir: "<OUTPUT_DIR>"
+
+# subdomain to use for your cluster 
+subdomain_base_suffix: .mg.dog8code.com
+# Route 53 Zone ID for your subdomain
+HostedZoneId: Z2GE8CSGW2ZA8W
+
+# you'll be able to connect to the bastion host of your cluster 
+# using this key. must be present at ~/.ssh/<key_name>.pem
+key_name: libra
+
+cloud_provider: ec2
+# change to your preferred region
+aws_region: us-east-1

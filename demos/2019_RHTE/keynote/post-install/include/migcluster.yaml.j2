@@ -1,0 +1,37 @@
+---
+kind: Cluster
+apiVersion: clusterregistry.k8s.io/v1alpha1
+metadata:
+  namespace: mig
+  name: remote-cluster
+spec:
+  kubernetesApiEndpoints:
+    serverEndpoints:
+      - clientCIDR: "0.0.0.0"
+        # [!] Change serverAddress to point at your remote cluster login endpoint
+        serverAddress: "https://master1.{{ guid_v3 }}{{ subdomain_v3 }}:443"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sa-token-remote
+  namespace: mig
+type: Opaque
+data:
+  saToken: {{ mig_sa_token|b64encode }}
+---
+apiVersion: migration.openshift.io/v1alpha1
+kind: MigCluster
+metadata:
+  labels:
+    controller-tools.k8s.io: "1.0"
+  name: migcluster-remote
+  namespace: mig
+spec:
+  isHostCluster: false
+  clusterRef:
+    name: remote-cluster
+    namespace: mig
+  serviceAccountSecretRef:
+    name: sa-token-remote
+    namespace: mig

@@ -1,0 +1,33 @@
+env_type: "ocp-workshop"
+repo_version: 3.11
+osrelease: 3.11.104
+software_to_deploy: "openshift"
+course_name: "ocp-workshop"
+platform: "aws"
+install_k8s_modules: true
+bastion_instance_type: "t2.large"
+master_instance_type: "m4.large"
+infranode_instance_type: "m4.large"
+node_instance_type: "m4.xlarge"
+support_instance_type: "m4.large"
+support_instance_public_dns: true
+nfs_exports_config: "*(insecure,rw,no_root_squash,no_wdelay,sync)"
+nfs_server_address: "support1.{{ guid }}{{ subdomain_base_suffix }}"
+cloud_tags:
+- owner: "{{ email }}"
+node_instance_count: 2
+mssql_private_img: true
+mig_operator_deploy_ui: false
+mig_operator_deploy_controller: false
+mig_operator_repo_branch: rhte2019
+enable_workshops_catalog: false
+install_ipa_client: false
+install_openshiftapb: false
+install_student_user: true
+lets_encrypt_production: false
+ovs_plugin: networkpolicy
+run_ocp_diagnostics: false
+infra_workloads: 'ocp-workload-migration,ocp-workload-mssql,ocp-workload-sock-shop,ocp-workload-robot-shop'
+num_users: '1'
+platform: 'SPP'
+student_name: 'lab-user'
