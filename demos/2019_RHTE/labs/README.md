@@ -14,7 +14,7 @@ This guide will provide you with hands-on exposure to the new OpenShift Migratio
 [Lab 3 - CPMA Overview](./3.md)<br>
 [Lab 4 - CAM Overview](./4.md)<br>
 [Lab 5 - Migrate MSSQL Application](./5.md)<br>
-[Lab 6 - Migrate Robot Shop Application](./6.md)<br>
+[Lab 6 - Migrate Sock Shop Application](./6.md)<br>
 [Lab 7 - Debugging Failed Migrations](./7.md)<br>
-[Lab 8 - Migration via API (optional)](./8.md)<br>
+[Lab 8 - Migration at Scale via API (optional)](./8.md)<br>
 [Lab 9 - Wrap Up](./9.md)<br>
