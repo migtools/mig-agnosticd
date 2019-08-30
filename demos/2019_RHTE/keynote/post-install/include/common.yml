@@ -1,0 +1,15 @@
+# common tasks to read cluster variables
+- name: "Reading cluster v{{ ocp_version }} variables..."
+  include_vars: "{{ item }}"
+  loop:
+    - "../{{ ocp_version }}.x/my_vars.yml"
+    - "../{{ ocp_version }}.x/ocp{{ ocp_version }}_vars.yml"
+
+- name: "Registering host..."
+  add_host:
+    groups: "{{ remote_group|d('remote') }}"
+    hostname: "bastion.{{ guid }}{{ subdomain_base_suffix }}"
+
+- name: "Getting ssh key"
+  set_fact:
+    ssh_key: "~/.ssh/{{ key_name }}.pem" 
