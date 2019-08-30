@@ -45,12 +45,13 @@ To print help:
 
 #### Deploying migration workloads
 
-We have four migration workloads -
+We have five migration workloads -
 
 * migration : Mig Operator workload to deploy UI, Controller and Velero
 * mssql : MsSQL server with a sample frontend app
-* ceph : Ceph cluster based on [Rook](rook.io) operator for OpenShift 4.x (Not supported on OpenShift 3.x clusters)
-* minio: Minio server to provide S3 API endpoint
+* ceph : Ceph cluster based on [Rook](https://rook.io) operator for OpenShift 4.x (Not supported on OpenShift 3.x clusters)
+* minio : Minio server to provide S3 API endpoint
+* noobaa : NooBaa operator workload on OCP 4
 
 ```bash
 # Deploy Migration components to OpenShift 3 (velero)
