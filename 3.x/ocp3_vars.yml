@@ -21,3 +21,9 @@ nfs_server_address: "support1.{{ guid }}{{ subdomain_base_suffix }}"
 # Let's Encrypt certificates for your cluster. However,
 # due to weekly limits, it is discouraged to do so. 
 # install_lets_encrypt_certificates: true
+#
+
+# Archive content to this location and clean output_dir to prevent re-use
+# of a deleted OCP cluster's files
+archive_dir: "{{ output_dir | dirname }}/archive"
+
