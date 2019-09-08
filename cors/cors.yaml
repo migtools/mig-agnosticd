@@ -38,7 +38,7 @@
   - name: "Adding new CORS rules"
     lineinfile:
       insertafter: "corsAllowedOrigins:"
-      line: "- (?i)//migration-openshift-migration-operator\\.apps\\.cluster-{{ guid }}\\.{{ guid }}\\{{ subdomain_base_suffix }}"
+      line: "- (?i)//migration-openshift-migration\\.apps\\.cluster-{{ guid }}\\.{{ guid }}\\{{ subdomain_base_suffix }}"
       path: /etc/origin/master/master-config.yaml
     become: yes
 
