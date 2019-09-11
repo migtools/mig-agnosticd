@@ -1,13 +1,13 @@
 env_type: "ocp-workshop"
 # Uncomment the following lines for other 3.x releases
-# repo_verion: 3.7
-# osrelease: 3.7.23
-# repo_version: 3.9
-# osrelease: 3.9.51
-# repo_version: 3.10
-# osrelease: 3.10.34
-repo_version: 3.11
-osrelease: 3.11.104
+# repo_verion: "3.7"
+# osrelease: "3.7.23"
+# repo_version: "3.9"
+# osrelease: "3.9.51"
+# repo_version: "3.10"
+# osrelease: "3.10.34"
+repo_version: "3.11"
+osrelease: "3.11.104"
 software_to_deploy: "openshift" 
 course_name: "ocp-workshop" 
 platform: "aws" 
