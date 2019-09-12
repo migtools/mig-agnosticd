@@ -8,12 +8,14 @@ NooBaa can run on an OpenShift cluster to provide an S3 compatible store for mig
 
 1. SSH into the 4.1 client-vm `SSH lab-user@bastion.<guid>.<domain>` with password: `r3dh4t1!`.
 
-2. wget https://gist.githubusercontent.com/jwmatthews/ac1c174bfafcee3d935a67646231e60d/raw/4d5f8816a6133988d4e332395a2355fd2c29d27e/setup_noobaa.sh
+2. wget 
+https://gist.githubusercontent.com/jwmatthews/ac1c174bfafcee3d935a67646231e60d/raw/5682de307c657b3a73ab3af84adf753b22365dac/setup_noobaa.sh
 
 ```
-$ wget https://gist.githubusercontent.com/jwmatthews/ac1c174bfafcee3d935a67646231e60d/raw/4d5f8816a6133988d4e332395a2355fd2c29d27e/setup_noobaa.sh
+$ wget 
+https://gist.githubusercontent.com/jwmatthews/ac1c174bfafcee3d935a67646231e60d/raw/5682de307c657b3a73ab3af84adf753b22365dac/setup_noobaa.sh
 --2019-09-11 01:05:01--  
-https://gist.githubusercontent.com/jwmatthews/ac1c174bfafcee3d935a67646231e60d/raw/4d5f8816a6133988d4e332395a2355fd2c29d27e/setup_noobaa.sh
+https://gist.githubusercontent.com/jwmatthews/ac1c174bfafcee3d935a67646231e60d/raw/5682de307c657b3a73ab3af84adf753b22365dac/setup_noobaa.sh
 Resolving gist.githubusercontent.com (gist.githubusercontent.com)... 151.101.8.133
 Connecting to gist.githubusercontent.com (gist.githubusercontent.com)|151.101.8.133|:443... connected.
 HTTP request sent, awaiting response... 200 OK
