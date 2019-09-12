@@ -4,7 +4,7 @@ CAM components use S3 object storage as temporary scratch space when performing 
 
 ### Installation
 
-NooBaa can run on an OpenShift cluster to provide an S3 compatible store for migration scratch space. We recommend loading NooBaa onto the destination cluster.  We've created a simple installation script that you can download a use.  Just perform the following steps:
+NooBaa can run on an OpenShift cluster to provide an S3 compatible store for migration scratch space. We recommend loading NooBaa onto the destination cluster.  We've created a simple installation script that you can download and use.  Just perform the following steps:
 
 1. SSH into the 4.1 client-vm `SSH lab-user@bastion.<guid>.<domain>` with password: `r3dh4t1!`.
 
