@@ -12,6 +12,7 @@ software_to_deploy: "openshift"
 course_name: "ocp-workshop" 
 platform: "aws" 
 install_k8s_modules: true
+install_cloud_provider: true
 
 bastion_instance_type: "t2.large"
 master_instance_type: "m4.large"
