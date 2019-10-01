@@ -10,6 +10,7 @@ Options :
   -w    Name of the workload to deploy
   -v    OCP Version (3 or 4)
   -a    Action ('create' or 'remove')
+  -m    my_vars.yml directory (optional)
 
 Note : 
   Make sure your cluster was launched using mig-agnosticd
@@ -22,8 +23,9 @@ Example Usage :
 WORKLOAD=""
 OCP=""
 OPTARG=""
+MY_VARS_DIR=""
 
-while getopts ':hw:v:a:' option; do
+while getopts ':hw:v:a:m:' option; do
   case "$option" in
     h) echo "$USAGE"
        exit
@@ -31,8 +33,11 @@ while getopts ':hw:v:a:' option; do
     w) WORKLOAD=$OPTARG
        ;;
     v) OCP=$OPTARG
+       MY_VARS_DIR="../${OCP}.x"
        ;; 
     a) ACTION=$OPTARG
+       ;;
+    m) MY_VARS_DIR="$OPTARG"
        ;;
     :) printf "missing argument for -%s\n" "$OPTARG" >&2
        echo "$USAGE" >&2
@@ -69,6 +74,7 @@ ansible-playbook ./workload.yml \
     -e"action=${ACTION}" \
     -e"workload=${WORKLOAD}" \
     -e"agnosticd_home=${AGNOSTICD_HOME}" \
+    -e "my_vars_dir=${MY_VARS_DIR}" \
     -e"ocp_version=${OCP}"
 unset ANSIBLE_ROLES_PATH
 
