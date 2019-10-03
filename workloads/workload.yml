@@ -6,7 +6,7 @@
   - name: "Including cluster variables..."
     include_vars: "{{ item }}"
     loop:
-      - "../{{ ocp_version | mandatory }}.x/my_vars.yml"
+      - "{{ my_vars_dir | mandatory }}/my_vars.yml"
 
   - name: "Including secrets and workload variables..."
     include_vars: "{{ item }}"
@@ -42,8 +42,8 @@
   - name: "Including cluster variables..."
     include_vars: "{{ item }}"
     loop:
-      - "../{{ ocp_version | mandatory }}.x/my_vars.yml"
-      - "../{{ ocp_version }}.x/ocp{{ ocp_version }}_vars.yml"
+      - "{{ my_vars_dir | mandatory }}/my_vars.yml"
+      - "{{ my_vars_dir }}/ocp{{ ocp_version }}_vars.yml"
 
   - name: "Including secrets and workload variables..."
     include_vars: "{{ item }}"
