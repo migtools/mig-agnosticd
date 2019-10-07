@@ -33,7 +33,7 @@ This script assumes you change the variables for `OCP3_SERVER` and `UI_ROUTE` be
 
     # The route of mig-ui, most likely on OCP 4 cluster
     # Change this value to your mig-ui route
-    UI_ROUTE=https://migration-mig.apps.cluster-jwm0710ocp4a.jwm0710ocp4a.mg.example.com.com
+    UI_ROUTE=https://migration-openshift-migration.apps.cluster-jwm0710ocp4a.jwm0710ocp4a.mg.example.com.com
     
     # The namespace you have CAM installed to
     CAM_NAMESPACE=openshift-migration
@@ -50,7 +50,7 @@ After running the above you want to see output similar to the below, you are loo
     < access-control-allow-credentials: true
     < access-control-allow-headers: Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, X-Requested-With, If-Modified-Since
     < access-control-allow-methods: POST, GET, OPTIONS, PUT, DELETE, PATCH
-    < access-control-allow-origin: https://migration-mig.apps.cluster-jwm0710ocp4a.jwm0710ocp4a.mg.example.com.com
+    < access-control-allow-origin: https://migration-openshift-migration.apps.cluster-jwm0710ocp4a.jwm0710ocp4a.mg.example.com.com
     < access-control-expose-headers: Date
     < cache-control: no-store
 
