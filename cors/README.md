@@ -34,9 +34,12 @@ This script assumes you change the variables for `OCP3_SERVER` and `UI_ROUTE` be
     # The route of mig-ui, most likely on OCP 4 cluster
     # Change this value to your mig-ui route
     UI_ROUTE=https://migration-mig.apps.cluster-jwm0710ocp4a.jwm0710ocp4a.mg.example.com.com
+    
+    # The namespace you have CAM installed to
+    CAM_NAMESPACE=openshift-migration
 
     curl -v -k -X OPTIONS \
-    "${OCP3_SERVER}/apis/migration.openshift.io/v1alpha1/namespaces/mig/migclusters" \
+    "${OCP3_SERVER}/apis/migration.openshift.io/v1alpha1/namespaces/${CAM_NAMESPACE}/migclusters" \
     -H "Access-Control-Request-Method: GET" \
     -H "Access-Control-Request-Headers: authorization" \
     -H "Origin: ${UI_ROUTE}"
