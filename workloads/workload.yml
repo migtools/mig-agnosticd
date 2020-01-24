@@ -2,7 +2,7 @@
 - name: "{{ 'Deploying' if action=='create' else 'Removing' }} Workload"
   hosts: localhost
   connection: local
-  tasks: 
+  tasks:
   - name: "Including cluster variables..."
     include_vars: "{{ item }}"
     loop:
@@ -20,11 +20,11 @@
 
   - block:
     - name: "Checking connection with cluster"
-      shell: "oc status" 
+      shell: "oc status"
       register: oc_status
       ignore_errors: yes
     - name: "Copying local Kubeconfig to bastion [4.x]"
-      copy: 
+      copy:
         src: "{{ output_dir }}/{{ env_type }}_{{ guid }}_kubeconfig"
         dest: "/home/ec2-user/.kube/config"
       when: ocp_version == '4' and oc_status.rc != 0
@@ -34,7 +34,7 @@
     vars:
       ansible_ssh_private_key_file: "{{ output_dir }}/{{ guid }}key"
       ansible_user: ec2-user
-    delegate_to: "bastion.{{ guid }}{{ subdomain_base_suffix }}"   
+    delegate_to: "bastion.{{ guid }}{{ subdomain_base_suffix }}"
 
 - hosts: remote
   remote_user: "{{ remote_user|d('ec2-user') }}"
@@ -61,19 +61,19 @@
       when: workload_exists.stat.exists
     - set_fact:
         workload_name: "ocp4-workload-{{ workload }}"
-      when: not workload_exists.stat.exists
+      when: not workload_exists.stat.exists or ocp_version == '4'
     - name: "Checking if workload exists [4.x]..."
       stat:
         path: "{{ agnosticd_home }}/ansible/roles/{{ workload_name }}"
       register: workload_exists
     - fail:
         msg: "Workload does not exist..."
-      when: not workload_exists.stat.exists 
+      when: not workload_exists.stat.exists
     delegate_to: localhost
 
-  - include_role: 
+  - include_role:
       name: "{{ workload_name }}"
-    vars: 
+    vars:
       ACTION: "{{ action }}"
       ansible_ssh_private_key_file: "{{ output_dir }}/{{ guid }}key"
       ansible_user: ec2-user
