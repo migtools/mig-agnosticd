@@ -1,7 +1,7 @@
 email: ""
 guid: ocp3-labs
 
-output_dir: "~/.agnosticd/{{ guid }}"
+output_dir: "/home/<YOUR_USERNAME_HERE>/.agnosticd/{{ guid }}"
 
 subdomain_base_suffix: .mg.dog8code.com
 HostedZoneId: Z2GE8CSGW2ZA8W
