@@ -4,7 +4,7 @@ env_type: ocp4-workshop
 cloudformation_retries: 0
 software_to_deploy: none
 
-ocp4_installer_version: "4.2.0"
+ocp4_installer_version: "4.2.12"
 osrelease: 4.1.0
 bastion_instance_type: t2.medium
 install_ocp4: true
@@ -17,7 +17,7 @@ install_student_user: true
 student_name: lab-user
 student_password: r3dh4t1!
 
-default_workloads: ["ocp4-workload-project-request-template", "ocp4-workload-migration", "ocp4-workload-ocs-operator"]
+default_workloads: ["ocp4-workload-project-request-template", "ocp4-workload-ocs-operator", "ocp4-workload-migration"]
 infra_workloads: []
 student_workloads: []
 
@@ -27,5 +27,13 @@ master_instance_type: "m4.xlarge"
 master_instance_count: 3
 worker_instance_type: "m4.xlarge"
 worker_instance_count: 3
+
+ocs_namespace: openshift-migration
+ocs_mcg_core_cpu: 0.1
+ocs_mcg_db_cpu: 0.1
+ocs_mcg_pv_pool_bucket_name: migstorage
+ocs_migstorage: true
+
+archive_dir: "{{ output_dir | dirname }}/archive"
 
 _infra_node_instance_type: "m4.large"
