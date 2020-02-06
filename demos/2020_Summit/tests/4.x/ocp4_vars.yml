@@ -28,11 +28,14 @@ master_instance_count: 3
 worker_instance_type: "m4.xlarge"
 worker_instance_count: 3
 
-ocs_namespace: openshift-migration
+ocs_namespace: openshift-storage
 ocs_mcg_core_cpu: 0.1
 ocs_mcg_db_cpu: 0.1
+ocs_mcg_core_mem: 1Gi
 ocs_mcg_pv_pool_bucket_name: migstorage
 ocs_migstorage: true
+ocs_migstorage_namespace: openshift-storage
+ocs_operator_workload_destroy: false
 
 archive_dir: "{{ output_dir | dirname }}/archive"
 
