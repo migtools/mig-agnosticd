@@ -1,0 +1,15 @@
+email: ""
+guid: ocp3-labs
+
+output_dir: "/home/<YOUR_USERNAME_HERE>/.agnosticd/{{ guid }}"
+
+subdomain_base_suffix: .mg.dog8code.com
+HostedZoneId: Z2GE8CSGW2ZA8W
+
+key_name: libra # your private key [ must be present at ~/.ssh/<key_name>.pem ]
+
+cloud_provider: ec2
+aws_region: us-west-2
+
+cloud_tags: # list of custom tags to add to your aws resources
+- owner: "{{ email }}"

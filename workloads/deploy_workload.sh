@@ -76,6 +76,7 @@ ansible-playbook ./workload.yml \
     -e"agnosticd_home=${AGNOSTICD_HOME}" \
     -e "my_vars_dir=${MY_VARS_DIR}" \
     -e"ocp_version=${OCP}"
+rc=$?
 unset ANSIBLE_ROLES_PATH
-
+exit ${rc}
 

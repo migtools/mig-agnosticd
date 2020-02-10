@@ -1,0 +1,33 @@
+platform: "aws" 
+env_type: "ocp-workshop"
+software_to_deploy: "openshift" 
+#install_idm: false
+#install_openshiftapb: false
+#install_lets_encrypt_certificates: false
+#enable_workshops_catalog: false
+remove_self_provisioners: true
+install_student_user: true
+student_name: lab-user
+student_password: r3dh4t1!
+admin_user: admin
+cloudformation_retries: 0
+repo_version: "3.11"
+osrelease: "3.11.153"
+install_k8s_modules: true
+
+bastion_instance_type: t2.large
+master_instance_type: m4.2xlarge
+infranode_instance_type: m4.2xlarge
+node_instance_type: m4.2xlarge
+support_instance_type: m4.large
+node_instance_count: 2
+
+support_instance_public_dns: true
+
+install_glusterfs: true
+
+infra_workloads: "ocp-workload-migration,ocp-workload-parks-app,ocp-workload-sock-shop,ocp-workload-mssql,ocp-workload-robot-shop"
+nfs_exports_config: "*(insecure,rw,no_root_squash,no_wdelay,sync)"
+nfs_server_address: "support1.{{ guid }}{{ subdomain_base_suffix }}"
+
+archive_dir: "{{ output_dir | dirname }}/archive"

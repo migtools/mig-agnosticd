@@ -1,3 +1,5 @@
+#!/bin/bash
+
 OUR_DIR=`pwd`
 
 if [[ -z "${AGNOSTICD_HOME}" ]]; then
@@ -8,4 +10,6 @@ fi
 pushd .
 cd ${AGNOSTICD_HOME} 
 ansible-playbook ${AGNOSTICD_HOME}/ansible/main.yml -e @${OUR_DIR}/my_vars.yml -e @${OUR_DIR}/ocp4_vars.yml -e @${OUR_DIR}/../secret.yml   
-popd 
+rc=$?
+popd
+exit ${rc}
