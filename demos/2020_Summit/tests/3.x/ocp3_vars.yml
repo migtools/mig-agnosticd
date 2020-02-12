@@ -23,8 +23,10 @@ support_instance_type: m4.large
 node_instance_count: 2
 
 support_instance_public_dns: true
-
 install_glusterfs: true
+
+mssql_cpu_requests: "0.5"
+mssql_memory_requests: "2Gi"
 
 infra_workloads: "ocp-workload-migration,ocp-workload-parks-app,ocp-workload-sock-shop,ocp-workload-mssql,ocp-workload-robot-shop"
 nfs_exports_config: "*(insecure,rw,no_root_squash,no_wdelay,sync)"
