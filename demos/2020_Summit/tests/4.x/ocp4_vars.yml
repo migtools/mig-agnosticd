@@ -17,7 +17,7 @@ install_student_user: true
 student_name: lab-user
 student_password: r3dh4t1!
 
-default_workloads: ["ocp4-workload-project-request-template", "ocp4-workload-ocs-operator", "ocp4-workload-migration"]
+default_workloads: ["ocp4-workload-project-request-template", "ocp4-workload-ocs-operator", "ocp4-workload-migration", "ocp4-workload-mig-verification"]
 infra_workloads: []
 student_workloads: []
 
