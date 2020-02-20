@@ -6,15 +6,15 @@ The rough edges will improve over next few weeks.
 The overall steps are:
 
  1. Provision OCP 3.11 multi-node environment in AWS via [agnosticd](https://github.com/redhat-cop/agnosticd) (uses openshift-ansible on AWS)
- 1. Install [https://github.com/fusor/mig-operator](mig-operator) on OCP 3.11 cluster which will install/configure
+ 1. Install [https://github.com/konveyor/mig-operator](mig-operator) on OCP 3.11 cluster which will install/configure
     * [velero](https://github.com/heptio/velero)
  1. Deploy a workload to the OCP 3.11 cluster
     * This workload will serve as the application we want to migrate from source to destination clusters.  It will use Persistent Volumes so that this demo shows migration of state.
  1. Provision OCP 4.x multi-node environment in AWS via [agnosticd](https://github.com/redhat-cop/agnosticd) (uses openshift-install, IPI on AWS)
- 1. Install [https://github.com/fusor/mig-operator](mig-operator) on OCP 4.1 cluster which will install/configure
+ 1. Install [https://github.com/konveyor/mig-operator](mig-operator) on OCP 4.1 cluster which will install/configure
     * [velero](https://github.com/heptio/velero)
-    * [mig-controller](https://github.com/fusor/mig-controller) and associated CRDs (our Migration API)
-    * [mig-ui](https://github.com/fusor/mig-ui) (our Migration WebUI)
+    * [mig-controller](https://github.com/konveyor/mig-controller) and associated CRDs (our Migration API)
+    * [mig-ui](https://github.com/konveyor/mig-ui) (our Migration WebUI)
  1. Add an entry for corsAllowedOrigin headers to the OCP 3.11 cluster for the mig-ui running on OCP 4.x cluster. 
  1. Use mig-ui on OCP 4.1 cluster and perform a migration
 
@@ -22,9 +22,9 @@ The overall steps are:
 # Steps
 ## Destination Cluster
 1. Provision 4.1 environment
-    * `https://github.com/fusor/mig-agnosticd/blob/master/4.x/create_ocp4_workshop.sh`
+    * `https://github.com/konveyor/mig-agnosticd/blob/master/4.x/create_ocp4_workshop.sh`
 1. Install mig-operator
-    * `wget https://raw.githubusercontent.com/fusor/mig-operator/master/operator.yml`
+    * `wget https://raw.githubusercontent.com/konveyor/mig-operator/master/operator.yml`
     * `oc apply -f operator.yml`
 
             $ oc apply -f operator.yml 
@@ -43,7 +43,7 @@ The overall steps are:
             migration-operator   1         1         1            1           5m
 
 1. Create a CR to trigger the Operator to deploy {velero, mig-ui, mig-controller}
-    * `wget https://raw.githubusercontent.com/fusor/mig-operator/master/controller.yml`
+    * `wget https://raw.githubusercontent.com/konveyor/mig-operator/master/controller.yml`
     * No changes are needed to `controller.yml`, it should look like
 
             $ cat controller.yml
@@ -87,7 +87,7 @@ The overall steps are:
 
 ## Source Cluster
 1. Provision 3.11 environment
-    * `https://github.com/fusor/mig-agnosticd/blob/master/3.x/create_ocp3_workshop.sh`
+    * `https://github.com/konveyor/mig-agnosticd/blob/master/3.x/create_ocp3_workshop.sh`
 1. Log into the 3.11 environment
 
             export KUBECONFIG=~/.agnosticd/jwm0710ocp3a/kubeconfig
@@ -97,7 +97,7 @@ The overall steps are:
             Use insecure connections? (y/n): y
 
 1. Install mig-operator
-    * `wget https://raw.githubusercontent.com/fusor/mig-operator/master/operator.yml`
+    * `wget https://raw.githubusercontent.com/konveyor/mig-operator/master/operator.yml`
     * `oc apply -f operator.yml`
 
             $ oc apply -f operator.yml 
@@ -115,7 +115,7 @@ The overall steps are:
             NAME                 DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
             migration-operator   1         1         1            1           5m
 1. Create a CR to trigger the Operator to deploy just Velero
-    * `wget https://raw.githubusercontent.com/fusor/mig-operator/master/controller.yml`
+    * `wget https://raw.githubusercontent.com/konveyor/mig-operator/master/controller.yml`
     * edit controller.yaml and set `migratation_controller: false` and `migration_ui: false`
 
             $ cat controller.yml 

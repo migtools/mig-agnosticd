@@ -10,28 +10,28 @@ Note we are only provisioning to AWS with the provided configurations.
 ## AWS OCP 3.x Environment (Intended to be our Source Cluster)
 An OpenShift Ansible provisioned AWS multi-node environment leveraging CloudFormation for AWS infrastructure.
 
-The https://github.com/fusor/mig-agnosticd/tree/master/3.x directory provides a means of deploying a '3.11' cluster.
+The https://github.com/konveyor/mig-agnosticd/tree/master/3.x directory provides a means of deploying a '3.11' cluster.
 Additionally we will install:
-  - Velero (our Fork):              https://github.com/fusor/velero
+  - Velero (our Fork):              https://github.com/konveyor/velero
   - Velero Plugins:
 
-    - https://github.com/fusor/openshift-migration-plugin
-    - https://github.com/fusor/openshift-velero-plugin
-  - Restic (our Fork):              https://github.com/fusor/restic
+    - https://github.com/konveyor/openshift-migration-plugin
+    - https://github.com/konveyor/openshift-velero-plugin
+  - Restic (our Fork):              https://github.com/konveyor/restic
 
 ## AWS OCP 4.x Environment (Intended to be our Destination Cluster)
 An OpenShift Installer provisoned (IPI) AWS multi-node environment leveraging Terraform via the installer.
 
-The https://github.com/fusor/mig-agnosticd/tree/master/4.x directory provides a means of deploying a '4.1' cluster.
+The https://github.com/konveyor/mig-agnosticd/tree/master/4.x directory provides a means of deploying a '4.1' cluster.
 Additionally we will install:
-  - Velero (our Fork):              https://github.com/fusor/velero
+  - Velero (our Fork):              https://github.com/konveyor/velero
   - Velero Plugins:
 
-    - https://github.com/fusor/openshift-migration-plugin
-    - https://github.com/fusor/openshift-velero-plugin
-  - Restic (our Fork):              https://github.com/fusor/restic
-  - Migration CRDs/Controllers:     https://github.com/fusor/mig-controller
-  - Migration UI:                   https://github.com/fusor/mig-ui
+    - https://github.com/konveyor/openshift-migration-plugin
+    - https://github.com/konveyor/openshift-velero-plugin
+  - Restic (our Fork):              https://github.com/konveyor/restic
+  - Migration CRDs/Controllers:     https://github.com/konveyor/mig-controller
+  - Migration UI:                   https://github.com/konveyor/mig-ui
 
 
 
@@ -39,8 +39,8 @@ Additionally we will install:
 This repository is simply configuration files to drive https://github.com/redhat-cop/agnosticd, 'agnosticd' is a collection of Ansible configs/roles we are leveraging to deploy our OCP environments.  
 
 The installation of the Velero and Migration bits are handled via roles in agnosticd which are leveraging the below operators:
-  - https://github.com/fusor/velero-operator
-  - https://github.com/fusor/mig-operator
+  - https://github.com/konveyor/velero-operator
+  - https://github.com/konveyor/mig-operator
 
 At this point in time, the operators are _not_ integrated with OLM.  The intent is that agnosticd is installing our operators via regular Deployments and then creating the needed CR's to instruct Operators to install their applications.
 
@@ -57,7 +57,7 @@ At this point in time, the operators are _not_ integrated with OLM.  The intent 
     - Access to a HostedZone in AWS Route53 is required, meaning you need a domain name managed by Route53 which can serve as the subdomain for your clusters
 1. Checkout of https://github.com/redhat-cop/agnosticd 
 1. Environment Variable set of 'AGNOSTICD_HOME' pointing to your agnosticd checkout
-1. Creation of a 'secret.yml' in the base directory of this repo, see https://github.com/fusor/mig-agnosticd/blob/master/secret.yml.sample
+1. Creation of a 'secret.yml' in the base directory of this repo, see https://github.com/konveyor/mig-agnosticd/blob/master/secret.yml.sample
 
     Intent is that you will do something like:
 
@@ -73,7 +73,7 @@ export AGNOSTICD_HOME=`pwd`  # Consider exporting 'AGNOSTICD_HOME' in ~/.bashrc 
 cd .. 
 
 # Clone 'mig-agnosticd' repo (this repo)
-git clone https://github.com/fusor/mig-agnosticd.git
+git clone https://github.com/konveyor/mig-agnosticd.git
 cd mig-agnosticd
 cp secret.yml.sample secret.yml
 vim secret.yml # Update based on comments in file
@@ -99,7 +99,7 @@ Before provisioning, ensure you have populated all necessary vars in:
  - `./4.x/my_vars.yml` 
 
 **To provision an OpenShift Cluster with AgnosticD:**
- - 3.x cluster, see [./3.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/3.x/README.md). 
- - 4.x cluster, see [./4.x/README.md](https://github.com/fusor/mig-agnosticd/blob/master/4.x/README.md).
+ - 3.x cluster, see [./3.x/README.md](https://github.com/konveyor/mig-agnosticd/blob/master/3.x/README.md). 
+ - 4.x cluster, see [./4.x/README.md](https://github.com/konveyor/mig-agnosticd/blob/master/4.x/README.md).
 
 
