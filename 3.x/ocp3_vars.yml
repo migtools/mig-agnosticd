@@ -15,7 +15,7 @@ install_k8s_modules: true
 
 bastion_instance_type: "t2.large"
 master_instance_type: "m4.large"
-infranode_instance_type: "m4.large"
+infranode_instance_type: "t4.xlarge"
 node_instance_type: "m4.xlarge"
 support_instance_type: "m4.large"
 
