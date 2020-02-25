@@ -5,19 +5,19 @@ install the migration workload on the clusters.
 
 The overall steps this document will walk you through are:
 
- 1. Provision OCP 3.11 multi-node environment in AWS via [mig-agnosticd](https://github.com/fusor/mig-agnosticd/3.x/) to be used as the source cluster
- 1. Provision OCP 4.1 multi-node environment in AWS via [mig-agnosticd](https://github.com/fusor/mig-agnosticd/4.x/) to be used as the destination cluster
- 1. Deploy [migration workloads](https://github.com/fusor/mig-agnosticd/tree/master/workloads) onto both clusters
- 1. Deploy [application workloads](https://github.com/fusor/mig-agnosticd/tree/master/workloads) onto source cluster
+ 1. Provision OCP 3.11 multi-node environment in AWS via [mig-agnosticd](https://github.com/konveyor/mig-agnosticd/3.x/) to be used as the source cluster
+ 1. Provision OCP 4.1 multi-node environment in AWS via [mig-agnosticd](https://github.com/konveyor/mig-agnosticd/4.x/) to be used as the destination cluster
+ 1. Deploy [migration workloads](https://github.com/konveyor/mig-agnosticd/tree/master/workloads) onto both clusters
+ 1. Deploy [application workloads](https://github.com/konveyor/mig-agnosticd/tree/master/workloads) onto source cluster
 
 ## Setup
 
 1. Clone `mig-agnosticd` repository:
 ```bash
-$ git clone https://github.com/fusor/mig-agnosticd
+$ git clone https://github.com/konveyor/mig-agnosticd
 $ cd mig-agnosticd
 ```
-1. Follow the [prerequisite guide](https://github.com/fusor/mig-agnosticd#pre-provisioning-steps) to set up the `mig-agnosticd` configuration files.
+1. Follow the [prerequisite guide](https://github.com/konveyor/mig-agnosticd#pre-provisioning-steps) to set up the `mig-agnosticd` configuration files.
     * When configuring `my_vars.yaml` for `3.x` and `4.x` clusters, it is helpful to select different unique values for `guid` to differentiate the clusters
     * For this document, we will use `<username>-ocp3` and `<username>-ocp4` respectfully. `dymurray` can be seen as the username.
     * For this document, we will use `mg.example.com` for the value of `subdomain_base_suffix` in `my_vars.yaml` to compare what the expected route outputs coordinate with.
@@ -54,7 +54,7 @@ velero-7559946c5c-mh5sp               1/1     Running   0          2m
 
 1. Install sample application workload
   * Mediawiki
-    * `$ git clone https://github.com/fusor/mediawiki`
+    * `$ git clone https://github.com/konveyor/mediawiki`
     * `$ cd mediawiki`
     * `$ ansible playbook setup.yml`
   * MSSQL

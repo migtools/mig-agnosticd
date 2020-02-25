@@ -7,16 +7,16 @@ The overall steps tutorial will walk you through are:
 
 * [Setup](Setup.md)
   1. Provision OCP 3.11 multi-node environment in AWS via
-     [mig-agnosticd](https://github.com/fusor/mig-agnosticd/3.x/) to be used as
+     [mig-agnosticd](https://github.com/konveyor/mig-agnosticd/3.x/) to be used as
      the source cluster
   1. Provision OCP 4.1 multi-node environment in AWS via
-     [mig-agnosticd](https://github.com/fusor/mig-agnosticd/4.x/) to be used as
+     [mig-agnosticd](https://github.com/konveyor/mig-agnosticd/4.x/) to be used as
      the destination cluster
   1. Deploy [migration
-     workloads](https://github.com/fusor/mig-agnosticd/tree/master/workloads)
+     workloads](https://github.com/konveyor/mig-agnosticd/tree/master/workloads)
      onto both clusters
   1. Deploy [application
-     workloads](https://github.com/fusor/mig-agnosticd/tree/master/workloads)
+     workloads](https://github.com/konveyor/mig-agnosticd/tree/master/workloads)
      onto source cluster to be migrated
 
 * [Migrate with the Web UI](Migrate.md)
