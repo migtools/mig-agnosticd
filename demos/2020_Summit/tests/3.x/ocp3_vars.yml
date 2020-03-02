@@ -24,6 +24,7 @@ node_instance_count: 2
 
 support_instance_public_dns: true
 install_glusterfs: true
+glusterfs_image_tag: v3.11.5
 
 mssql_cpu_requests: "0.5"
 mssql_memory_requests: "2Gi"
