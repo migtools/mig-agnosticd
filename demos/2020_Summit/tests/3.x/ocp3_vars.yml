@@ -28,7 +28,7 @@ install_glusterfs: true
 mssql_cpu_requests: "0.5"
 mssql_memory_requests: "2Gi"
 
-infra_workloads: "ocp-workload-migration,ocp-workload-parks-app,ocp-workload-sock-shop,ocp-workload-mssql,ocp-workload-robot-shop,ocp-workload-file-uploader"
+infra_workloads: "ocp-workload-migration,ocp-workload-parks-app,ocp-workload-sock-shop,ocp-workload-mssql,ocp-workload-robot-shop,ocp-workload-file-uploader,ocp-workload-rocket-chat"
 nfs_exports_config: "*(insecure,rw,no_root_squash,no_wdelay,sync)"
 nfs_server_address: "support1.{{ guid }}{{ subdomain_base_suffix }}"
 
