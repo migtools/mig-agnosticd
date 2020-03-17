@@ -12,7 +12,7 @@ student_password: r3dh4t1!
 admin_user: admin
 cloudformation_retries: 0
 repo_version: "3.11"
-osrelease: "3.11.153"
+osrelease: "3.11.161"
 install_k8s_modules: true
 
 bastion_instance_type: t2.large
