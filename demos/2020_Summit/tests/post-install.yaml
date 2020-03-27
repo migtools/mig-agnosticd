@@ -40,6 +40,7 @@
           src: "/home/ec2-user/.kube/"
           dest: "/home/{{ agnosticd_user_info.data.ocp4_ssh_user }}/.kube"
           remote_src: true
+          mode: "0777"
         become: yes
  
       - name: "Creating bookbag project"
@@ -61,6 +62,7 @@
         args:
           chdir: "{{ bookbag_dir }}"
         loop:
+          - "oc project lab-instructions"
           - "oc process -f build-template.yaml -p GIT_REPO='{{ bookbag_repo }}' | oc apply -f -"
           - "oc start-build bookbag --follow"
 
