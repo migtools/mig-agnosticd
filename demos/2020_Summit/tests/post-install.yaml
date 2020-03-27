@@ -41,6 +41,7 @@
           dest: "/home/{{ agnosticd_user_info.data.ocp4_ssh_user }}/.kube"
           remote_src: true
           mode: "0777"
+          owner: "{{ agnosticd_user_info.data.ocp4_ssh_user }}"
         become: yes
  
       - name: "Creating bookbag project"
