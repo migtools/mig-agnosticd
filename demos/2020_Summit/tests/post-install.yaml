@@ -71,8 +71,11 @@
         shell: "oc process -f deploy-template.yaml -p WORKSHOP_VARS='{{ agnosticd_user_info.data | to_json }}' | oc apply -f -"
         args:
           chdir: "{{ bookbag_dir }}"
-      - name: "Visit the bookbag route"
+      - name: "Read bookbag route"
         shell: "oc get route -n lab-instructions bookbag -o go-template='{{ '{{' }} .spec.host {{ '}}' }}{{ '{{' }} println {{ '}}' }}'"
+        register: output
+      - debug:
+          msg: "Route to bookbag : {{ output.stdout }}"
       vars:
         ansible_ssh_private_key_file: "~/.ssh/{{ key_name }}.pem"
         ansible_user: "ec2-user"
