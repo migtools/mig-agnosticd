@@ -50,7 +50,7 @@
         failed_when: output.stderr and not 'AlreadyExists' in output.stderr
 
       - set_fact:
-          bookbag_repo: "https://github.com/pranavgaikwad/bookbag-summit.git" 
+          bookbag_repo: "https://gitlab.com/2020-summit-labs/openshift-migration-lab-bookbag" 
           bookbag_dir: "/home/{{ ansible_user }}/lab-instructions"
       - name: "Fetching bookbag repo"
         git:
