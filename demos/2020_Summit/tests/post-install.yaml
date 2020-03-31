@@ -1,0 +1,83 @@
+- hosts: localhost
+  connection: local
+  tasks:      
+  - block:
+    - name: "Generating agnosticd_user_info [1]..."
+      include_vars:
+        file: "{{ item }}_vars.yml"
+      loop:
+        - './3.x/my'
+        - './3.x/ocp3'
+    - name: "Generating agnosticd_user_info [2]..."
+      set_fact:
+        ocp3_info:
+          data:
+            ocp3_guid: "{{ guid }}"
+            ocp3_domain: "{{ guid }}{{ subdomain_base_suffix }}"
+            ocp3_ssh_user: "{{ student_name }}"
+            ocp3_password: "{{ student_password }}"
+    - name: "Generating agnosticd_user_info [3]..."
+      include_vars:
+        file: "{{ item }}_vars.yml"
+      loop:
+        - './4.x/my'
+        - './4.x/ocp4'
+    - name: "Generating agnosticd_user_info [4]..."
+      set_fact:
+        ocp4_info:
+          data:
+            ocp4_guid: "{{ guid }}"
+            ocp4_domain: "{{ guid }}{{ subdomain_base_suffix }}"
+            ocp4_ssh_user: "{{ student_name }}"
+            ocp4_password: "{{ student_password }}"
+    - name: "Generating agnosticd_user_info [5]..."
+      set_fact:
+        agnosticd_user_info: "{{ ocp3_info | combine(ocp4_info, recursive=True) }}"
+
+    - block:
+      - name: "Logging in 4.x cluster..."
+        copy:
+          src: "/home/ec2-user/.kube/"
+          dest: "/home/{{ agnosticd_user_info.data.ocp4_ssh_user }}/.kube"
+          remote_src: true
+          mode: "0777"
+          owner: "{{ agnosticd_user_info.data.ocp4_ssh_user }}"
+        become: yes
+ 
+      - name: "Creating bookbag project"
+        shell: "oc create ns lab-instructions"
+        register: output
+        failed_when: output.stderr and not 'AlreadyExists' in output.stderr
+
+      - set_fact:
+          bookbag_repo: "https://gitlab.com/2020-summit-labs/openshift-migration-lab-bookbag.git" 
+          bookbag_dir: "/home/{{ ansible_user }}/lab-instructions"
+      - name: "Fetching bookbag repo"
+        git:
+          repo: "{{ bookbag_repo }}"
+          dest: "{{ bookbag_dir }}"
+          update: yes
+ 
+      - name: "Building bookbag image"
+        shell: "{{ item }}"
+        args:
+          chdir: "{{ bookbag_dir }}"
+        loop:
+          - "oc project lab-instructions"
+          - "oc process -f build-template.yaml -p GIT_REPO='{{ bookbag_repo }}' | oc apply -f -"
+          - "oc start-build bookbag --follow"
+
+      - name: "Deploying bookbag image"
+        shell: "oc process -f deploy-template.yaml -p WORKSHOP_VARS='{{ agnosticd_user_info.data | to_json }}' | oc apply -f -"
+        args:
+          chdir: "{{ bookbag_dir }}"
+      - name: "Read bookbag route"
+        shell: "oc get route -n lab-instructions bookbag -o go-template='{{ '{{' }} .spec.host {{ '}}' }}{{ '{{' }} println {{ '}}' }}'"
+        register: output
+      - debug:
+          msg: "Route to bookbag : {{ output.stdout }}"
+      vars:
+        ansible_ssh_private_key_file: "~/.ssh/{{ key_name }}.pem"
+        ansible_user: "ec2-user"
+        agnosticd_user_info: "{{ agnosticd_user_info }}" 
+      delegate_to: "bastion.{{ agnosticd_user_info.data.ocp4_domain }}"
