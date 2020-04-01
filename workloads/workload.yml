@@ -51,25 +51,41 @@
       - "../secret.yml"
       - "./workload_vars/{{ workload }}.yml"
 
-  - block:
-    - name: "Checking if workload exists..."
+  - when: ocp_version == '3'
+    delegate_to: localhost
+    block:
+    - name: "Checking if workload exists [3.x]..."
       stat:
         path: "{{ agnosticd_home }}/ansible/roles/ocp-workload-{{ workload }}"
       register: workload_exists
     - set_fact:
         workload_name: "ocp-workload-{{ workload }}"
       when: workload_exists.stat.exists
-    - set_fact:
-        workload_name: "ocp4-workload-{{ workload }}"
-      when: not workload_exists.stat.exists or ocp_version == '4'
+    - fail:
+        msg: "Workload does not exist for specified OCP version."
+      when: not workload_exists.stat.exists
+
+  - when: ocp_version == '4'
+    delegate_to: localhost
+    block:
     - name: "Checking if workload exists [4.x]..."
       stat:
-        path: "{{ agnosticd_home }}/ansible/roles/{{ workload_name }}"
+        path: "{{ agnosticd_home }}/ansible/roles/ocp4-workload-{{ workload }}"
       register: workload_exists
-    - fail:
-        msg: "Workload does not exist..."
+    - name: "Checking if shared workload exists [4.x]..."
+      stat:
+        path: "{{ agnosticd_home }}/ansible/roles/ocp-workload-{{ workload }}"
+      register: shared_workload_exists
       when: not workload_exists.stat.exists
-    delegate_to: localhost
+    - set_fact:
+        workload_name: "ocp4-workload-{{ workload }}"
+      when: workload_exists.stat.exists
+    - set_fact:
+        workload_name: "ocp-workload-{{ workload }}"
+      when: not workload_exists.stat.exists and shared_workload_exists.stat.exists
+    - fail:
+        msg: "Workload does not exist for specified OCP version."
+      when: not workload_exists.stat.exists and not shared_workload_exists.stat.exists
 
   - include_role:
       name: "{{ workload_name }}"
