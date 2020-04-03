@@ -35,7 +35,7 @@ ocs_mcg_pv_pool_bucket_name: migstorage
 ocs_migstorage: true
 ocs_migstorage_namespace: openshift-storage
 ocs_operator_workload_destroy: false
-ocs_release: v4.2.2
+ocs_release: v4.2.3
 archive_dir: "{{ output_dir | dirname }}/archive"
 
 _infra_node_instance_type: "m4.large"
