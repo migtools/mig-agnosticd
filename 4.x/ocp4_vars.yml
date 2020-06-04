@@ -16,7 +16,9 @@ install_ocp4: true
 # ocp4_client_url: https://mirror.openshift.com/pub/openshift-v4/clients/ocp-dev-preview/4.2.0-0.nightly-2019-08-27-072819/openshift-client-linux-4.2.0-0.nightly-2019-08-27-072819.tar.gz
 
 install_opentlc_integration: false
-install_idm: false
+install_idm: htpasswd
+user_count: 20
+user_password: r3dh4t1!
 install_ipa_client: false
 
 # We are intentionally setting the below to empty to reduce setup time 

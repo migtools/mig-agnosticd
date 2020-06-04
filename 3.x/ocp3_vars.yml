@@ -13,6 +13,12 @@ course_name: "ocp-workshop"
 platform: "aws" 
 install_k8s_modules: true
 
+# multi-user configuration
+install_idm: htpasswd
+user_count: 20
+user_password: r3dh4t1!
+remove_self_provisioners: false
+
 bastion_instance_type: "t2.large"
 master_instance_type: "m4.large"
 infranode_instance_type: "m4.2xlarge"
