@@ -55,6 +55,8 @@ The scripts here will deploy an OpenShift 3 cluster with a Bastion host, all ssh
             $ ssh -F /tmp/agnostic_jmatthewsagn1/ocp-workshop_jmatthewsagn1_ssh_conf master1
 
 
+You can also link the SSH config in your default SSH configuration as described in this [doc](./SSH-GUIDE.md)
+
 # Troubleshooting
 
 ## Playbook hangs on a shell command 
