@@ -123,7 +123,7 @@ OCP 4 environments are not typically ones you will SSH into, yet for this case t
 
 ## Error converting YAML to JSON. Could not find expected key ‘Install Config’
 This is most likely because of a bad custom configuration file generated for cluster installation. 
-In my case, it was because I did not put ocp4_token (pull-secret) within single inverted commas.
+In my case, it was because I did not put ocp4_pull_secret (pull-secret) within single inverted commas.
     
 ## Playbook hangs on `openshift-installer create` phase
 Make sure that the cluster creation is complete. To ensure that it is complete, login to clientvm host. There would be a directory created at /home/ec2-user/cluster-\<GUID\> for your cluster installation. Tail .openshift_installer.log file in that directory. Check whether the cluster creation step succeded. If not, wait till it completes. You can also ensure whether the openshift-installer process exited. If all of this looks okay to you, then your playbook just hung on shell completion or a bad network connection. You can follow steps in this issue.
