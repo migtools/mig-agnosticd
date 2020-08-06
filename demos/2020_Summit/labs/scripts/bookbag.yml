@@ -13,12 +13,12 @@
     set_fact:
       ocp3_info:
         ocp3_guid: "{{ lookup('ini', 'guid section=OCP3 file=cluster.info') }}"
-        ocp3_domain: "{{ lookup('ini', 'domain section=OCP3 file=cluster.info') }}"
+        ocp3_domain: "{{ lookup('ini', 'domain section=OCP3 file=cluster.info') | regex_replace('^\\.', '') }}"
         ocp3_ssh_user: "{{ lookup('ini', 'student_name section=OCP3 file=cluster.info') }}"
         ocp3_password: "{{ ocp3_password }}"
       ocp4_info:
         ocp4_guid: "{{ lookup('ini', 'guid section=OCP4 file=cluster.info') }}"
-        ocp4_domain: "{{ lookup('ini', 'domain section=OCP4 file=cluster.info') }}"
+        ocp4_domain: "{{ lookup('ini', 'domain section=OCP4 file=cluster.info') | regex_replace('^\\.', '') }}"
         ocp4_ssh_user: "{{ lookup('ini', 'student_name section=OCP4 file=cluster.info') }}"
         ocp4_password: "{{ ocp4_password }}"
 
