@@ -2,3 +2,5 @@
 ocs_mcg_core_mem: 1Gi
 ocs_mcg_core_cpu: 0.1
 ocs_mcg_db_cpu: 0.1
+ocs_operator_source: redhat-operators
+ocs_operator_source_namespace: openshift-marketplace
