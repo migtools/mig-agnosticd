@@ -62,6 +62,6 @@
     shell: "/usr/local/bin/master-restart {{ item }}"
     loop:
       - api
-      - controller
+      - controllers
     when: status.rc != 0
     become: yes
