@@ -40,3 +40,4 @@ nfs_server_address: "support1.{{ guid }}{{ subdomain_base_suffix }}"
 # of a deleted OCP cluster's files
 archive_dir: "{{ output_dir | dirname }}/archive"
 
+uuid: "{{ guid }}"

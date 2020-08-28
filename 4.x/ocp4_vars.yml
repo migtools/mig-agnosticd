@@ -45,3 +45,4 @@ worker_instance_count: 3
 archive_dir: "{{ output_dir | dirname }}/archive"
 
 _infra_node_instance_type: "m4.large"
+uuid: "{{ guid }}"
