@@ -87,7 +87,7 @@ cd ..
 # Fill out required vars for provisioning OpenShift 4.x
 cd 4.x
 cp my_vars.yml.sample my_vars.yml
-cdvim my_vars.yml # Update based on comments in file
+vim my_vars.yml # Update based on comments in file
 cd ..
 ```
 
