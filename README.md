@@ -91,6 +91,25 @@ vim my_vars.yml # Update based on comments in file
 cd ..
 ```
 
+## Virtualenv (optional)
+ * Installing Virtualenv
+    ```
+    python3 -m pip install --user virtualenv
+    python3 -m venv env
+    ```
+
+ * Activate Virtualenv and install requirements
+    ```
+    source env/bin/activate
+    pip3 install -r requirements.txt
+    ```
+
+ * To update any requirements
+    ```
+    pip3 freeze > requirements.txt
+    ``` 
+
+
 ## Running AgnosticD to provision OpenShift 3 + 4 Clusters
 
 Before provisioning, ensure you have populated all necessary vars in:
@@ -101,5 +120,4 @@ Before provisioning, ensure you have populated all necessary vars in:
 **To provision an OpenShift Cluster with AgnosticD:**
  - 3.x cluster, see [./3.x/README.md](https://github.com/konveyor/mig-agnosticd/blob/master/3.x/README.md). 
  - 4.x cluster, see [./4.x/README.md](https://github.com/konveyor/mig-agnosticd/blob/master/4.x/README.md).
-
 
