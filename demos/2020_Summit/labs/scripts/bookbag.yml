@@ -28,8 +28,10 @@
     failed_when: output.stderr and not 'AlreadyExists' in output.stderr
 
   - set_fact:
-      bookbag_repo: "https://gitlab.com/2020-summit-labs/openshift-migration-lab-bookbag.git"
+      bookbag_repo: "https://github.com/konveyor/labs.git"
       bookbag_dir: "/home/{{ ansible_user }}/lab-instructions"
+      bookbag_build_dir: "mtc/bookbag"
+
   - name: "Fetching bookbag repo"
     git:
       repo: "{{ bookbag_repo }}"
@@ -39,16 +41,16 @@
   - name: "Building bookbag image"
     shell: "{{ item }}"
     args:
-      chdir: "{{ bookbag_dir }}"
+      chdir: "{{ bookbag_dir }}/{{ bookbag_build_dir }}"
     loop:
       - "oc project lab-instructions"
       - "oc process -f build-template.yaml -p GIT_REPO='{{ bookbag_repo }}' | oc apply -f -"
-      - "oc start-build bookbag --follow"
+      - "oc start-build bookbag --follow --from-dir=."
 
   - name: "Deploying bookbag image"
     shell: "oc process -f deploy-template.yaml -p WORKSHOP_VARS='{{ ocp3_info | combine(ocp4_info, recursive=true) | to_json }}' | oc apply -f -"
     args:
-      chdir: "{{ bookbag_dir }}"
+      chdir: "{{ bookbag_dir }}/{{ bookbag_build_dir }}"
 
   - name: "Read bookbag route"
     shell: "oc get route -n lab-instructions bookbag -o go-template='{{ '{{' }} .spec.host {{ '}}' }}{{ '{{' }} println {{ '}}' }}'"
