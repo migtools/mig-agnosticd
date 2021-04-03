@@ -12,6 +12,7 @@ PASSWORD=PASSWORD
 API_LOGIN=API_LOGIN
 API_PASS=API_PASS
 API_ADDRESS=API_ADDRESS
+LOCAL_GUID=GUID
 # END ANSIBLE MANAGED BLOCK
 
 main(){
@@ -66,30 +67,27 @@ check_hostname
 # Check if the GUID is from the LOCAL system
 while [ $GUID = $LOCAL_GUID ]
 do
-    printf "Please enter the OCP3 hostname, not the OCP4 (local) system hostname: "
+    printf "\nPlease enter the OCP3 hostname, NOT the OCP4 (local) system hostname: "
     check_hostname
 done
-printf "Your OCP3 GUID is $GUID. Working...\n"
+printf "Your OCP3 GUID is $GUID. \nWorking...\n"
 }
 
 
 
 check_hostname(){
-    read SSH_HOSTNAME
-    if [[ HOSTNAME == "@" ]]
+    read HOSTNAME
+    if [[ "$HOSTNAME" =~ "@" ]]
         then
             # Someone pasted the whole thing, with the username, strip it
             HOSTNAME=$(echo $SSH_HOSTNAME|cut -d @ -f 2)
-        else
-            HOSTNAME=$SSH_HOSTNAME
     fi 
     GUID=$(echo $HOSTNAME|cut -d . -f 2)
-    printf "GUID: $GUID\n"
+    # printf "GUID: $GUID\n"
 
 }
 
 # Getting and merging the cluster.info files. 
-
 get_cluster_info(){
     printf "Checking cluster connectivity\n"
     check_host=(sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no $STUDENT@$HOSTNAME ls cluster.info)
