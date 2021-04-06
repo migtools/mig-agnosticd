@@ -100,7 +100,8 @@ get_cluster_info(){
         sleep 15
     done
     # Getting and merging the cluster.info files. 
-    if sshpass -p "$PASSWORD" scp $STUDENT@$SSH_HOSTNAME:./cluster.info cluster.ocp3
+
+    if sshpass -p "$PASSWORD" scp $STUDENT@$HOSTNAME:./cluster.info cluster.ocp3
     then
         printf "Grabbing cluster info from OCP3 cluster\n"
         cp cluster.info cluster.orig
