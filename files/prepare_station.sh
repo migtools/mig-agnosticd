@@ -15,18 +15,22 @@ API_ADDRESS=API_ADDRESS
 LOCAL_GUID=GUID
 # END ANSIBLE MANAGED BLOCK
 
+HOME="/home/$STUDENT"
+
 main(){
     
 # Print a welcome message and ask user for input
 welcome_message
 check_guid
+
 # Try to reach the OCP 3 cluster, and copy the cluster.info over
 get_cluster_info
 
 # Run the bookbag playbook
 deploy_bookbag
 
-# Modify bashrc and move the script away to /tmp after completion
+# Modify bashrc and move the script away to 'startup' after completion
+cleanup
 
 #sed 
 
@@ -90,20 +94,43 @@ check_hostname(){
 get_cluster_info(){
     printf "Checking cluster connectivity\n"
     check_host=(sshpass -p "$PASSWORD" ssh -o StrictHostKeyChecking=no $STUDENT@$HOSTNAME ls cluster.info)
-    while ! "${check_host[@]}"
+    until "${check_host[@]}"
     do
-    printf "Host still not reachable. Waiting 15s and trying again\n"
-    sleep 15
+        printf "Host still not reachable. Waiting 15s and trying again\n"
+        sleep 15
     done
     # Getting and merging the cluster.info files. 
-    printf "Grabbing cluster info from OCP3 cluster\n"
-    sshpass -p "$PASSWORD" scp $STUDENT@$SSH_HOSTNAME:./cluster.info cluster.ocp3
-    cat cluster.ocp3 >> cluster.info
+    if sshpass -p "$PASSWORD" scp $STUDENT@$SSH_HOSTNAME:./cluster.info cluster.ocp3
+    then
+        printf "Grabbing cluster info from OCP3 cluster\n"
+        cp cluster.info cluster.orig
+        cat cluster.ocp3 >> cluster.info
+    else
+        printf "Couldn't copy the cluster.info file from OCP3\n"
+        exit 1
+    fi
 }
 
 deploy_bookbag(){
     # We have to oc login to be able to make changes to the cluster
     oc login -u $API_LOGIN -p $API_PASS --insecure-skip-tls-verify=true $API_ADDRESS
+    ansible-playbook -e ocp3_password=$PASSWORD -e ocp4_password=$PASSWORD bookbag.yml > >(tee -a bookbag.log) 2> >(tee -a bookbag_err.log >&2)
+    BOOKBAG_URL=$(sed -n 's/.*\(bookbag-.*\)".*/\1/p' bookbag.log)
+    printf "\nWaiting for Bookbag to become available"
+    until [[ $(curl -k -s https://$BOOKBAG_URL) =~ "Redirecting" ]]
+    do
+       printf "."
+       sleep 10
+    done
+    printf "\n\n\t\tYour Bookbag is up and running. \nYou can reach it via:\n"
+    printf "\n\t\t https://$BOOKBAG_URL\n\n"
+    printf "\n\t\t\tHappy Migrating!\n\n"
+}
+
+cleanup(){
+    mkdir startup
+    mv prepare_station.sh startup
+    sed 's/prepare_station.sh//d' $HOME/.bashrc
 }
 
 main "$@"
