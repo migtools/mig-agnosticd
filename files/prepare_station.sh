@@ -131,7 +131,7 @@ deploy_bookbag(){
 cleanup(){
     mkdir startup
     mv prepare_station.sh startup
-    sed 's/prepare_station.sh//d' $HOME/.bashrc
+    sed -i '/prepare_station.sh/d' $HOME/.bashrc
 }
 
 main "$@"
