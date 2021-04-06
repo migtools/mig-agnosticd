@@ -123,7 +123,7 @@ deploy_bookbag(){
        printf "."
        sleep 10
     done
-    printf "\n\n\t\tYour Bookbag is up and running. \nYou can reach it via:\n"
+    printf "\n\n\t\tYour Bookbag is up and running. \n\t\t    You can reach it via:\n"
     printf "\n\t\t https://$BOOKBAG_URL\n\n"
     printf "\n\t\t\tHappy Migrating!\n\n"
 }
