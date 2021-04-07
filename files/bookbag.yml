@@ -1,0 +1,60 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+  - when: ocp3_password is not defined or ocp4_password is not defined
+    fail:
+      msg: |
+        Variables 'ocp3_password' and 'ocp4_password' are required:
+          * ocp3_password : SSH password to login to OCP3 cluster
+          * ocp4_password : SSH password to login to OCP4 cluster
+
+  - name: "Reading cluster information file"
+    set_fact:
+      ocp3_info:
+        ocp3_guid: "{{ lookup('ini', 'guid section=OCP3 file=cluster.info') }}"
+        ocp3_domain: "{{ lookup('ini', 'domain section=OCP3 file=cluster.info') | regex_replace('^\\.', '') }}"
+        ocp3_ssh_user: "{{ lookup('ini', 'student_name section=OCP3 file=cluster.info') }}"
+        ocp3_password: "{{ ocp3_password }}"
+      ocp4_info:
+        ocp4_guid: "{{ lookup('ini', 'guid section=OCP4 file=cluster.info') }}"
+        ocp4_domain: "{{ lookup('ini', 'domain section=OCP4 file=cluster.info') | regex_replace('^\\.', '') }}"
+        ocp4_ssh_user: "{{ lookup('ini', 'student_name section=OCP4 file=cluster.info') }}"
+        ocp4_password: "{{ ocp4_password }}"
+
+  - name: "Creating bookbag project"
+    shell: "oc create ns lab-instructions"
+    register: output
+    failed_when: output.stderr and not 'AlreadyExists' in output.stderr
+
+  - set_fact:
+      bookbag_repo: "https://github.com/konveyor/labs.git"
+      bookbag_dir: "/home/{{ ansible_user }}/lab-instructions"
+      bookbag_build_dir: "mtc/bookbag"
+
+  - name: "Fetching bookbag repo"
+    git:
+      repo: "{{ bookbag_repo }}"
+      dest: "{{ bookbag_dir }}"
+      update: yes
+
+  - name: "Building bookbag image"
+    shell: "{{ item }}"
+    args:
+      chdir: "{{ bookbag_dir }}/{{ bookbag_build_dir }}"
+    loop:
+      - "oc project lab-instructions"
+      - "oc process -f build-template.yaml -p GIT_REPO='{{ bookbag_repo }}' | oc apply -f -"
+      - "oc start-build bookbag --follow --from-dir=."
+
+  - name: "Deploying bookbag image"
+    shell: "oc process -f deploy-template.yaml -p WORKSHOP_VARS='{{ ocp3_info | combine(ocp4_info, recursive=true) | to_json }}' | oc apply -f -"
+    args:
+      chdir: "{{ bookbag_dir }}/{{ bookbag_build_dir }}"
+
+  - name: "Read bookbag route"
+    shell: "oc get route -n lab-instructions bookbag -o go-template='{{ '{{' }} .spec.host {{ '}}' }}{{ '{{' }} println {{ '}}' }}'"
+    register: output
+
+  - debug:
+      msg: "Route to bookbag : {{ output.stdout }}"
