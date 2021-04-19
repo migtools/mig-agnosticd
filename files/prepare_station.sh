@@ -18,7 +18,7 @@ LOCAL_GUID=GUID
 HOME="/home/$STUDENT"
 
 main(){
-    
+
 # Print a welcome message and ask user for input
 welcome_message
 check_guid
@@ -29,12 +29,17 @@ get_cluster_info
 # Run the bookbag playbook
 deploy_bookbag
 
+# Enable NooBaa admin access for Web UI:
+enable_nooba_admin
+
 # Modify bashrc and move the script away to 'startup' after completion
 cleanup
 
-#sed 
-
 }
+
+
+
+
 
 
 # Functions go here
@@ -64,7 +69,7 @@ welcome_message() {
         ██║ ╚═╝ ██║   ██║   ╚██████╗    ███████╗██║  ██║██████╔╝  
         ╚═╝     ╚═╝   ╚═╝    ╚═════╝    ╚══════╝╚═╝  ╚═╝╚═════╝   
 
-   =================================================================                                                              
+   =================================================================
 EOF
     printf "\nPlease enter your OCP3 bastion hostname. \nThat is the one you received FOR YOUR OCP3 environment: "
     check_hostname
@@ -125,6 +130,12 @@ deploy_bookbag(){
     printf "\n\n\t\tYour Bookbag is up and running. \n\t\t    You can reach it via:\n"
     printf "\n\t https://$BOOKBAG_URL\n\n"
     printf "\n\t\t\tHappy Migrating!\n\n"
+}
+
+enable_nooba_admin(){
+   oc adm groups new cluster-admins
+   oc adm policy add-cluster-role-to-group cluster-admin cluster-admins
+   oc adm groups add-users cluster-admins admin
 }
 
 cleanup(){
