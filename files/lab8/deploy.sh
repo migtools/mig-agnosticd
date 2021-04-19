@@ -2,7 +2,8 @@
 
 # deploys "Hello, OpenShift" app to random X number of namespaces
 
-echo "Number of namespaces? "; read x
+printf "Number of namespaces? "
+read x
 
 echo $x > .ns
 
@@ -21,4 +22,4 @@ echo "Finding routes..."
 for i in $(seq 1 $x); do
 	oc get route hello-openshift -n "$ns_prefix""$i" -o go-template='{{ .spec.host }}{{ println }}'
 done
- 
+

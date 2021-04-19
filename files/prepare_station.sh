@@ -91,7 +91,7 @@ check_hostname(){
         then
             # Someone pasted the whole thing, with the username, strip it
             HOSTNAME=$(echo $HOSTNAME|cut -d @ -f 2)
-    fi 
+    fi
     GUID=$(echo $HOSTNAME|cut -d . -f 2)
     # printf "GUID: $GUID\n"
 }
@@ -104,7 +104,7 @@ get_cluster_info(){
         printf "Host still not reachable. Waiting 15s and trying again\n"
         sleep 15
     done
-    # Getting and merging the cluster.info files. 
+    # Getting and merging the cluster.info files.
     if sshpass -p "$PASSWORD" scp $STUDENT@$HOSTNAME:./cluster.info cluster.ocp3
     then
         printf "Grabbing cluster info from OCP3 cluster\n"
