@@ -18,7 +18,7 @@ LOCAL_GUID=GUID
 HOME="/home/$STUDENT"
 
 main(){
-    
+
 # Print a welcome message and ask user for input
 welcome_message
 check_guid
@@ -29,12 +29,17 @@ get_cluster_info
 # Run the bookbag playbook
 deploy_bookbag
 
+# Enable NooBaa admin access for Web UI (not enabled by default):
+enable_nooba_admin
+
 # Modify bashrc and move the script away to 'startup' after completion
 cleanup
 
-#sed 
-
 }
+
+
+
+
 
 
 # Functions go here
@@ -64,7 +69,7 @@ welcome_message() {
         ██║ ╚═╝ ██║   ██║   ╚██████╗    ███████╗██║  ██║██████╔╝  
         ╚═╝     ╚═╝   ╚═╝    ╚═════╝    ╚══════╝╚═╝  ╚═╝╚═════╝   
 
-   =================================================================                                                              
+   =================================================================
 EOF
     printf "\nPlease enter your OCP3 bastion hostname. \nThat is the one you received FOR YOUR OCP3 environment: "
     check_hostname
@@ -86,7 +91,7 @@ check_hostname(){
         then
             # Someone pasted the whole thing, with the username, strip it
             HOSTNAME=$(echo $HOSTNAME|cut -d @ -f 2)
-    fi 
+    fi
     GUID=$(echo $HOSTNAME|cut -d . -f 2)
     # printf "GUID: $GUID\n"
 }
@@ -99,7 +104,7 @@ get_cluster_info(){
         printf "Host still not reachable. Waiting 15s and trying again\n"
         sleep 15
     done
-    # Getting and merging the cluster.info files. 
+    # Getting and merging the cluster.info files.
     if sshpass -p "$PASSWORD" scp $STUDENT@$HOSTNAME:./cluster.info cluster.ocp3
     then
         printf "Grabbing cluster info from OCP3 cluster\n"
@@ -125,6 +130,12 @@ deploy_bookbag(){
     printf "\n\n\t\tYour Bookbag is up and running. \n\t\t    You can reach it via:\n"
     printf "\n\t https://$BOOKBAG_URL\n\n"
     printf "\n\t\t\tHappy Migrating!\n\n"
+}
+
+enable_nooba_admin(){
+   oc adm groups new cluster-admins
+   oc adm policy add-cluster-role-to-group cluster-admin cluster-admins
+   oc adm groups add-users cluster-admins admin
 }
 
 cleanup(){
