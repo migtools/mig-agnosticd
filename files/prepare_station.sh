@@ -29,7 +29,7 @@ get_cluster_info
 # Run the bookbag playbook
 deploy_bookbag
 
-# Enable NooBaa admin access for Web UI:
+# Enable NooBaa admin access for Web UI (not enabled by default):
 enable_nooba_admin
 
 # Modify bashrc and move the script away to 'startup' after completion
