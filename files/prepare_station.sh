@@ -29,9 +29,6 @@ get_cluster_info
 # Run the bookbag playbook
 deploy_bookbag
 
-# Enable NooBaa admin access for Web UI (not enabled by default):
-enable_nooba_admin
-
 # Modify bashrc and move the script away to 'startup' after completion
 cleanup
 
@@ -119,6 +116,11 @@ get_cluster_info(){
 deploy_bookbag(){
     # We have to oc login to be able to make changes to the cluster
     oc login -u $API_LOGIN -p $API_PASS --insecure-skip-tls-verify=true $API_ADDRESS
+
+    # We are logged in, while we're here let's enable NooBaa admin access for Web UI (not enabled by default):
+    enable_nooba_admin
+
+    # Run the playbook to deploy Bookbag now.
     ansible-playbook -e ocp3_password=$PASSWORD -e ocp4_password=$PASSWORD bookbag.yml > >(tee -a bookbag.log) 2> >(tee -a bookbag_err.log >&2)
     BOOKBAG_URL=$(sed -n 's/.*\(bookbag-.*\)".*/\1/p' bookbag.log)
     printf "\nWaiting for Bookbag to become available"
