@@ -5,7 +5,12 @@
 GREEN='\033[0;33m'
 NC='\033[0m'
 
-x=$(cat .ns)
+if [ -z "$1"]
+  then
+    x=$(cat .ns)
+  else
+    x=$1
+fi
 
 ns_prefix="hello-openshift-"
 
