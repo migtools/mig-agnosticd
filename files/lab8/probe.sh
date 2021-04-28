@@ -5,7 +5,7 @@
 GREEN='\033[0;33m'
 NC='\033[0m'
 
-if [ -z "$1"]
+if [ -z "$1" ]
   then
     x=$(cat .ns)
   else
