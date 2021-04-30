@@ -117,10 +117,6 @@ deploy_bookbag(){
     # We have to oc login to be able to make changes to the cluster
     oc login -u $API_LOGIN -p $API_PASS --insecure-skip-tls-verify=true $API_ADDRESS
 
-    # Since we are logged in, enable NooBaa admin for web UI
-
-    enable_nooba_admin
-
     # Now run the ansible-playbook to deploy Bookbag
 
     ansible-playbook -e ocp3_password=$PASSWORD -e ocp4_password=$PASSWORD bookbag.yml > >(tee -a bookbag.log) 2> >(tee -a bookbag_err.log >&2)
@@ -137,6 +133,8 @@ deploy_bookbag(){
 }
 
 enable_nooba_admin(){
+    # This is done now via ansible on deployment. Left here for posterity.
+
    oc adm groups new cluster-admins
    oc adm policy add-cluster-role-to-group cluster-admin cluster-admins
    oc adm groups add-users cluster-admins admin
