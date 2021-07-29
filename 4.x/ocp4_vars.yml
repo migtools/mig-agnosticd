@@ -7,9 +7,6 @@ install_opentlc_integration: false
 install_idm: htpasswd
 install_ipa_client: false
 
-#user_count: 20
-#user_password: r3dh4t1!
-
 install_ftl: false
 smoke_tests: false
 
