@@ -70,7 +70,7 @@ if [ ${ACTION} != "create" ] && [ ${ACTION} != "remove" ]; then
 fi
 
 export ANSIBLE_ROLES_PATH=${AGNOSTICD_HOME}/ansible/roles
-ansible-playbook ./workload.yml \
+ANSIBLE_LIBRARY=${AGNOSTICD_HOME}/ansible/library ansible-playbook ./workload.yml \
     -e"action=${ACTION}" \
     -e"workload=${WORKLOAD}" \
     -e"agnosticd_home=${AGNOSTICD_HOME}" \
