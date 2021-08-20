@@ -79,3 +79,25 @@ Available migration workloads -
 Migration workloads have default variables set in `workload_vars/<workload_name>.yml`. 
 
 You may change these variables for your use-case, but the defaults will allow for for Migration of apps from OpenShift 3->4 with the Migration Controller + UI located on OpenShift 4.
+
+
+### Potential Errors
+
+#### Failed to connect to the host via ssh
+
+```
+TASK [Gathering Facts] ********************************************************************************************
+fatal: [bastion.jwm0819ocp4d.mg.example.com]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: Warning: Permanently added 'bastion.jwm0819ocp4d.mg.example.com,18.189.40.236' (ECDSA) to the list of known hosts.\r\nec2-user@bastion.jwm0819ocp4d.mg.example.com: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}
+```
+
+The above may be related to having an issue sshing into the bastion node.
+We typically configure our local machines where we are running mig-agnosticd with a '~/.ssh/config' that will chose the correct ssh key to use via.
+The ssh key to use corresponds to what is set with the entry 'key_name:' in your 'my_vars.yml'
+
+```
+# Looking at ~/.ssh/config
+Host *.mg.example.com
+    User ec2-user
+    IdentityFile /home/myusername/.ssh/mysshkey.pem
+```
+
