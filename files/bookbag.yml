@@ -47,7 +47,7 @@
     loop:
       - "oc project lab-instructions"
       - "oc process -f build-template.yaml -p GIT_REPO='{{ bookbag_repo }}' | oc apply -f -"
-      - "oc start-build bookbag --follow --from-dir=."
+      - "oc start-build bookbag --follow --from-dir={{ bookbag_dir }}"
 
   - name: "Deploying bookbag image"
     shell: "oc process -f deploy-template.yaml -p WORKSHOP_VARS='{{ ocp3_info | combine(ocp4_info, recursive=true) | to_json }}' | oc apply -f -"
