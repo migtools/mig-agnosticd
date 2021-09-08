@@ -12,7 +12,7 @@ Options :
   -a    Action ('create' or 'remove')
   -m    my_vars.yml directory (optional)
 
-Note : 
+Note :
   Make sure your cluster was launched using mig-agnosticd
 
 Example Usage :
@@ -34,7 +34,7 @@ while getopts ':hw:v:a:m:' option; do
        ;;
     v) OCP=$OPTARG
        MY_VARS_DIR="../${OCP}.x"
-       ;; 
+       ;;
     a) ACTION=$OPTARG
        ;;
     m) MY_VARS_DIR="$OPTARG"

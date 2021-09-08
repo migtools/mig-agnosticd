@@ -93,4 +93,4 @@
       ansible_user: ec2-user
       playbook_dir: "{{ agnosticd_home }}"
       hosts: remote
-      ansible_python_interpreter: "{{ '/usr/bin/python' if ocp_version == '3' else '/opt/virtualenvs/k8s/bin/python' }}"
+      ansible_python_interpreter: "{{ '/opt/virtualenvs/k8s-wload-migration/bin/python' if ocp_version == '3' else '/opt/virtualenvs/k8s/bin/python' }}"
