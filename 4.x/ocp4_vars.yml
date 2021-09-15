@@ -2,7 +2,7 @@ cloudformation_retries: 0
 env_type: ocp4-workshop
 software_to_deploy: none
 
-ocp4_installer_version: "4.8.0"
+ocp4_installer_version: "4.8.12"
 osrelease: "4.6.0"
 bastion_instance_type: t2.medium
 install_ocp4: true

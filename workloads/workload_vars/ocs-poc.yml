@@ -11,6 +11,6 @@ ocs_ceph_mgr_cpu: 256m
 ocs_ceph_mgr_mem: 512Mi
 ocs_ceph_osd_cpu: 256m
 ocs_ceph_osd_mem: 512Mi
-ocs_channel: stable-4.6
+ocs_channel: stable-4.7
 ocs_operator_source: redhat-operators
 ocs_operator_source_namespace: openshift-marketplace
