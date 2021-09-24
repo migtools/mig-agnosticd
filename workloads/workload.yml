@@ -44,6 +44,7 @@
       when: ocp_version == '3' and oc_status.rc != 0
 
   - name: "Including secrets and workload variables..."
+    ignore_errors: true
     include_vars: "{{ item }}"
     loop:
       - "../secret.yml"
