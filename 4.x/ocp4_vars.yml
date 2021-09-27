@@ -1,5 +1,6 @@
 cloudformation_retries: 0
-env_type: ocp4-workshop
+env_type: ocp4-cluster
+# env_type: ocp4-workshop #ocp4-workshop is now deprecated
 software_to_deploy: none
 
 ocp4_installer_version: "4.8.0"
