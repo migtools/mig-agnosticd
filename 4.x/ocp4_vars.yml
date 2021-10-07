@@ -1,10 +1,11 @@
 cloudformation_retries: 0
-env_type: ocp4-workshop
-software_to_deploy: none
+env_type: ocp4-cluster
+software_to_deploy: openshift4
 
 ocp4_installer_version: "4.8.12"
 osrelease: "4.6.0"
-bastion_instance_type: t2.medium
+
+update_packages: true
 install_ocp4: true
 
 # Next settings are for Dev Preview releases of OpenShift
@@ -16,9 +17,12 @@ install_ocp4: true
 
 install_opentlc_integration: false
 install_idm: htpasswd
-user_count: 20
-user_password: r3dh4t1!
 install_ipa_client: false
+install_ftl: false
+smoke_tests: false
+
+# Set authentication passwords in secret file
+ocp4_workload_authentication_htpasswd_user_count: 0
 
 # We are intentionally setting the below to empty to reduce setup time
 # and skip deploying workloads we are not interested in.
@@ -44,5 +48,4 @@ worker_instance_count: 3
 # of a deleted OCP cluster's files
 archive_dir: "{{ output_dir | dirname }}/archive"
 
-_infra_node_instance_type: "m4.large"
 uuid: "{{ guid }}"
