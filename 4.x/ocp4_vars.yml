@@ -7,6 +7,7 @@ osrelease: "4.6.0"
 
 update_packages: true
 install_ocp4: true
+ocp4_fips_enable: true
 
 # Next settings are for Dev Preview releases of OpenShift
 # These will override the installer version with the direct downloads
