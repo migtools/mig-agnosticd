@@ -1,10 +1,12 @@
 #!/bin/bash
-
-# Required for MacOS with virtualenv
-# as per https://github.com/konveyor/mig-agnosticd/issues/182
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
 OUR_DIR=`pwd`
+
+OS="$(uname)"
+if [ "$OS" = "Darwin" ]; then
+  # Required for MacOS with virtualenv
+  # as per https://github.com/konveyor/mig-agnosticd/issues/182
+  export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+fi
 
 if [[ -z "${AGNOSTICD_HOME}" ]]; then
     echo "Please ensure that 'AGNOSTICD_HOME' is set before running."
