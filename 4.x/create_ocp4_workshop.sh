@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Required for MacOS with virtualenv
+# as per https://github.com/konveyor/mig-agnosticd/issues/182
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
 OUR_DIR=`pwd`
 
 if [[ -z "${AGNOSTICD_HOME}" ]]; then
