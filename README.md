@@ -36,7 +36,7 @@ Additionally we will install:
 
 
 # How are the environments provisioned
-This repository is simply configuration files to drive https://github.com/redhat-cop/agnosticd, 'agnosticd' is a collection of Ansible configs/roles we are leveraging to deploy our OCP environments.  
+This repository is simply configuration files to drive https://github.com/redhat-cop/agnosticd, 'agnosticd' is a collection of Ansible configs/roles we are leveraging to deploy our OCP environments.
 
 The installation of the Velero and Migration bits are handled via roles in agnosticd which are leveraging the below operators:
   - https://github.com/konveyor/velero-operator
@@ -55,7 +55,7 @@ At this point in time, the operators are _not_ integrated with OLM.  The intent 
 
     - Admin Access is currently required for OCP 4.x
     - Access to a HostedZone in AWS Route53 is required, meaning you need a domain name managed by Route53 which can serve as the subdomain for your clusters
-1. Checkout of https://github.com/redhat-cop/agnosticd 
+1. Checkout of https://github.com/redhat-cop/agnosticd
 1. Environment Variable set of 'AGNOSTICD_HOME' pointing to your agnosticd checkout
 1. Creation of a 'secret.yml' in the base directory of this repo, see https://github.com/konveyor/mig-agnosticd/blob/master/secret.yml.sample
 
@@ -66,11 +66,11 @@ At this point in time, the operators are _not_ integrated with OLM.  The intent 
 
 # Pre-provisioning Steps
 ```
-# Clone 'agnosticd' repo, which 'mig-agnosticd' (this repo) will call into for provisioning 
+# Clone 'agnosticd' repo, which 'mig-agnosticd' (this repo) will call into for provisioning
 git clone https://github.com/redhat-cop/agnosticd.git
 cd agnosticd
 export AGNOSTICD_HOME=`pwd`  # Consider exporting 'AGNOSTICD_HOME' in ~/.bashrc to the full repo path for future use.
-cd .. 
+cd ..
 
 # Clone 'mig-agnosticd' repo (this repo)
 git clone https://github.com/konveyor/mig-agnosticd.git
@@ -78,7 +78,7 @@ cd mig-agnosticd
 cp secret.yml.sample secret.yml
 vim secret.yml # Update based on comments in file
 
-# Fill out required vars for provisioning OpenShift 3.x 
+# Fill out required vars for provisioning OpenShift 3.x
 cd 3.x
 cp my_vars.yml.sample my_vars.yml
 vim my_vars.yml # Update based on comments in file
@@ -89,6 +89,12 @@ cd 4.x
 cp my_vars.yml.sample my_vars.yml
 vim my_vars.yml # Update based on comments in file
 cd ..
+```
+
+# FIPS - note a fips option has been added to ocp4_vars.yml
+FIPS is disabled by default.
+```
+# ocp4_fips_enable: true
 ```
 
 ## Virtualenv (optional)
@@ -107,7 +113,7 @@ cd ..
  * To update any requirements
     ```
     pip3 freeze > requirements.txt
-    ``` 
+    ```
 
 
 ## Running AgnosticD to provision OpenShift 3 + 4 Clusters
@@ -115,9 +121,9 @@ cd ..
 Before provisioning, ensure you have populated all necessary vars in:
  - `./secret.yml`
  - `./3.x/my_vars.yml`
- - `./4.x/my_vars.yml` 
+ - `./4.x/my_vars.yml`
 
 **To provision an OpenShift Cluster with AgnosticD:**
- - 3.x cluster, see [./3.x/README.md](https://github.com/konveyor/mig-agnosticd/blob/master/3.x/README.md). 
+ - 3.x cluster, see [./3.x/README.md](https://github.com/konveyor/mig-agnosticd/blob/master/3.x/README.md).
  - 4.x cluster, see [./4.x/README.md](https://github.com/konveyor/mig-agnosticd/blob/master/4.x/README.md).
 
