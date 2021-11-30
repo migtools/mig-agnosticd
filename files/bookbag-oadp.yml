@@ -27,7 +27,7 @@
       - "oc start-build bookbag --follow --from-dir={{ bookbag_dir }}"
 
   - name: "Deploying bookbag image"
-    shell: "oc process -f deploy-template.yaml -p WORKSHOP_VARS='{{ ocp3_info | combine(ocp4_info, recursive=true) | to_json }}' | oc apply -f -"
+    shell: "oc process -f deploy-template.yaml -p WORKSHOP_VARS='{{ ocp4_info | to_json }}' | oc apply -f -"
     args:
       chdir: "{{ bookbag_dir }}/{{ bookbag_build_dir }}"
 
