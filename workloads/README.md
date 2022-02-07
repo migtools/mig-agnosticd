@@ -66,8 +66,8 @@ Available migration workloads -
 # Deploy mssql sample app to OpenShift 3
 ./deploy_workload.sh -a create -w mssql -v 3
 
-# Deploy ceph cluster to OpenShift 4
-./deploy_workload.sh -a create -w ceph -v 4
+# Deploy OCS cluster to OpenShift 4
+./deploy_workload.sh -a create -w ocs-poc -v 4
 
 # Deploy minio to OpenShift 4
 ./deploy_workload.sh -a create -w minio -v 4
