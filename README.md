@@ -57,12 +57,15 @@ At this point in time, the operators are _not_ integrated with OLM.  The intent 
     - Access to a HostedZone in AWS Route53 is required, meaning you need a domain name managed by Route53 which can serve as the subdomain for your clusters
 1. Checkout of https://github.com/redhat-cop/agnosticd 
 1. Environment Variable set of 'AGNOSTICD_HOME' pointing to your agnosticd checkout
-1. Creation of a 'secret.yml' in the base directory of this repo, see https://github.com/konveyor/mig-agnosticd/blob/master/secret.yml.sample
+1. Creation of secret files  in the base directory of this repo, see https://github.com/konveyor/mig-agnosticd/blob/master/secret.yml.sample
 
     Intent is that you will do something like:
 
     - `cp secret.yml.sample secret.yml`
     - `vim secret.yml` # and update the variables as comments instruct
+    - Additionally, based on the environment (OCP4 or OCP3) you're provisioning, you will also need to configure an additional secret specific to the OCP version:
+        - For OCP 3, you will copy the `secret.ocp3.yml.sample` to `secret.ocp3.yml` and update the file
+        - For OCP 4, you will copy the `secret.ocp4.yml.sample` to `secret.ocp4.yml` and update the file
 
 # Pre-provisioning Steps
 ```
