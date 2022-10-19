@@ -7,6 +7,10 @@ osrelease: "4.6.0"
 
 update_packages: true
 install_ocp4: true
+# note konveyor projects will be expected to ship w/ FIPS compliance
+# https://docs.openshift.com/container-platform/4.9/installing/installing-fips.html
+# https://github.com/redhat-cop/agnosticd/blob/development/ansible/roles/host-ocp4-installer/templates/install-config.yaml.j2#L6
+# ocp4_fips_enable: true
 
 # Next settings are for Dev Preview releases of OpenShift
 # These will override the installer version with the direct downloads
