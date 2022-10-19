@@ -105,6 +105,7 @@ cd ..
     ```
     source env/bin/activate
     pip3 install -r requirements.txt
+    ansible-galaxy collection install amazon.aws:2.2.0 community.aws:2.1.0
     ```
 
  * To update any requirements
