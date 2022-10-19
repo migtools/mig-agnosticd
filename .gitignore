@@ -1,3 +1,5 @@
 env
 my_vars.yml
 secret.yml
+secret.ocp3.yml
+secret.ocp4.yml
