@@ -118,10 +118,11 @@ get_cluster_info(){
 
 deploy_bookbag(){
     # We have to oc login to be able to make changes to the cluster
+    printf "Logging into OCP4 cluster\n"
     oc login -u $API_LOGIN -p $API_PASS --insecure-skip-tls-verify=true $API_ADDRESS
 
     # Now run the ansible-playbook to deploy Bookbag
-
+    printf "Running bookbag installation script\n"
     ansible-playbook -e ansible_user=$STUDENT -e ocp3_password=$PASSWORD -e ocp4_password=$PASSWORD bookbag.yml > >(tee -a bookbag.log) 2> >(tee -a bookbag_err.log >&2)
     BOOKBAG_URL=$(sed -n 's/.*\(bookbag-.*\)".*/\1/p' bookbag.log)
     printf "\nWaiting for Bookbag to become available"
