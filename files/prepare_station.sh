@@ -105,7 +105,10 @@ get_cluster_info(){
     if sshpass -p "$PASSWORD" scp $STUDENT@$HOSTNAME:./cluster.info cluster.ocp3
     then
         printf "Grabbing cluster info from OCP3 cluster\n"
-        cp cluster.info cluster.orig
+        if [ -f cluster.orig ]; then
+	  cp cluster.orig cluster.info
+	fi 
+    	cp cluster.info cluster.orig
         cat cluster.ocp3 >> cluster.info
     else
         printf "Couldn't copy the cluster.info file from OCP3\n"
@@ -119,7 +122,7 @@ deploy_bookbag(){
 
     # Now run the ansible-playbook to deploy Bookbag
 
-    ansible-playbook -e ocp3_password=$PASSWORD -e ocp4_password=$PASSWORD bookbag.yml > >(tee -a bookbag.log) 2> >(tee -a bookbag_err.log >&2)
+    ansible-playbook -e ansible_user=$STUDENT -e ocp3_password=$PASSWORD -e ocp4_password=$PASSWORD bookbag.yml > >(tee -a bookbag.log) 2> >(tee -a bookbag_err.log >&2)
     BOOKBAG_URL=$(sed -n 's/.*\(bookbag-.*\)".*/\1/p' bookbag.log)
     printf "\nWaiting for Bookbag to become available"
     until [[ $(curl -k -s https://$BOOKBAG_URL) =~ "Redirecting" ]]
