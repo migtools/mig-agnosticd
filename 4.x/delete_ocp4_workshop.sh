@@ -14,5 +14,5 @@ fi
 
 pushd .
 cd ${AGNOSTICD_HOME}
-ansible-playbook  ./ansible/configs/ocp4-cluster/destroy_env.yml ${OUR_DIR}/../archive_deleted.yml -e @${OUR_DIR}/my_vars.yml -e @${OUR_DIR}/ocp4_vars.yml -e @${OUR_DIR}/../secret.yml "$@"
+ansible-playbook  ./ansible/configs/ocp4-cluster/destroy_env.yml ${OUR_DIR}/../archive_deleted.yml -e ACTION="destroy" -e @${OUR_DIR}/my_vars.yml -e @${OUR_DIR}/ocp4_vars.yml -e @${OUR_DIR}/../secret.yml "$@"
 popd

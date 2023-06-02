@@ -15,7 +15,7 @@ fi
 
 pushd .
 cd ${AGNOSTICD_HOME} 
-ansible-playbook ${AGNOSTICD_HOME}/ansible/main.yml -e @${OUR_DIR}/my_vars.yml -e @${OUR_DIR}/ocp4_vars.yml -e @${OUR_DIR}/../secret.yml -e @${OUR_DIR}/../secret.ocp4.yml "$@"
+ansible-playbook ${AGNOSTICD_HOME}/ansible/main.yml -e ACTION="create" -e @${OUR_DIR}/my_vars.yml -e @${OUR_DIR}/ocp4_vars.yml -e @${OUR_DIR}/../secret.yml -e @${OUR_DIR}/../secret.ocp4.yml "$@"
 rc=$?
 popd
 exit ${rc}
