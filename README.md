@@ -109,9 +109,10 @@ FIPS is disabled by default.
  * Activate Virtualenv and install requirements
     ```
     source env/bin/activate
-    pip3 install -r requirements.txt
+    PIP_CONSTRAINT=constraints.txt pip3 install -r requirements.txt
     ansible-galaxy collection install amazon.aws:2.2.0 community.aws:2.1.0
     ```
+    * See [PyYAML 5.4.1: AttributeError: cython_sources #207](https://github.com/migtools/mig-agnosticd/issues/207) for why the PIP_CONSTRAINT file is being used.
 
  * To update any requirements
     ```
