@@ -103,7 +103,6 @@ FIPS is disabled by default.
 ## Virtualenv (optional)
  * Installing Virtualenv
     ```
-    python3 -m pip install --user virtualenv
     python3 -m venv env
     ```
 
