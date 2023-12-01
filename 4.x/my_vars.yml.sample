@@ -25,3 +25,8 @@ aws_region: us-west-2
 cloud_tags: # list of custom tags to add to your aws resources
 - owner: "{{ email }}"
 
+
+# https://access.redhat.com/solutions/7007136
+# Need at least 4.11.36 or 4.12.12
+# ocp4_installer_version: "4.13.0"
+

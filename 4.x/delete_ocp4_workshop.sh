@@ -1,3 +1,4 @@
+#!/bin/bash
 OUR_DIR=`pwd`
 
 OS="$(uname)"
@@ -14,5 +15,7 @@ fi
 
 pushd .
 cd ${AGNOSTICD_HOME}
-ansible-playbook  ./ansible/configs/ocp4-cluster/destroy_env.yml ${OUR_DIR}/../archive_deleted.yml -e ACTION="destroy" -e @${OUR_DIR}/ocp4_vars.yml -e @${OUR_DIR}/my_vars.yml -e @${OUR_DIR}/../secret.yml "$@"
+ansible-playbook ${AGNOSTICD_HOME}/ansible/destroy.yml ${OUR_DIR}/../archive_deleted.yml -e ACTION="destroy" -e @${OUR_DIR}/ocp4_vars.yml -e @${OUR_DIR}/my_vars.yml -e @${OUR_DIR}/../secret.yml -e @${OUR_DIR}/../secret.ocp4.yml "$@"
+rc=$?
 popd
+exit ${rc}
